@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package article;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+message Tag {
+    uint64 id         = 1;
+    uint64 type       = 2;
+    uint64 sort       = 3;
+    string name       = 4;
+    string en_name    = 5;
+    uint64 status     = 6;
+    bool   checked    = 7;
+    string remark     = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+/**************** 请求结构 ****************/
+
+message CreateTagPost {
+    uint64 type    = 2;
+    uint64 sort    = 3;
+    string name    = 4;
+    string en_name = 5;
+    string remark  = 6;
+  }
+  
+  message UpdateTagPost {
+    uint64 id      = 1;
+    uint64 type    = 2;
+    uint64 sort    = 3;
+    string name    = 4;
+    string en_name = 5;
+    string remark  = 6;
+  }
+
+/**************** 返回结构 ****************/
+
+message TagResponse {
+    string message = 1;
+    Tag    data    = 2;
+}
+
+message TagsResponse {
+  string   message  = 1;
+  repeated Tag data = 2;
+}
+
+/* 返回分页数据 */
+message TagPaginationResponse {
+    message Tags {
+        repeated Tag list = 1;
+        int64    total    = 2;
+    }
+    string message = 1;
+    Tags   Data    = 2;
+  }
+  

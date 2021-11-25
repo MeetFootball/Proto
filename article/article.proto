@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package article;
+
+option go_package = "./pb;pb";
+
+import "global/global.proto";
+import "article/tag.proto";
+
+service ArticleService {
+    // 标签管理
+    rpc Tag (global.InfoPost) returns (TagResponse); // 获取 单个 标签
+    rpc Tags (global.EmptyPost) returns (TagsResponse) {} // 获取 标签列表
+    rpc TagPagination (global.PaginationPost) returns (TagPaginationResponse) {} // 获取标签分页
+    rpc CreateTag (CreateTagPost) returns (TagResponse) {} // 创建标签
+    rpc UpdateTag (UpdateTagPost) returns (TagResponse) {} // 更新标签
+    rpc ChangeTagStatus (global.ChangeStatusPost) returns (TagResponse) {} // 修改标签状态
+    // 文章管理
+}
