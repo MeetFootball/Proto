@@ -7,35 +7,41 @@ option go_package = "./pb;pb";
 /**************** 数据结构 ****************/
 
 message Bucket {
-    int64  id         = 1;
-    int64  oss_id     = 2;
+    uint64 id         = 1;
+    uint64 oss_id     = 2;
     string region     = 3;
-    string name       = 4;
-    string intranet   = 5;
-    string endpoint   = 6;
-    uint64 status     = 7;
-    string remark     = 8;
-    string created_at = 9;
-    string updated_at = 10;
+    string code       = 4;
+    string name       = 5;
+    string intranet   = 6;
+    string endpoint   = 7;
+    uint64 public     = 8;
+    uint64 status     = 9;
+    string remark     = 10;
+    string created_at = 11;
+    string updated_at = 12;
 }
 
 /**************** 请求结构 ****************/
 
 message CreateBucketPost {
-    int64  oss_id   = 2;
+    uint64 oss_id   = 2;
     string region   = 3;
-    string name     = 4;
-    string intranet = 5;
-    string endpoint = 6;
+    string code     = 4;
+    string name     = 5;
+    string intranet = 6;
+    string endpoint = 7;
+    uint64 public   = 8;
 }
 
 message UpdateBucketPost {
     int64  id       = 1;
-    int64  oss_id   = 2;
+    uint64 oss_id   = 2;
     string region   = 3;
-    string name     = 4;
-    string intranet = 5;
-    string endpoint = 6;
+    string code     = 4;
+    string name     = 5;
+    string intranet = 6;
+    string endpoint = 7;
+    uint64 public   = 8;
 }
 
 /**************** 返回结构 ****************/

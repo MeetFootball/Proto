@@ -25,13 +25,13 @@ type Oss struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Key       string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	Secret    string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret,omitempty"`
-	Status    uint64 `protobuf:"varint,4,opt,name=status,proto3" json:"status,omitempty"`
-	Remark    string `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark,omitempty"`
-	CreatedAt string `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt string `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Key       string `protobuf:"bytes,2,opt,name=key,proto3" json:"key"`
+	Secret    string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret"`
+	Status    uint64 `protobuf:"varint,4,opt,name=status,proto3" json:"status"`
+	Remark    string `protobuf:"bytes,5,opt,name=remark,proto3" json:"remark"`
+	CreatedAt string `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt string `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 }
 
 func (x *Oss) Reset() {
@@ -120,8 +120,8 @@ type CreateOssPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Key    string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	Secret string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret,omitempty"`
+	Key    string `protobuf:"bytes,2,opt,name=key,proto3" json:"key"`
+	Secret string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret"`
 }
 
 func (x *CreateOssPost) Reset() {
@@ -175,9 +175,9 @@ type UpdateOssPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Key    string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	Secret string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret,omitempty"`
+	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Key    string `protobuf:"bytes,2,opt,name=key,proto3" json:"key"`
+	Secret string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret"`
 }
 
 func (x *UpdateOssPost) Reset() {
@@ -238,8 +238,8 @@ type OssResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *Oss   `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *Oss   `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *OssResponse) Reset() {
@@ -293,8 +293,8 @@ type OssListResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    []*Oss `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    []*Oss `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
 }
 
 func (x *OssListResponse) Reset() {
@@ -348,8 +348,8 @@ type OssPaginationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string                      `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *OssPaginationResponse_List `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string                      `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *OssPaginationResponse_List `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *OssPaginationResponse) Reset() {
@@ -403,8 +403,8 @@ type OssPaginationResponse_List struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	List  []*Oss `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
-	Total int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	List  []*Oss `protobuf:"bytes,1,rep,name=list,proto3" json:"list"`
+	Total int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
 }
 
 func (x *OssPaginationResponse_List) Reset() {
