@@ -6,7 +6,7 @@ option go_package = "./pb;pb";
 
 import "global/global.proto";
 import "service/oss.proto";
-import "service/bucket.proto";
+import "service/oss_bucket.proto";
 
 service ServiceService {
     /* 对象存储账号管理 */
@@ -17,10 +17,10 @@ service ServiceService {
     rpc UpdateOss (UpdateOssPost) returns (OssResponse) {} // 更新账号
     rpc ChangeOssStatus (global.ChangeStatusPost) returns (OssResponse) {} // 修改账号状态
     /* 桶管理 */
-    rpc Bucket (global.InfoPost) returns (BucketResponse) {} // 获取 单个 桶信息
-    rpc Buckets (global.EmptyPost) returns (BucketsResponse) {} // 获取 桶列表
-    rpc BucketPagination (global.PaginationPost) returns (BucketPaginationResponse) {} // 获取桶分页
-    rpc CreateBucket (CreateBucketPost) returns (BucketResponse) {} // 创建桶
-    rpc UpdateBucket (UpdateBucketPost) returns (BucketResponse) {} // 更新桶
-    rpc ChangeBucketStatus (global.ChangeStatusPost) returns (BucketResponse) {} // 修改桶状态
+    rpc OssBucket (global.InfoPost) returns (OssBucketResponse) {} // 获取 单个 桶信息
+    rpc OssBuckets (global.EmptyPost) returns (OssBucketsResponse) {} // 获取 桶列表
+    rpc OssBucketPagination (global.PaginationPost) returns (OssBucketPaginationResponse) {} // 获取桶分页
+    rpc CreateOssBucket (CreateOssBucketPost) returns (OssBucketResponse) {} // 创建桶
+    rpc UpdateOssBucket (UpdateOssBucketPost) returns (OssBucketResponse) {} // 更新桶
+    rpc ChangeOssBucketStatus (global.ChangeStatusPost) returns (OssBucketResponse) {} // 修改桶状态
 }

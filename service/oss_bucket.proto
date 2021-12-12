@@ -6,7 +6,7 @@ option go_package = "./pb;pb";
 
 /**************** 数据结构 ****************/
 
-message Bucket {
+message OssBucket {
     uint64 id         = 1;
     uint64 oss_id     = 2;
     string region     = 3;
@@ -23,7 +23,7 @@ message Bucket {
 
 /**************** 请求结构 ****************/
 
-message CreateBucketPost {
+message CreateOssBucketPost {
     uint64 oss_id   = 2;
     string region   = 3;
     string code     = 4;
@@ -33,7 +33,7 @@ message CreateBucketPost {
     uint64 public   = 8;
 }
 
-message UpdateBucketPost {
+message UpdateOssBucketPost {
     int64  id       = 1;
     uint64 oss_id   = 2;
     string region   = 3;
@@ -46,19 +46,19 @@ message UpdateBucketPost {
 
 /**************** 返回结构 ****************/
 
-message BucketResponse {
+message OssBucketResponse {
     string message = 1;
-    Bucket data    = 2;
+    OssBucket data    = 2;
 }
 
-message BucketsResponse {
+message OssBucketsResponse {
     string   message     = 1;
-    repeated Bucket data = 2;
+    repeated OssBucket data = 2;
 }
 
-message BucketPaginationResponse {
+message OssBucketPaginationResponse {
     message Buckets {
-        repeated Bucket list = 1;
+        repeated OssBucket list = 1;
         int64    total       = 2;
     }
     string  message = 1;

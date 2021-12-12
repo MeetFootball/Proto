@@ -26,12 +26,12 @@ type ServiceServiceClient interface {
 	UpdateOss(ctx context.Context, in *UpdateOssPost, opts ...grpc.CallOption) (*OssResponse, error)
 	ChangeOssStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssResponse, error)
 	// 桶管理
-	Bucket(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BucketResponse, error)
-	Buckets(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*BucketsResponse, error)
-	BucketPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*BucketPaginationResponse, error)
-	CreateBucket(ctx context.Context, in *CreateBucketPost, opts ...grpc.CallOption) (*BucketResponse, error)
-	UpdateBucket(ctx context.Context, in *UpdateBucketPost, opts ...grpc.CallOption) (*BucketResponse, error)
-	ChangeBucketStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*BucketResponse, error)
+	OssBucket(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
+	OssBuckets(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*OssBucketsResponse, error)
+	OssBucketPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*OssBucketPaginationResponse, error)
+	CreateOssBucket(ctx context.Context, in *CreateOssBucketPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
+	UpdateOssBucket(ctx context.Context, in *UpdateOssBucketPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
+	ChangeOssBucketStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
 }
 
 type serviceServiceClient struct {
@@ -96,54 +96,54 @@ func (c *serviceServiceClient) ChangeOssStatus(ctx context.Context, in *ChangeSt
 	return out, nil
 }
 
-func (c *serviceServiceClient) Bucket(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BucketResponse, error) {
-	out := new(BucketResponse)
-	err := c.cc.Invoke(ctx, "/service.ServiceService/Bucket", in, out, opts...)
+func (c *serviceServiceClient) OssBucket(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*OssBucketResponse, error) {
+	out := new(OssBucketResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/OssBucket", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceServiceClient) Buckets(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*BucketsResponse, error) {
-	out := new(BucketsResponse)
-	err := c.cc.Invoke(ctx, "/service.ServiceService/Buckets", in, out, opts...)
+func (c *serviceServiceClient) OssBuckets(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*OssBucketsResponse, error) {
+	out := new(OssBucketsResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/OssBuckets", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceServiceClient) BucketPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*BucketPaginationResponse, error) {
-	out := new(BucketPaginationResponse)
-	err := c.cc.Invoke(ctx, "/service.ServiceService/BucketPagination", in, out, opts...)
+func (c *serviceServiceClient) OssBucketPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*OssBucketPaginationResponse, error) {
+	out := new(OssBucketPaginationResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/OssBucketPagination", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceServiceClient) CreateBucket(ctx context.Context, in *CreateBucketPost, opts ...grpc.CallOption) (*BucketResponse, error) {
-	out := new(BucketResponse)
-	err := c.cc.Invoke(ctx, "/service.ServiceService/CreateBucket", in, out, opts...)
+func (c *serviceServiceClient) CreateOssBucket(ctx context.Context, in *CreateOssBucketPost, opts ...grpc.CallOption) (*OssBucketResponse, error) {
+	out := new(OssBucketResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/CreateOssBucket", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceServiceClient) UpdateBucket(ctx context.Context, in *UpdateBucketPost, opts ...grpc.CallOption) (*BucketResponse, error) {
-	out := new(BucketResponse)
-	err := c.cc.Invoke(ctx, "/service.ServiceService/UpdateBucket", in, out, opts...)
+func (c *serviceServiceClient) UpdateOssBucket(ctx context.Context, in *UpdateOssBucketPost, opts ...grpc.CallOption) (*OssBucketResponse, error) {
+	out := new(OssBucketResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/UpdateOssBucket", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceServiceClient) ChangeBucketStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*BucketResponse, error) {
-	out := new(BucketResponse)
-	err := c.cc.Invoke(ctx, "/service.ServiceService/ChangeBucketStatus", in, out, opts...)
+func (c *serviceServiceClient) ChangeOssBucketStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssBucketResponse, error) {
+	out := new(OssBucketResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/ChangeOssBucketStatus", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -162,12 +162,12 @@ type ServiceServiceServer interface {
 	UpdateOss(context.Context, *UpdateOssPost) (*OssResponse, error)
 	ChangeOssStatus(context.Context, *ChangeStatusPost) (*OssResponse, error)
 	// 桶管理
-	Bucket(context.Context, *InfoPost) (*BucketResponse, error)
-	Buckets(context.Context, *EmptyPost) (*BucketsResponse, error)
-	BucketPagination(context.Context, *PaginationPost) (*BucketPaginationResponse, error)
-	CreateBucket(context.Context, *CreateBucketPost) (*BucketResponse, error)
-	UpdateBucket(context.Context, *UpdateBucketPost) (*BucketResponse, error)
-	ChangeBucketStatus(context.Context, *ChangeStatusPost) (*BucketResponse, error)
+	OssBucket(context.Context, *InfoPost) (*OssBucketResponse, error)
+	OssBuckets(context.Context, *EmptyPost) (*OssBucketsResponse, error)
+	OssBucketPagination(context.Context, *PaginationPost) (*OssBucketPaginationResponse, error)
+	CreateOssBucket(context.Context, *CreateOssBucketPost) (*OssBucketResponse, error)
+	UpdateOssBucket(context.Context, *UpdateOssBucketPost) (*OssBucketResponse, error)
+	ChangeOssBucketStatus(context.Context, *ChangeStatusPost) (*OssBucketResponse, error)
 	mustEmbedUnimplementedServiceServiceServer()
 }
 
@@ -193,23 +193,23 @@ func (UnimplementedServiceServiceServer) UpdateOss(context.Context, *UpdateOssPo
 func (UnimplementedServiceServiceServer) ChangeOssStatus(context.Context, *ChangeStatusPost) (*OssResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeOssStatus not implemented")
 }
-func (UnimplementedServiceServiceServer) Bucket(context.Context, *InfoPost) (*BucketResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Bucket not implemented")
+func (UnimplementedServiceServiceServer) OssBucket(context.Context, *InfoPost) (*OssBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OssBucket not implemented")
 }
-func (UnimplementedServiceServiceServer) Buckets(context.Context, *EmptyPost) (*BucketsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Buckets not implemented")
+func (UnimplementedServiceServiceServer) OssBuckets(context.Context, *EmptyPost) (*OssBucketsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OssBuckets not implemented")
 }
-func (UnimplementedServiceServiceServer) BucketPagination(context.Context, *PaginationPost) (*BucketPaginationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BucketPagination not implemented")
+func (UnimplementedServiceServiceServer) OssBucketPagination(context.Context, *PaginationPost) (*OssBucketPaginationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OssBucketPagination not implemented")
 }
-func (UnimplementedServiceServiceServer) CreateBucket(context.Context, *CreateBucketPost) (*BucketResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateBucket not implemented")
+func (UnimplementedServiceServiceServer) CreateOssBucket(context.Context, *CreateOssBucketPost) (*OssBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOssBucket not implemented")
 }
-func (UnimplementedServiceServiceServer) UpdateBucket(context.Context, *UpdateBucketPost) (*BucketResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateBucket not implemented")
+func (UnimplementedServiceServiceServer) UpdateOssBucket(context.Context, *UpdateOssBucketPost) (*OssBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOssBucket not implemented")
 }
-func (UnimplementedServiceServiceServer) ChangeBucketStatus(context.Context, *ChangeStatusPost) (*BucketResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeBucketStatus not implemented")
+func (UnimplementedServiceServiceServer) ChangeOssBucketStatus(context.Context, *ChangeStatusPost) (*OssBucketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeOssBucketStatus not implemented")
 }
 func (UnimplementedServiceServiceServer) mustEmbedUnimplementedServiceServiceServer() {}
 
@@ -332,110 +332,110 @@ func _ServiceService_ChangeOssStatus_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceService_Bucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceService_OssBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InfoPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServiceServer).Bucket(ctx, in)
+		return srv.(ServiceServiceServer).OssBucket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ServiceService/Bucket",
+		FullMethod: "/service.ServiceService/OssBucket",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServiceServer).Bucket(ctx, req.(*InfoPost))
+		return srv.(ServiceServiceServer).OssBucket(ctx, req.(*InfoPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceService_Buckets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceService_OssBuckets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServiceServer).Buckets(ctx, in)
+		return srv.(ServiceServiceServer).OssBuckets(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ServiceService/Buckets",
+		FullMethod: "/service.ServiceService/OssBuckets",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServiceServer).Buckets(ctx, req.(*EmptyPost))
+		return srv.(ServiceServiceServer).OssBuckets(ctx, req.(*EmptyPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceService_BucketPagination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceService_OssBucketPagination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PaginationPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServiceServer).BucketPagination(ctx, in)
+		return srv.(ServiceServiceServer).OssBucketPagination(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ServiceService/BucketPagination",
+		FullMethod: "/service.ServiceService/OssBucketPagination",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServiceServer).BucketPagination(ctx, req.(*PaginationPost))
+		return srv.(ServiceServiceServer).OssBucketPagination(ctx, req.(*PaginationPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceService_CreateBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateBucketPost)
+func _ServiceService_CreateOssBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOssBucketPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServiceServer).CreateBucket(ctx, in)
+		return srv.(ServiceServiceServer).CreateOssBucket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ServiceService/CreateBucket",
+		FullMethod: "/service.ServiceService/CreateOssBucket",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServiceServer).CreateBucket(ctx, req.(*CreateBucketPost))
+		return srv.(ServiceServiceServer).CreateOssBucket(ctx, req.(*CreateOssBucketPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceService_UpdateBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateBucketPost)
+func _ServiceService_UpdateOssBucket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOssBucketPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServiceServer).UpdateBucket(ctx, in)
+		return srv.(ServiceServiceServer).UpdateOssBucket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ServiceService/UpdateBucket",
+		FullMethod: "/service.ServiceService/UpdateOssBucket",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServiceServer).UpdateBucket(ctx, req.(*UpdateBucketPost))
+		return srv.(ServiceServiceServer).UpdateOssBucket(ctx, req.(*UpdateOssBucketPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceService_ChangeBucketStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ServiceService_ChangeOssBucketStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeStatusPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServiceServer).ChangeBucketStatus(ctx, in)
+		return srv.(ServiceServiceServer).ChangeOssBucketStatus(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/service.ServiceService/ChangeBucketStatus",
+		FullMethod: "/service.ServiceService/ChangeOssBucketStatus",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServiceServer).ChangeBucketStatus(ctx, req.(*ChangeStatusPost))
+		return srv.(ServiceServiceServer).ChangeOssBucketStatus(ctx, req.(*ChangeStatusPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -472,28 +472,28 @@ var ServiceService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceService_ChangeOssStatus_Handler,
 		},
 		{
-			MethodName: "Bucket",
-			Handler:    _ServiceService_Bucket_Handler,
+			MethodName: "OssBucket",
+			Handler:    _ServiceService_OssBucket_Handler,
 		},
 		{
-			MethodName: "Buckets",
-			Handler:    _ServiceService_Buckets_Handler,
+			MethodName: "OssBuckets",
+			Handler:    _ServiceService_OssBuckets_Handler,
 		},
 		{
-			MethodName: "BucketPagination",
-			Handler:    _ServiceService_BucketPagination_Handler,
+			MethodName: "OssBucketPagination",
+			Handler:    _ServiceService_OssBucketPagination_Handler,
 		},
 		{
-			MethodName: "CreateBucket",
-			Handler:    _ServiceService_CreateBucket_Handler,
+			MethodName: "CreateOssBucket",
+			Handler:    _ServiceService_CreateOssBucket_Handler,
 		},
 		{
-			MethodName: "UpdateBucket",
-			Handler:    _ServiceService_UpdateBucket_Handler,
+			MethodName: "UpdateOssBucket",
+			Handler:    _ServiceService_UpdateOssBucket_Handler,
 		},
 		{
-			MethodName: "ChangeBucketStatus",
-			Handler:    _ServiceService_ChangeBucketStatus_Handler,
+			MethodName: "ChangeOssBucketStatus",
+			Handler:    _ServiceService_ChangeOssBucketStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
