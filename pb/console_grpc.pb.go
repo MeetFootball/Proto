@@ -53,6 +53,7 @@ type ConsoleServiceClient interface {
 	ChangeUserStatus(ctx context.Context, in *ChangeStatusByKeyPost, opts ...grpc.CallOption) (*UserResponse, error)
 	// 登录模块
 	Login(ctx context.Context, in *LoginPost, opts ...grpc.CallOption) (*LoginResponse, error)
+	LoginLogPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*LoginLogPaginationResponse, error)
 	Scopes(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*ScopesResponse, error)
 	LogOut(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*Response, error)
 }
@@ -308,6 +309,15 @@ func (c *consoleServiceClient) Login(ctx context.Context, in *LoginPost, opts ..
 	return out, nil
 }
 
+func (c *consoleServiceClient) LoginLogPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*LoginLogPaginationResponse, error) {
+	out := new(LoginLogPaginationResponse)
+	err := c.cc.Invoke(ctx, "/console.ConsoleService/LoginLogPagination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *consoleServiceClient) Scopes(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*ScopesResponse, error) {
 	out := new(ScopesResponse)
 	err := c.cc.Invoke(ctx, "/console.ConsoleService/Scopes", in, out, opts...)
@@ -365,6 +375,7 @@ type ConsoleServiceServer interface {
 	ChangeUserStatus(context.Context, *ChangeStatusByKeyPost) (*UserResponse, error)
 	// 登录模块
 	Login(context.Context, *LoginPost) (*LoginResponse, error)
+	LoginLogPagination(context.Context, *PaginationPost) (*LoginLogPaginationResponse, error)
 	Scopes(context.Context, *EmptyPost) (*ScopesResponse, error)
 	LogOut(context.Context, *EmptyPost) (*Response, error)
 	mustEmbedUnimplementedConsoleServiceServer()
@@ -454,6 +465,9 @@ func (UnimplementedConsoleServiceServer) ChangeUserStatus(context.Context, *Chan
 }
 func (UnimplementedConsoleServiceServer) Login(context.Context, *LoginPost) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedConsoleServiceServer) LoginLogPagination(context.Context, *PaginationPost) (*LoginLogPaginationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginLogPagination not implemented")
 }
 func (UnimplementedConsoleServiceServer) Scopes(context.Context, *EmptyPost) (*ScopesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Scopes not implemented")
@@ -960,6 +974,24 @@ func _ConsoleService_Login_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ConsoleService_LoginLogPagination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaginationPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConsoleServiceServer).LoginLogPagination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/console.ConsoleService/LoginLogPagination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConsoleServiceServer).LoginLogPagination(ctx, req.(*PaginationPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ConsoleService_Scopes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyPost)
 	if err := dec(in); err != nil {
@@ -1110,6 +1142,10 @@ var ConsoleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _ConsoleService_Login_Handler,
+		},
+		{
+			MethodName: "LoginLogPagination",
+			Handler:    _ConsoleService_LoginLogPagination_Handler,
 		},
 		{
 			MethodName: "Scopes",
