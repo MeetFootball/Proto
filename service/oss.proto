@@ -1,14 +1,51 @@
 syntax = "proto3";
 
-package console;
+package service;
 
 option go_package = "./pb;pb";
 
 /**************** 数据结构 ****************/
 
-
+message Oss {
+    uint64 id         = 1;
+    string key        = 2;
+    string secret     = 3;
+    uint64 status     = 4;
+    string remark     = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
 
 /**************** 请求结构 ****************/
 
+message CreateOssPost {
+    string key    = 2;
+    string secret = 3;
+}
+
+message UpdateOssPost {
+    uint64 id     = 1;
+    string key    = 2;
+    string secret = 3;
+}
 
 /**************** 返回结构 ****************/
+
+message OssResponse {
+    string message = 1;
+    Oss    data    = 2;
+}
+
+message OssListResponse {
+    string   message  = 1;
+    repeated Oss data = 2;
+}
+
+message OssPaginationResponse {
+    message List {
+        repeated Oss list = 1;
+        int64    total    = 2;
+    }
+    string message = 1;
+    List   data    = 2;
+}

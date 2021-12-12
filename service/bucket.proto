@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+message Bucket {
+    int64  id         = 1;
+    int64  oss_id     = 2;
+    string region     = 3;
+    string name       = 4;
+    string intranet   = 5;
+    string endpoint   = 6;
+    uint64 status     = 7;
+    string remark     = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+/**************** 请求结构 ****************/
+
+message CreateBucketPost {
+    int64  oss_id   = 2;
+    string region   = 3;
+    string name     = 4;
+    string intranet = 5;
+    string endpoint = 6;
+}
+
+message UpdateBucketPost {
+    int64  id       = 1;
+    int64  oss_id   = 2;
+    string region   = 3;
+    string name     = 4;
+    string intranet = 5;
+    string endpoint = 6;
+}
+
+/**************** 返回结构 ****************/
+
+message BucketResponse {
+    string message = 1;
+    Bucket data    = 2;
+}
+
+message BucketsResponse {
+    string   message     = 1;
+    repeated Bucket data = 2;
+}
+
+message BucketPaginationResponse {
+    message Buckets {
+        repeated Bucket list = 1;
+        int64    total       = 2;
+    }
+    string  message = 1;
+    Buckets data    = 2;
+}

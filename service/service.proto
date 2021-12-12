@@ -4,5 +4,23 @@ package service;
 
 option go_package = "./pb;pb";
 
+import "global/global.proto";
+import "service/oss.proto";
+import "service/bucket.proto";
 
-service ServiceService {}
+service ServiceService {
+    /* 对象存储账号管理 */
+    rpc Oss (global.InfoPost) returns (OssResponse) {} // 获取 单个 账号信息
+    rpc OssList (global.EmptyPost) returns (OssListResponse) {} // 获取 账号列表
+    rpc OssPagination (global.PaginationPost) returns (OssPaginationResponse) {} // 获取账号分页
+    rpc CreateOss (CreateOssPost) returns (OssResponse) {} // 创建账号
+    rpc UpdateOss (UpdateOssPost) returns (OssResponse) {} // 更新账号
+    rpc ChangeOssStatus (global.ChangeStatusPost) returns (OssResponse) {} // 修改账号状态
+    /* 桶管理 */
+    rpc Bucket (global.InfoPost) returns (BucketResponse) {} // 获取 单个 桶信息
+    rpc Buckets (global.EmptyPost) returns (BucketsResponse) {} // 获取 桶列表
+    rpc BucketPagination (global.PaginationPost) returns (BucketPaginationResponse) {} // 获取桶分页
+    rpc CreateBucket (CreateBucketPost) returns (BucketResponse) {} // 创建桶
+    rpc UpdateBucket (UpdateBucketPost) returns (BucketResponse) {} // 更新桶
+    rpc ChangeBucketStatus (global.ChangeStatusPost) returns (BucketResponse) {} // 修改桶状态
+}
