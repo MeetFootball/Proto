@@ -14,7 +14,7 @@ message OssBucket {
     string name       = 5;
     string intranet   = 6;
     string endpoint   = 7;
-    uint64 public     = 8;
+    bool   public     = 8;
     uint64 status     = 9;
     string remark     = 10;
     string created_at = 11;
@@ -30,36 +30,38 @@ message CreateOssBucketPost {
     string name     = 5;
     string intranet = 6;
     string endpoint = 7;
-    uint64 public   = 8;
+    bool   public   = 8;
+    string remark   = 9;
 }
 
 message UpdateOssBucketPost {
-    int64  id       = 1;
+    uint64  id       = 1;
     uint64 oss_id   = 2;
     string region   = 3;
     string code     = 4;
     string name     = 5;
     string intranet = 6;
     string endpoint = 7;
-    uint64 public   = 8;
+    bool   public   = 8;
+    string remark   = 9;
 }
 
 /**************** 返回结构 ****************/
 
 message OssBucketResponse {
-    string message = 1;
+    string    message = 1;
     OssBucket data    = 2;
 }
 
 message OssBucketsResponse {
-    string   message     = 1;
+    string   message        = 1;
     repeated OssBucket data = 2;
 }
 
 message OssBucketPaginationResponse {
     message Buckets {
         repeated OssBucket list = 1;
-        int64    total       = 2;
+        int64    total          = 2;
     }
     string  message = 1;
     Buckets data    = 2;

@@ -8,25 +8,31 @@ option go_package = "./pb;pb";
 
 message Oss {
     uint64 id         = 1;
-    string key        = 2;
-    string secret     = 3;
-    uint64 status     = 4;
-    string remark     = 5;
-    string created_at = 6;
-    string updated_at = 7;
+    string name       = 2;
+    string key        = 3;
+    string secret     = 4;
+    uint64 status     = 5;
+    bool   checked    = 6;
+    string remark     = 7;
+    string created_at = 8;
+    string updated_at = 9;
 }
 
 /**************** 请求结构 ****************/
 
 message CreateOssPost {
-    string key    = 2;
-    string secret = 3;
+    string name   = 2;
+    string key    = 3;
+    string secret = 4;
+    string remark = 5;
 }
 
 message UpdateOssPost {
     uint64 id     = 1;
-    string key    = 2;
-    string secret = 3;
+    string name   = 2;
+    string key    = 3;
+    string secret = 4;
+    string remark = 5;
 }
 
 /**************** 返回结构 ****************/
