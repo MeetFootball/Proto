@@ -25,6 +25,13 @@ type ServiceServiceClient interface {
 	CreateOss(ctx context.Context, in *CreateOssPost, opts ...grpc.CallOption) (*OssResponse, error)
 	UpdateOss(ctx context.Context, in *UpdateOssPost, opts ...grpc.CallOption) (*OssResponse, error)
 	ChangeOssStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssResponse, error)
+	// 对象存储节点
+	OssEndpoint(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*OssEndpointResponse, error)
+	OssEndpointList(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*OssEndpointListResponse, error)
+	OssEndpointPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*OssEndpointPaginationResponse, error)
+	CreateOssEndpoint(ctx context.Context, in *CreateOssEndpointPost, opts ...grpc.CallOption) (*OssEndpointResponse, error)
+	UpdateOssEndpoint(ctx context.Context, in *UpdateOssEndpointPost, opts ...grpc.CallOption) (*OssEndpointResponse, error)
+	ChangeOssEndpointStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssEndpointResponse, error)
 	// 桶管理
 	OssBucket(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
 	OssBuckets(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*OssBucketsResponse, error)
@@ -96,6 +103,60 @@ func (c *serviceServiceClient) ChangeOssStatus(ctx context.Context, in *ChangeSt
 	return out, nil
 }
 
+func (c *serviceServiceClient) OssEndpoint(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*OssEndpointResponse, error) {
+	out := new(OssEndpointResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/OssEndpoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceServiceClient) OssEndpointList(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*OssEndpointListResponse, error) {
+	out := new(OssEndpointListResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/OssEndpointList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceServiceClient) OssEndpointPagination(ctx context.Context, in *PaginationPost, opts ...grpc.CallOption) (*OssEndpointPaginationResponse, error) {
+	out := new(OssEndpointPaginationResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/OssEndpointPagination", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceServiceClient) CreateOssEndpoint(ctx context.Context, in *CreateOssEndpointPost, opts ...grpc.CallOption) (*OssEndpointResponse, error) {
+	out := new(OssEndpointResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/CreateOssEndpoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceServiceClient) UpdateOssEndpoint(ctx context.Context, in *UpdateOssEndpointPost, opts ...grpc.CallOption) (*OssEndpointResponse, error) {
+	out := new(OssEndpointResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/UpdateOssEndpoint", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceServiceClient) ChangeOssEndpointStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssEndpointResponse, error) {
+	out := new(OssEndpointResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/ChangeOssEndpointStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serviceServiceClient) OssBucket(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*OssBucketResponse, error) {
 	out := new(OssBucketResponse)
 	err := c.cc.Invoke(ctx, "/service.ServiceService/OssBucket", in, out, opts...)
@@ -161,6 +222,13 @@ type ServiceServiceServer interface {
 	CreateOss(context.Context, *CreateOssPost) (*OssResponse, error)
 	UpdateOss(context.Context, *UpdateOssPost) (*OssResponse, error)
 	ChangeOssStatus(context.Context, *ChangeStatusPost) (*OssResponse, error)
+	// 对象存储节点
+	OssEndpoint(context.Context, *InfoPost) (*OssEndpointResponse, error)
+	OssEndpointList(context.Context, *EmptyPost) (*OssEndpointListResponse, error)
+	OssEndpointPagination(context.Context, *PaginationPost) (*OssEndpointPaginationResponse, error)
+	CreateOssEndpoint(context.Context, *CreateOssEndpointPost) (*OssEndpointResponse, error)
+	UpdateOssEndpoint(context.Context, *UpdateOssEndpointPost) (*OssEndpointResponse, error)
+	ChangeOssEndpointStatus(context.Context, *ChangeStatusPost) (*OssEndpointResponse, error)
 	// 桶管理
 	OssBucket(context.Context, *InfoPost) (*OssBucketResponse, error)
 	OssBuckets(context.Context, *EmptyPost) (*OssBucketsResponse, error)
@@ -192,6 +260,24 @@ func (UnimplementedServiceServiceServer) UpdateOss(context.Context, *UpdateOssPo
 }
 func (UnimplementedServiceServiceServer) ChangeOssStatus(context.Context, *ChangeStatusPost) (*OssResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeOssStatus not implemented")
+}
+func (UnimplementedServiceServiceServer) OssEndpoint(context.Context, *InfoPost) (*OssEndpointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OssEndpoint not implemented")
+}
+func (UnimplementedServiceServiceServer) OssEndpointList(context.Context, *EmptyPost) (*OssEndpointListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OssEndpointList not implemented")
+}
+func (UnimplementedServiceServiceServer) OssEndpointPagination(context.Context, *PaginationPost) (*OssEndpointPaginationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OssEndpointPagination not implemented")
+}
+func (UnimplementedServiceServiceServer) CreateOssEndpoint(context.Context, *CreateOssEndpointPost) (*OssEndpointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOssEndpoint not implemented")
+}
+func (UnimplementedServiceServiceServer) UpdateOssEndpoint(context.Context, *UpdateOssEndpointPost) (*OssEndpointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateOssEndpoint not implemented")
+}
+func (UnimplementedServiceServiceServer) ChangeOssEndpointStatus(context.Context, *ChangeStatusPost) (*OssEndpointResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeOssEndpointStatus not implemented")
 }
 func (UnimplementedServiceServiceServer) OssBucket(context.Context, *InfoPost) (*OssBucketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OssBucket not implemented")
@@ -328,6 +414,114 @@ func _ServiceService_ChangeOssStatus_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceServiceServer).ChangeOssStatus(ctx, req.(*ChangeStatusPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceService_OssEndpoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InfoPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).OssEndpoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/OssEndpoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).OssEndpoint(ctx, req.(*InfoPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceService_OssEndpointList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).OssEndpointList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/OssEndpointList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).OssEndpointList(ctx, req.(*EmptyPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceService_OssEndpointPagination_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PaginationPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).OssEndpointPagination(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/OssEndpointPagination",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).OssEndpointPagination(ctx, req.(*PaginationPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceService_CreateOssEndpoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOssEndpointPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).CreateOssEndpoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/CreateOssEndpoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).CreateOssEndpoint(ctx, req.(*CreateOssEndpointPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceService_UpdateOssEndpoint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateOssEndpointPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).UpdateOssEndpoint(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/UpdateOssEndpoint",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).UpdateOssEndpoint(ctx, req.(*UpdateOssEndpointPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceService_ChangeOssEndpointStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeStatusPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).ChangeOssEndpointStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/ChangeOssEndpointStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).ChangeOssEndpointStatus(ctx, req.(*ChangeStatusPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -470,6 +664,30 @@ var ServiceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeOssStatus",
 			Handler:    _ServiceService_ChangeOssStatus_Handler,
+		},
+		{
+			MethodName: "OssEndpoint",
+			Handler:    _ServiceService_OssEndpoint_Handler,
+		},
+		{
+			MethodName: "OssEndpointList",
+			Handler:    _ServiceService_OssEndpointList_Handler,
+		},
+		{
+			MethodName: "OssEndpointPagination",
+			Handler:    _ServiceService_OssEndpointPagination_Handler,
+		},
+		{
+			MethodName: "CreateOssEndpoint",
+			Handler:    _ServiceService_CreateOssEndpoint_Handler,
+		},
+		{
+			MethodName: "UpdateOssEndpoint",
+			Handler:    _ServiceService_UpdateOssEndpoint_Handler,
+		},
+		{
+			MethodName: "ChangeOssEndpointStatus",
+			Handler:    _ServiceService_ChangeOssEndpointStatus_Handler,
 		},
 		{
 			MethodName: "OssBucket",

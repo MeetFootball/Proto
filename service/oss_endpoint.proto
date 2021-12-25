@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+message OssEndpoint {
+    uint64 id         = 1;
+    string name       = 2;
+    string intranet   = 3;
+    string endpoint   = 4;
+    uint64 status     = 5;
+    bool   checked    = 6;
+    string remark     = 7;
+    string created_at = 8;
+    string updated_at = 9;
+}
+
+/**************** 请求结构 ****************/
+
+message CreateOssEndpointPost {
+    string name     = 2;
+    string intranet = 3;
+    string endpoint = 4;
+    string remark   = 5;
+}
+
+message UpdateOssEndpointPost {
+    uint64 id       = 1;
+    string name     = 2;
+    string intranet = 3;
+    string endpoint = 4;
+    string remark   = 5;
+}
+
+/**************** 返回结构 ****************/
+
+message OssEndpointResponse {
+    string      message = 1;
+    OssEndpoint data    = 2;
+}
+
+message OssEndpointListResponse {
+    string   message          = 1;
+    repeated OssEndpoint data = 2;
+}
+
+message OssEndpointPaginationResponse {
+    message List {
+        repeated OssEndpoint list = 1;
+        int64    total            = 2;
+    }
+    string message = 1;
+    List   data    = 2;
+}

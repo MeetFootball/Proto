@@ -6,6 +6,7 @@ option go_package = "./pb;pb";
 
 import "global/global.proto";
 import "service/oss.proto";
+import "service/oss_endpoint.proto";
 import "service/oss_bucket.proto";
 
 service ServiceService {
@@ -16,6 +17,13 @@ service ServiceService {
     rpc CreateOss (CreateOssPost) returns (OssResponse) {} // 创建账号
     rpc UpdateOss (UpdateOssPost) returns (OssResponse) {} // 更新账号
     rpc ChangeOssStatus (global.ChangeStatusPost) returns (OssResponse) {} // 修改账号状态
+    /* 对象存储节点 */
+    rpc OssEndpoint (global.InfoPost) returns (OssEndpointResponse); // 获取 单个 节点信息
+    rpc OssEndpointList (global.EmptyPost) returns (OssEndpointListResponse); // 获取 节点列表
+    rpc OssEndpointPagination (global.PaginationPost) returns (OssEndpointPaginationResponse) {} // 获取节点分页
+    rpc CreateOssEndpoint (CreateOssEndpointPost) returns (OssEndpointResponse) {} // 创建节点
+    rpc UpdateOssEndpoint (UpdateOssEndpointPost) returns (OssEndpointResponse) {} // 更新节点
+    rpc ChangeOssEndpointStatus (global.ChangeStatusPost) returns (OssEndpointResponse) {} // 修改节点状态
     /* 桶管理 */
     rpc OssBucket (global.InfoPost) returns (OssBucketResponse) {} // 获取 单个 桶信息
     rpc OssBuckets (global.EmptyPost) returns (OssBucketsResponse) {} // 获取 桶列表
