@@ -42,7 +42,7 @@ message OssEndpointResponse {
     OssEndpoint data    = 2;
 }
 
-message OssEndpointListResponse {
+message OssEndpointsResponse {
     string   message          = 1;
     repeated OssEndpoint data = 2;
 }

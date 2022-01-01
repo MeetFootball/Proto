@@ -7,43 +7,54 @@ option go_package = "./pb;pb";
 /**************** 数据结构 ****************/
 
 message OssBucket {
-    uint64 id         = 1;
+    string key        = 1;
     uint64 oss_id     = 2;
-    string region     = 3;
-    string code       = 4;
+    uint64 type       = 3;
+    string region     = 4;
     string name       = 5;
-    string intranet   = 6;
-    string endpoint   = 7;
-    bool   public     = 8;
-    uint64 status     = 9;
-    string remark     = 10;
-    string created_at = 11;
-    string updated_at = 12;
+    string path       = 6;
+    string acl        = 7;
+    string storage    = 8;
+    string redundancy = 9;
+    string location   = 10;
+    string intranet   = 11;
+    string endpoint   = 12;
+    bool   source     = 13;
+    uint64 status     = 14;
+    string remark     = 15;
+    string synced_at  = 16;
+    string created_at = 17;
+    string updated_at = 18;
 }
 
 /**************** 请求结构 ****************/
 
 message CreateOssBucketPost {
     uint64 oss_id   = 2;
-    string region   = 3;
-    string code     = 4;
+    uint64 type     = 3;
+    string region   = 4;
     string name     = 5;
-    string intranet = 6;
+    string path     = 6;
     string endpoint = 7;
-    bool   public   = 8;
+    bool   source   = 8;
     string remark   = 9;
 }
 
 message UpdateOssBucketPost {
-    uint64  id       = 1;
+    string key      = 1;
     uint64 oss_id   = 2;
-    string region   = 3;
-    string code     = 4;
+    uint64 type     = 3;
+    string region   = 4;
     string name     = 5;
-    string intranet = 6;
-    string endpoint = 7;
-    bool   public   = 8;
+    string path     = 6;
+    string location = 7;
+    bool   source   = 8;
     string remark   = 9;
+}
+
+message RemoveOssBucketPost {
+    string key  = 1;
+    string name = 2;
 }
 
 /**************** 返回结构 ****************/

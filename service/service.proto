@@ -13,22 +13,25 @@ service ServiceService {
     /* 对象存储账号管理 */
     rpc Oss (global.InfoPost) returns (OssResponse) {} // 获取 单个 账号信息
     rpc OssList (global.EmptyPost) returns (OssListResponse) {} // 获取 账号列表
+    rpc CacheOssList (global.EmptyPost) returns (OssListResponse) {} // 从缓存中获取 账号列表
     rpc OssPagination (global.PaginationPost) returns (OssPaginationResponse) {} // 获取账号分页
     rpc CreateOss (CreateOssPost) returns (OssResponse) {} // 创建账号
     rpc UpdateOss (UpdateOssPost) returns (OssResponse) {} // 更新账号
     rpc ChangeOssStatus (global.ChangeStatusPost) returns (OssResponse) {} // 修改账号状态
     /* 对象存储节点 */
-    rpc OssEndpoint (global.InfoPost) returns (OssEndpointResponse); // 获取 单个 节点信息
-    rpc OssEndpointList (global.EmptyPost) returns (OssEndpointListResponse); // 获取 节点列表
+    rpc OssEndpoint (global.InfoPost) returns (OssEndpointResponse) {} // 获取 单个 节点信息
+    rpc OssEndpointList (global.EmptyPost) returns (OssEndpointsResponse) {} // 获取 节点列表
+    rpc CacheOssEndpoints (global.EmptyPost) returns (OssEndpointsResponse) {} // 从缓存中获取 节点列表
     rpc OssEndpointPagination (global.PaginationPost) returns (OssEndpointPaginationResponse) {} // 获取节点分页
     rpc CreateOssEndpoint (CreateOssEndpointPost) returns (OssEndpointResponse) {} // 创建节点
     rpc UpdateOssEndpoint (UpdateOssEndpointPost) returns (OssEndpointResponse) {} // 更新节点
     rpc ChangeOssEndpointStatus (global.ChangeStatusPost) returns (OssEndpointResponse) {} // 修改节点状态
-    /* 桶管理 */
-    rpc OssBucket (global.InfoPost) returns (OssBucketResponse) {} // 获取 单个 桶信息
-    rpc OssBuckets (global.EmptyPost) returns (OssBucketsResponse) {} // 获取 桶列表
-    rpc OssBucketPagination (global.PaginationPost) returns (OssBucketPaginationResponse) {} // 获取桶分页
-    rpc CreateOssBucket (CreateOssBucketPost) returns (OssBucketResponse) {} // 创建桶
-    rpc UpdateOssBucket (UpdateOssBucketPost) returns (OssBucketResponse) {} // 更新桶
-    rpc ChangeOssBucketStatus (global.ChangeStatusPost) returns (OssBucketResponse) {} // 修改桶状态
+    /* 存储空间 */
+    rpc OssBucket (global.InfoKeyPost) returns (OssBucketResponse) {} // 获取 单个 存储空间 信息
+    rpc OssBuckets (global.EmptyPost) returns (OssBucketsResponse) {} // 获取 存储空间 列表
+    rpc OssBucketPagination (global.PaginationPost) returns (OssBucketPaginationResponse) {} // 获取 存储空间 分页
+    rpc CreateOssBucket (CreateOssBucketPost) returns (OssBucketResponse) {} // 创建 存储空间
+    rpc UpdateOssBucket (UpdateOssBucketPost) returns (OssBucketResponse) {} // 更新 存储空间
+    rpc RemoveOssBucket (RemoveOssBucketPost) returns (OssBucketResponse) {} // 移除 存储空间
+    rpc ChangeOssBucketStatus (global.ChangeStatusPost) returns (OssBucketResponse) {} // 修改 存储空间 状态
 }
