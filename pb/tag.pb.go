@@ -25,16 +25,16 @@ type Tag struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Type      uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
-	Sort      uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort,omitempty"`
-	Name      string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	EnName    string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name,omitempty"`
-	Status    uint64 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
-	Checked   bool   `protobuf:"varint,7,opt,name=checked,proto3" json:"checked,omitempty"`
-	Remark    string `protobuf:"bytes,8,opt,name=remark,proto3" json:"remark,omitempty"`
-	CreatedAt string `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt string `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Type      uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
+	Sort      uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort"`
+	Name      string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
+	EnName    string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name"`
+	Status    uint64 `protobuf:"varint,6,opt,name=status,proto3" json:"status"`
+	Checked   bool   `protobuf:"varint,7,opt,name=checked,proto3" json:"checked"`
+	Remark    string `protobuf:"bytes,8,opt,name=remark,proto3" json:"remark"`
+	CreatedAt string `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	UpdatedAt string `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 }
 
 func (x *Tag) Reset() {
@@ -144,11 +144,11 @@ type CreateTagPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
-	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort,omitempty"`
-	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name,omitempty"`
-	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`
+	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
+	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort"`
+	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
+	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name"`
+	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark"`
 }
 
 func (x *CreateTagPost) Reset() {
@@ -223,12 +223,12 @@ type UpdateTagPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
-	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort,omitempty"`
-	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name,omitempty"`
-	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`
+	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
+	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort"`
+	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
+	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name"`
+	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark"`
 }
 
 func (x *UpdateTagPost) Reset() {
@@ -310,8 +310,8 @@ type TagResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *Tag   `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *Tag   `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *TagResponse) Reset() {
@@ -365,8 +365,8 @@ type TagsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    []*Tag `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    []*Tag `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
 }
 
 func (x *TagsResponse) Reset() {
@@ -421,8 +421,8 @@ type TagPaginationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string                      `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *TagPaginationResponse_Tags `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string                      `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *TagPaginationResponse_Tags `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *TagPaginationResponse) Reset() {
@@ -476,8 +476,8 @@ type TagPaginationResponse_Tags struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	List  []*Tag `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
-	Total int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	List  []*Tag `protobuf:"bytes,1,rep,name=list,proto3" json:"list"`
+	Total int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
 }
 
 func (x *TagPaginationResponse_Tags) Reset() {

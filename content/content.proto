@@ -18,7 +18,7 @@ service ContentService {
     rpc UpdateTag (UpdateTagPost) returns (TagResponse) {}  // 更新标签
     rpc ChangeTagStatus (global.ChangeStatusPost) returns (TagResponse) {}  // 修改标签状态
     // 文章管理
-    rpc Article (global.InfoPost) returns (ArticleResponse) {}  // 获取文章信息，用于编辑
+    rpc Article (global.InfoPost) returns (ArticleInfoResponse) {}  // 获取文章信息，用于编辑
     rpc ArticlePagination (ArticlePaginationPost) returns (ArticlePaginationResponse) {}  // 后台，获取文章分页
     rpc CreateArticle (CreateArticlePost) returns (ArticleResponse) {}  // 发布文章
     rpc UpdateArticle (UpdateArticlePost) returns (ArticleResponse) {}  // 编辑文章

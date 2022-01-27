@@ -6,8 +6,26 @@ option go_package = "./pb;pb";
 
 /**************** 数据结构 ****************/
 
-// Article 返回文章数据，用于编辑
+// Article 返回文章数据，用于展示（分页列表）
 message Article {
+  uint64 id         = 1;
+  uint64 uuid       = 2;
+  uint64 plate_id   = 3;
+  string tags       = 4;
+  string date       = 5;
+  string title      = 6;
+  string thumbnail  = 7;
+  string abstract   = 8;
+  uint64 top        = 9;
+  uint64 marevllous = 10;
+  uint64 status     = 11;
+  string remark     = 12;
+  string created_at = 13;
+  string updated_at = 14;
+}
+
+// ArticleInfo 返回文章数据，用于编辑
+message ArticleInfo {
   uint64 id         = 1;
   uint64 uuid       = 2;
   uint64 plate_id   = 3;
@@ -25,8 +43,23 @@ message Article {
   string updated_at = 15;
 }
 
+// ArticleDetail 客户端，获取文章详情
 message ArticleDetail {
-
+  uint64 id         = 1;
+  uint64 uuid       = 2;
+  uint64 plate_id   = 3;
+  string tags       = 4;
+  string date       = 5;
+  string title      = 6;
+  string content    = 7;
+  string thumbnail  = 8;
+  string abstract   = 9;
+  uint64 top        = 10;
+  uint64 marevllous = 11;
+  uint64 status     = 12;
+  string remark     = 13;
+  string created_at = 14;
+  string updated_at = 15;
 }
 
 /**************** 请求结构 ****************/
@@ -69,10 +102,16 @@ message UpdateArticlePost {
 
 /**************** 返回结构 ****************/
 
-// ArticleResponse 后台，文章信息返回
+// ArticleResponse 后台，文章信息用于展示（文章列表）
 message ArticleResponse {
   string  message = 1;
   Article data    = 2;
+}
+
+// ArticleInfoResponse 后台，文章信息返回，用于编辑
+message ArticleInfoResponse {
+  string      message = 1;
+  ArticleInfo data    = 2;
 }
 
 // ArticlePaginationResponse 后台，文章列表返回
@@ -90,3 +129,5 @@ message ArticleDetailResponse {
   string        message = 1;
   ArticleDetail data    = 2;
 }
+
+

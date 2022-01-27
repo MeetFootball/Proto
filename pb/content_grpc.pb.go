@@ -26,7 +26,7 @@ type ContentServiceClient interface {
 	UpdateTag(ctx context.Context, in *UpdateTagPost, opts ...grpc.CallOption) (*TagResponse, error)
 	ChangeTagStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*TagResponse, error)
 	// 文章管理
-	Article(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*ArticleResponse, error)
+	Article(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*ArticleInfoResponse, error)
 	ArticlePagination(ctx context.Context, in *ArticlePaginationPost, opts ...grpc.CallOption) (*ArticlePaginationResponse, error)
 	CreateArticle(ctx context.Context, in *CreateArticlePost, opts ...grpc.CallOption) (*ArticleResponse, error)
 	UpdateArticle(ctx context.Context, in *UpdateArticlePost, opts ...grpc.CallOption) (*ArticleResponse, error)
@@ -94,8 +94,8 @@ func (c *contentServiceClient) ChangeTagStatus(ctx context.Context, in *ChangeSt
 	return out, nil
 }
 
-func (c *contentServiceClient) Article(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*ArticleResponse, error) {
-	out := new(ArticleResponse)
+func (c *contentServiceClient) Article(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*ArticleInfoResponse, error) {
+	out := new(ArticleInfoResponse)
 	err := c.cc.Invoke(ctx, "/content.ContentService/Article", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -142,7 +142,7 @@ type ContentServiceServer interface {
 	UpdateTag(context.Context, *UpdateTagPost) (*TagResponse, error)
 	ChangeTagStatus(context.Context, *ChangeStatusPost) (*TagResponse, error)
 	// 文章管理
-	Article(context.Context, *InfoPost) (*ArticleResponse, error)
+	Article(context.Context, *InfoPost) (*ArticleInfoResponse, error)
 	ArticlePagination(context.Context, *ArticlePaginationPost) (*ArticlePaginationResponse, error)
 	CreateArticle(context.Context, *CreateArticlePost) (*ArticleResponse, error)
 	UpdateArticle(context.Context, *UpdateArticlePost) (*ArticleResponse, error)
@@ -171,7 +171,7 @@ func (UnimplementedContentServiceServer) UpdateTag(context.Context, *UpdateTagPo
 func (UnimplementedContentServiceServer) ChangeTagStatus(context.Context, *ChangeStatusPost) (*TagResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeTagStatus not implemented")
 }
-func (UnimplementedContentServiceServer) Article(context.Context, *InfoPost) (*ArticleResponse, error) {
+func (UnimplementedContentServiceServer) Article(context.Context, *InfoPost) (*ArticleInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Article not implemented")
 }
 func (UnimplementedContentServiceServer) ArticlePagination(context.Context, *ArticlePaginationPost) (*ArticlePaginationResponse, error) {
