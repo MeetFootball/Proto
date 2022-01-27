@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.26.0
 // 	protoc        v3.19.1
-// source: article/tag.proto
+// source: content/tag.proto
 
 package pb
 
@@ -25,22 +25,22 @@ type Tag struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	Type      uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
-	Sort      uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort"`
-	Name      string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
-	EnName    string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name"`
-	Status    uint64 `protobuf:"varint,6,opt,name=status,proto3" json:"status"`
-	Checked   bool   `protobuf:"varint,7,opt,name=checked,proto3" json:"checked"`
-	Remark    string `protobuf:"bytes,8,opt,name=remark,proto3" json:"remark"`
-	CreatedAt string `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
-	UpdatedAt string `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type      uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
+	Sort      uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort,omitempty"`
+	Name      string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	EnName    string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name,omitempty"`
+	Status    uint64 `protobuf:"varint,6,opt,name=status,proto3" json:"status,omitempty"`
+	Checked   bool   `protobuf:"varint,7,opt,name=checked,proto3" json:"checked,omitempty"`
+	Remark    string `protobuf:"bytes,8,opt,name=remark,proto3" json:"remark,omitempty"`
+	CreatedAt string `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt string `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 }
 
 func (x *Tag) Reset() {
 	*x = Tag{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[0]
+		mi := &file_content_tag_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -53,7 +53,7 @@ func (x *Tag) String() string {
 func (*Tag) ProtoMessage() {}
 
 func (x *Tag) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[0]
+	mi := &file_content_tag_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -66,7 +66,7 @@ func (x *Tag) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Tag.ProtoReflect.Descriptor instead.
 func (*Tag) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{0}
+	return file_content_tag_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Tag) GetId() uint64 {
@@ -144,17 +144,17 @@ type CreateTagPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
-	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort"`
-	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
-	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name"`
-	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark"`
+	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
+	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort,omitempty"`
+	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name,omitempty"`
+	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`
 }
 
 func (x *CreateTagPost) Reset() {
 	*x = CreateTagPost{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[1]
+		mi := &file_content_tag_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -167,7 +167,7 @@ func (x *CreateTagPost) String() string {
 func (*CreateTagPost) ProtoMessage() {}
 
 func (x *CreateTagPost) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[1]
+	mi := &file_content_tag_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -180,7 +180,7 @@ func (x *CreateTagPost) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTagPost.ProtoReflect.Descriptor instead.
 func (*CreateTagPost) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{1}
+	return file_content_tag_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateTagPost) GetType() uint64 {
@@ -223,18 +223,18 @@ type UpdateTagPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type"`
-	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort"`
-	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name"`
-	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name"`
-	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark"`
+	Id     uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type   uint64 `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
+	Sort   uint64 `protobuf:"varint,3,opt,name=sort,proto3" json:"sort,omitempty"`
+	Name   string `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	EnName string `protobuf:"bytes,5,opt,name=en_name,json=enName,proto3" json:"en_name,omitempty"`
+	Remark string `protobuf:"bytes,6,opt,name=remark,proto3" json:"remark,omitempty"`
 }
 
 func (x *UpdateTagPost) Reset() {
 	*x = UpdateTagPost{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[2]
+		mi := &file_content_tag_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -247,7 +247,7 @@ func (x *UpdateTagPost) String() string {
 func (*UpdateTagPost) ProtoMessage() {}
 
 func (x *UpdateTagPost) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[2]
+	mi := &file_content_tag_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -260,7 +260,7 @@ func (x *UpdateTagPost) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTagPost.ProtoReflect.Descriptor instead.
 func (*UpdateTagPost) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{2}
+	return file_content_tag_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *UpdateTagPost) GetId() uint64 {
@@ -310,14 +310,14 @@ type TagResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    *Tag   `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *Tag   `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *TagResponse) Reset() {
 	*x = TagResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[3]
+		mi := &file_content_tag_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -330,7 +330,7 @@ func (x *TagResponse) String() string {
 func (*TagResponse) ProtoMessage() {}
 
 func (x *TagResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[3]
+	mi := &file_content_tag_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -343,7 +343,7 @@ func (x *TagResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TagResponse.ProtoReflect.Descriptor instead.
 func (*TagResponse) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{3}
+	return file_content_tag_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TagResponse) GetMessage() string {
@@ -365,14 +365,14 @@ type TagsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    []*Tag `protobuf:"bytes,2,rep,name=data,proto3" json:"data"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    []*Tag `protobuf:"bytes,2,rep,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *TagsResponse) Reset() {
 	*x = TagsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[4]
+		mi := &file_content_tag_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -385,7 +385,7 @@ func (x *TagsResponse) String() string {
 func (*TagsResponse) ProtoMessage() {}
 
 func (x *TagsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[4]
+	mi := &file_content_tag_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -398,7 +398,7 @@ func (x *TagsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TagsResponse.ProtoReflect.Descriptor instead.
 func (*TagsResponse) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{4}
+	return file_content_tag_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *TagsResponse) GetMessage() string {
@@ -421,14 +421,14 @@ type TagPaginationResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string                      `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    *TagPaginationResponse_Tags `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data"`
+	Message string                      `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *TagPaginationResponse_Tags `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *TagPaginationResponse) Reset() {
 	*x = TagPaginationResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[5]
+		mi := &file_content_tag_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -441,7 +441,7 @@ func (x *TagPaginationResponse) String() string {
 func (*TagPaginationResponse) ProtoMessage() {}
 
 func (x *TagPaginationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[5]
+	mi := &file_content_tag_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -454,7 +454,7 @@ func (x *TagPaginationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TagPaginationResponse.ProtoReflect.Descriptor instead.
 func (*TagPaginationResponse) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{5}
+	return file_content_tag_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *TagPaginationResponse) GetMessage() string {
@@ -476,14 +476,14 @@ type TagPaginationResponse_Tags struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	List  []*Tag `protobuf:"bytes,1,rep,name=list,proto3" json:"list"`
-	Total int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total"`
+	List  []*Tag `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	Total int64  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 }
 
 func (x *TagPaginationResponse_Tags) Reset() {
 	*x = TagPaginationResponse_Tags{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_article_tag_proto_msgTypes[6]
+		mi := &file_content_tag_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -496,7 +496,7 @@ func (x *TagPaginationResponse_Tags) String() string {
 func (*TagPaginationResponse_Tags) ProtoMessage() {}
 
 func (x *TagPaginationResponse_Tags) ProtoReflect() protoreflect.Message {
-	mi := &file_article_tag_proto_msgTypes[6]
+	mi := &file_content_tag_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -509,7 +509,7 @@ func (x *TagPaginationResponse_Tags) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TagPaginationResponse_Tags.ProtoReflect.Descriptor instead.
 func (*TagPaginationResponse_Tags) Descriptor() ([]byte, []int) {
-	return file_article_tag_proto_rawDescGZIP(), []int{5, 0}
+	return file_content_tag_proto_rawDescGZIP(), []int{5, 0}
 }
 
 func (x *TagPaginationResponse_Tags) GetList() []*Tag {
@@ -526,11 +526,11 @@ func (x *TagPaginationResponse_Tags) GetTotal() int64 {
 	return 0
 }
 
-var File_article_tag_proto protoreflect.FileDescriptor
+var File_content_tag_proto protoreflect.FileDescriptor
 
-var file_article_tag_proto_rawDesc = []byte{
-	0x0a, 0x11, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2f, 0x74, 0x61, 0x67, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x12, 0x07, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x22, 0xf2, 0x01, 0x0a,
+var file_content_tag_proto_rawDesc = []byte{
+	0x0a, 0x11, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2f, 0x74, 0x61, 0x67, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x12, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x22, 0xf2, 0x01, 0x0a,
 	0x03, 0x54, 0x61, 0x67, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04,
 	0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x04, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x73, 0x6f, 0x72, 0x74,
@@ -566,54 +566,54 @@ var file_article_tag_proto_rawDesc = []byte{
 	0x0a, 0x0b, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a,
 	0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
 	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x20, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e,
+	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2e,
 	0x54, 0x61, 0x67, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x4a, 0x0a, 0x0c, 0x54, 0x61, 0x67,
 	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73,
 	0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73,
 	0x61, 0x67, 0x65, 0x12, 0x20, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x0c, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x52,
+	0x0b, 0x32, 0x0c, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2e, 0x54, 0x61, 0x67, 0x52,
 	0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0xaa, 0x01, 0x0a, 0x15, 0x54, 0x61, 0x67, 0x50, 0x61, 0x67,
 	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
 	0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x37, 0x0a, 0x04, 0x44, 0x61, 0x74,
-	0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c,
-	0x65, 0x2e, 0x54, 0x61, 0x67, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x73, 0x52, 0x04, 0x44, 0x61,
+	0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x37, 0x0a, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e,
+	0x74, 0x2e, 0x54, 0x61, 0x67, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x73, 0x52, 0x04, 0x64, 0x61,
 	0x74, 0x61, 0x1a, 0x3e, 0x0a, 0x04, 0x54, 0x61, 0x67, 0x73, 0x12, 0x20, 0x0a, 0x04, 0x6c, 0x69,
-	0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63,
-	0x6c, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
+	0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x65,
+	0x6e, 0x74, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
 	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x74, 0x6f, 0x74,
 	0x61, 0x6c, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x62, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_article_tag_proto_rawDescOnce sync.Once
-	file_article_tag_proto_rawDescData = file_article_tag_proto_rawDesc
+	file_content_tag_proto_rawDescOnce sync.Once
+	file_content_tag_proto_rawDescData = file_content_tag_proto_rawDesc
 )
 
-func file_article_tag_proto_rawDescGZIP() []byte {
-	file_article_tag_proto_rawDescOnce.Do(func() {
-		file_article_tag_proto_rawDescData = protoimpl.X.CompressGZIP(file_article_tag_proto_rawDescData)
+func file_content_tag_proto_rawDescGZIP() []byte {
+	file_content_tag_proto_rawDescOnce.Do(func() {
+		file_content_tag_proto_rawDescData = protoimpl.X.CompressGZIP(file_content_tag_proto_rawDescData)
 	})
-	return file_article_tag_proto_rawDescData
+	return file_content_tag_proto_rawDescData
 }
 
-var file_article_tag_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_article_tag_proto_goTypes = []interface{}{
-	(*Tag)(nil),                        // 0: article.Tag
-	(*CreateTagPost)(nil),              // 1: article.CreateTagPost
-	(*UpdateTagPost)(nil),              // 2: article.UpdateTagPost
-	(*TagResponse)(nil),                // 3: article.TagResponse
-	(*TagsResponse)(nil),               // 4: article.TagsResponse
-	(*TagPaginationResponse)(nil),      // 5: article.TagPaginationResponse
-	(*TagPaginationResponse_Tags)(nil), // 6: article.TagPaginationResponse.Tags
+var file_content_tag_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_content_tag_proto_goTypes = []interface{}{
+	(*Tag)(nil),                        // 0: content.Tag
+	(*CreateTagPost)(nil),              // 1: content.CreateTagPost
+	(*UpdateTagPost)(nil),              // 2: content.UpdateTagPost
+	(*TagResponse)(nil),                // 3: content.TagResponse
+	(*TagsResponse)(nil),               // 4: content.TagsResponse
+	(*TagPaginationResponse)(nil),      // 5: content.TagPaginationResponse
+	(*TagPaginationResponse_Tags)(nil), // 6: content.TagPaginationResponse.Tags
 }
-var file_article_tag_proto_depIdxs = []int32{
-	0, // 0: article.TagResponse.data:type_name -> article.Tag
-	0, // 1: article.TagsResponse.data:type_name -> article.Tag
-	6, // 2: article.TagPaginationResponse.Data:type_name -> article.TagPaginationResponse.Tags
-	0, // 3: article.TagPaginationResponse.Tags.list:type_name -> article.Tag
+var file_content_tag_proto_depIdxs = []int32{
+	0, // 0: content.TagResponse.data:type_name -> content.Tag
+	0, // 1: content.TagsResponse.data:type_name -> content.Tag
+	6, // 2: content.TagPaginationResponse.data:type_name -> content.TagPaginationResponse.Tags
+	0, // 3: content.TagPaginationResponse.Tags.list:type_name -> content.Tag
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -621,13 +621,13 @@ var file_article_tag_proto_depIdxs = []int32{
 	0, // [0:4] is the sub-list for field type_name
 }
 
-func init() { file_article_tag_proto_init() }
-func file_article_tag_proto_init() {
-	if File_article_tag_proto != nil {
+func init() { file_content_tag_proto_init() }
+func file_content_tag_proto_init() {
+	if File_content_tag_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_article_tag_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Tag); i {
 			case 0:
 				return &v.state
@@ -639,7 +639,7 @@ func file_article_tag_proto_init() {
 				return nil
 			}
 		}
-		file_article_tag_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateTagPost); i {
 			case 0:
 				return &v.state
@@ -651,7 +651,7 @@ func file_article_tag_proto_init() {
 				return nil
 			}
 		}
-		file_article_tag_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateTagPost); i {
 			case 0:
 				return &v.state
@@ -663,7 +663,7 @@ func file_article_tag_proto_init() {
 				return nil
 			}
 		}
-		file_article_tag_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TagResponse); i {
 			case 0:
 				return &v.state
@@ -675,7 +675,7 @@ func file_article_tag_proto_init() {
 				return nil
 			}
 		}
-		file_article_tag_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TagsResponse); i {
 			case 0:
 				return &v.state
@@ -687,7 +687,7 @@ func file_article_tag_proto_init() {
 				return nil
 			}
 		}
-		file_article_tag_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TagPaginationResponse); i {
 			case 0:
 				return &v.state
@@ -699,7 +699,7 @@ func file_article_tag_proto_init() {
 				return nil
 			}
 		}
-		file_article_tag_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_content_tag_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TagPaginationResponse_Tags); i {
 			case 0:
 				return &v.state
@@ -716,18 +716,18 @@ func file_article_tag_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_article_tag_proto_rawDesc,
+			RawDescriptor: file_content_tag_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_article_tag_proto_goTypes,
-		DependencyIndexes: file_article_tag_proto_depIdxs,
-		MessageInfos:      file_article_tag_proto_msgTypes,
+		GoTypes:           file_content_tag_proto_goTypes,
+		DependencyIndexes: file_content_tag_proto_depIdxs,
+		MessageInfos:      file_content_tag_proto_msgTypes,
 	}.Build()
-	File_article_tag_proto = out.File
-	file_article_tag_proto_rawDesc = nil
-	file_article_tag_proto_goTypes = nil
-	file_article_tag_proto_depIdxs = nil
+	File_content_tag_proto = out.File
+	file_content_tag_proto_rawDesc = nil
+	file_content_tag_proto_goTypes = nil
+	file_content_tag_proto_depIdxs = nil
 }

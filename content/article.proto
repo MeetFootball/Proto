@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package content;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// Article 返回文章数据，用于编辑
+message Article {
+  uint64 id         = 1;
+  uint64 uuid       = 2;
+  uint64 plate_id   = 3;
+  string tags       = 4;
+  string date       = 5;
+  string title      = 6;
+  string content    = 7;
+  string thumbnail  = 8;
+  string abstract   = 9;
+  uint64 top        = 10;
+  uint64 marevllous = 11;
+  uint64 status     = 12;
+  string remark     = 13;
+  string created_at = 14;
+  string updated_at = 15;
+}
+
+message ArticleDetail {
+
+}
+
+/**************** 请求结构 ****************/
+
+// ArticlePaginationPost 后台获取文章分页列表
+message ArticlePaginationPost {
+  uint64 page   = 1;
+  uint64 size   = 2;
+  string author = 3;
+}
+
+// CreateArticlePost 创建文章
+message CreateArticlePost {
+  uint64   plate_id    = 2;
+  repeated string tags = 3;
+  string   date        = 4;
+  string   title       = 5;
+  string   content     = 6;
+  string   thumbnail   = 7;
+  string   abstract    = 8;
+  uint64   top         = 9;
+  uint64   marevllous  = 10;
+  string   remark      = 11;
+}
+
+// UpdateArticlePost 编辑文章
+message UpdateArticlePost {
+  uint64   id          = 1;
+  uint64   plate_id    = 2;
+  repeated string tags = 3;
+  string   date        = 4;
+  string   title       = 5;
+  string   content     = 6;
+  string   thumbnail   = 7;
+  string   abstract    = 8;
+  uint64   top         = 9;
+  uint64   marevllous  = 10;
+  string   remark      = 11;
+}
+
+/**************** 返回结构 ****************/
+
+// ArticleResponse 后台，文章信息返回
+message ArticleResponse {
+  string  message = 1;
+  Article data    = 2;
+}
+
+// ArticlePaginationResponse 后台，文章列表返回
+message ArticlePaginationResponse {
+  message Articles {
+    repeated Article list = 1;
+    int64    total        = 2;
+  }
+  string   message = 1;
+  Articles data    = 2;
+}
+
+// ArticleDetailResponse 客户端，文章详情返回
+message ArticleDetailResponse {
+  string        message = 1;
+  ArticleDetail data    = 2;
+}

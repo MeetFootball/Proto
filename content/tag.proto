@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package article;
+package content;
 
 option go_package = "./pb;pb";
 
@@ -57,6 +57,6 @@ message TagPaginationResponse {
         int64    total    = 2;
     }
     string message = 1;
-    Tags   Data    = 2;
+    Tags   data    = 2;
   }
   

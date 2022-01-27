@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.26.0
 // 	protoc        v3.19.1
-// source: article/article.proto
+// source: content/article.proto
 
 package pb
 
@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 )
 
 const (
@@ -19,94 +20,1003 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-var File_article_article_proto protoreflect.FileDescriptor
+// Article 返回文章数据，用于编辑
+type Article struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
 
-var file_article_article_proto_rawDesc = []byte{
-	0x0a, 0x15, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c,
-	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65,
-	0x1a, 0x13, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x2f, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x11, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2f, 0x74,
-	0x61, 0x67, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xfd, 0x02, 0x0a, 0x0e, 0x41, 0x72, 0x74,
-	0x69, 0x63, 0x6c, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2d, 0x0a, 0x03, 0x54,
-	0x61, 0x67, 0x12, 0x10, 0x2e, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x2e, 0x49, 0x6e, 0x66, 0x6f,
-	0x50, 0x6f, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e, 0x54,
-	0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x32, 0x0a, 0x04, 0x54, 0x61,
-	0x67, 0x73, 0x12, 0x11, 0x2e, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x2e, 0x45, 0x6d, 0x70, 0x74,
-	0x79, 0x50, 0x6f, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e,
-	0x54, 0x61, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x49,
-	0x0a, 0x0d, 0x54, 0x61, 0x67, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12,
-	0x16, 0x2e, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x2e, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c,
-	0x65, 0x2e, 0x54, 0x61, 0x67, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3b, 0x0a, 0x09, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x12, 0x16, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65,
-	0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x50, 0x6f, 0x73, 0x74, 0x1a, 0x14,
-	0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x3b, 0x0a, 0x09, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x54, 0x61, 0x67, 0x12, 0x16, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x54, 0x61, 0x67, 0x50, 0x6f, 0x73, 0x74, 0x1a, 0x14, 0x2e, 0x61, 0x72,
-	0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x00, 0x12, 0x43, 0x0a, 0x0f, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x54, 0x61, 0x67,
-	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x18, 0x2e, 0x67, 0x6c, 0x6f, 0x62, 0x61, 0x6c, 0x2e,
-	0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x50, 0x6f, 0x73, 0x74,
-	0x1a, 0x14, 0x2e, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x2e, 0x54, 0x61, 0x67, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x62,
-	0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	Id         uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Uuid       uint64 `protobuf:"varint,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	PlateId    uint64 `protobuf:"varint,3,opt,name=plate_id,json=plateId,proto3" json:"plate_id,omitempty"`
+	Tags       string `protobuf:"bytes,4,opt,name=tags,proto3" json:"tags,omitempty"`
+	Date       string `protobuf:"bytes,5,opt,name=date,proto3" json:"date,omitempty"`
+	Title      string `protobuf:"bytes,6,opt,name=title,proto3" json:"title,omitempty"`
+	Content    string `protobuf:"bytes,7,opt,name=content,proto3" json:"content,omitempty"`
+	Thumbnail  string `protobuf:"bytes,8,opt,name=thumbnail,proto3" json:"thumbnail,omitempty"`
+	Abstract   string `protobuf:"bytes,9,opt,name=abstract,proto3" json:"abstract,omitempty"`
+	Top        uint64 `protobuf:"varint,10,opt,name=top,proto3" json:"top,omitempty"`
+	Marevllous uint64 `protobuf:"varint,11,opt,name=marevllous,proto3" json:"marevllous,omitempty"`
+	Status     uint64 `protobuf:"varint,12,opt,name=status,proto3" json:"status,omitempty"`
+	Remark     string `protobuf:"bytes,13,opt,name=remark,proto3" json:"remark,omitempty"`
+	CreatedAt  string `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt  string `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 }
 
-var file_article_article_proto_goTypes = []interface{}{
-	(*InfoPost)(nil),              // 0: global.InfoPost
-	(*EmptyPost)(nil),             // 1: global.EmptyPost
-	(*PaginationPost)(nil),        // 2: global.PaginationPost
-	(*CreateTagPost)(nil),         // 3: article.CreateTagPost
-	(*UpdateTagPost)(nil),         // 4: article.UpdateTagPost
-	(*ChangeStatusPost)(nil),      // 5: global.ChangeStatusPost
-	(*TagResponse)(nil),           // 6: article.TagResponse
-	(*TagsResponse)(nil),          // 7: article.TagsResponse
-	(*TagPaginationResponse)(nil), // 8: article.TagPaginationResponse
-}
-var file_article_article_proto_depIdxs = []int32{
-	0, // 0: article.ArticleService.Tag:input_type -> global.InfoPost
-	1, // 1: article.ArticleService.Tags:input_type -> global.EmptyPost
-	2, // 2: article.ArticleService.TagPagination:input_type -> global.PaginationPost
-	3, // 3: article.ArticleService.CreateTag:input_type -> article.CreateTagPost
-	4, // 4: article.ArticleService.UpdateTag:input_type -> article.UpdateTagPost
-	5, // 5: article.ArticleService.ChangeTagStatus:input_type -> global.ChangeStatusPost
-	6, // 6: article.ArticleService.Tag:output_type -> article.TagResponse
-	7, // 7: article.ArticleService.Tags:output_type -> article.TagsResponse
-	8, // 8: article.ArticleService.TagPagination:output_type -> article.TagPaginationResponse
-	6, // 9: article.ArticleService.CreateTag:output_type -> article.TagResponse
-	6, // 10: article.ArticleService.UpdateTag:output_type -> article.TagResponse
-	6, // 11: article.ArticleService.ChangeTagStatus:output_type -> article.TagResponse
-	6, // [6:12] is the sub-list for method output_type
-	0, // [0:6] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+func (x *Article) Reset() {
+	*x = Article{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
 }
 
-func init() { file_article_article_proto_init() }
-func file_article_article_proto_init() {
-	if File_article_article_proto != nil {
+func (x *Article) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Article) ProtoMessage() {}
+
+func (x *Article) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Article.ProtoReflect.Descriptor instead.
+func (*Article) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Article) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Article) GetUuid() uint64 {
+	if x != nil {
+		return x.Uuid
+	}
+	return 0
+}
+
+func (x *Article) GetPlateId() uint64 {
+	if x != nil {
+		return x.PlateId
+	}
+	return 0
+}
+
+func (x *Article) GetTags() string {
+	if x != nil {
+		return x.Tags
+	}
+	return ""
+}
+
+func (x *Article) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *Article) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Article) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *Article) GetThumbnail() string {
+	if x != nil {
+		return x.Thumbnail
+	}
+	return ""
+}
+
+func (x *Article) GetAbstract() string {
+	if x != nil {
+		return x.Abstract
+	}
+	return ""
+}
+
+func (x *Article) GetTop() uint64 {
+	if x != nil {
+		return x.Top
+	}
+	return 0
+}
+
+func (x *Article) GetMarevllous() uint64 {
+	if x != nil {
+		return x.Marevllous
+	}
+	return 0
+}
+
+func (x *Article) GetStatus() uint64 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
+}
+
+func (x *Article) GetRemark() string {
+	if x != nil {
+		return x.Remark
+	}
+	return ""
+}
+
+func (x *Article) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Article) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+type ArticleDetail struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ArticleDetail) Reset() {
+	*x = ArticleDetail{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArticleDetail) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArticleDetail) ProtoMessage() {}
+
+func (x *ArticleDetail) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArticleDetail.ProtoReflect.Descriptor instead.
+func (*ArticleDetail) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{1}
+}
+
+// ArticlePaginationPost 后台获取文章分页列表
+type ArticlePaginationPost struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Page   uint64 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Size   uint64 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	Author string `protobuf:"bytes,3,opt,name=author,proto3" json:"author,omitempty"`
+}
+
+func (x *ArticlePaginationPost) Reset() {
+	*x = ArticlePaginationPost{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArticlePaginationPost) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArticlePaginationPost) ProtoMessage() {}
+
+func (x *ArticlePaginationPost) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArticlePaginationPost.ProtoReflect.Descriptor instead.
+func (*ArticlePaginationPost) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ArticlePaginationPost) GetPage() uint64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ArticlePaginationPost) GetSize() uint64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *ArticlePaginationPost) GetAuthor() string {
+	if x != nil {
+		return x.Author
+	}
+	return ""
+}
+
+// CreateArticlePost 创建文章
+type CreateArticlePost struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PlateId    uint64   `protobuf:"varint,2,opt,name=plate_id,json=plateId,proto3" json:"plate_id,omitempty"`
+	Tags       []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
+	Date       string   `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
+	Title      string   `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
+	Content    string   `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
+	Thumbnail  string   `protobuf:"bytes,7,opt,name=thumbnail,proto3" json:"thumbnail,omitempty"`
+	Abstract   string   `protobuf:"bytes,8,opt,name=abstract,proto3" json:"abstract,omitempty"`
+	Top        uint64   `protobuf:"varint,9,opt,name=top,proto3" json:"top,omitempty"`
+	Marevllous uint64   `protobuf:"varint,10,opt,name=marevllous,proto3" json:"marevllous,omitempty"`
+	Remark     string   `protobuf:"bytes,11,opt,name=remark,proto3" json:"remark,omitempty"`
+}
+
+func (x *CreateArticlePost) Reset() {
+	*x = CreateArticlePost{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateArticlePost) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateArticlePost) ProtoMessage() {}
+
+func (x *CreateArticlePost) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateArticlePost.ProtoReflect.Descriptor instead.
+func (*CreateArticlePost) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateArticlePost) GetPlateId() uint64 {
+	if x != nil {
+		return x.PlateId
+	}
+	return 0
+}
+
+func (x *CreateArticlePost) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *CreateArticlePost) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *CreateArticlePost) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateArticlePost) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *CreateArticlePost) GetThumbnail() string {
+	if x != nil {
+		return x.Thumbnail
+	}
+	return ""
+}
+
+func (x *CreateArticlePost) GetAbstract() string {
+	if x != nil {
+		return x.Abstract
+	}
+	return ""
+}
+
+func (x *CreateArticlePost) GetTop() uint64 {
+	if x != nil {
+		return x.Top
+	}
+	return 0
+}
+
+func (x *CreateArticlePost) GetMarevllous() uint64 {
+	if x != nil {
+		return x.Marevllous
+	}
+	return 0
+}
+
+func (x *CreateArticlePost) GetRemark() string {
+	if x != nil {
+		return x.Remark
+	}
+	return ""
+}
+
+// UpdateArticlePost 编辑文章
+type UpdateArticlePost struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id         uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	PlateId    uint64   `protobuf:"varint,2,opt,name=plate_id,json=plateId,proto3" json:"plate_id,omitempty"`
+	Tags       []string `protobuf:"bytes,3,rep,name=tags,proto3" json:"tags,omitempty"`
+	Date       string   `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
+	Title      string   `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
+	Content    string   `protobuf:"bytes,6,opt,name=content,proto3" json:"content,omitempty"`
+	Thumbnail  string   `protobuf:"bytes,7,opt,name=thumbnail,proto3" json:"thumbnail,omitempty"`
+	Abstract   string   `protobuf:"bytes,8,opt,name=abstract,proto3" json:"abstract,omitempty"`
+	Top        uint64   `protobuf:"varint,9,opt,name=top,proto3" json:"top,omitempty"`
+	Marevllous uint64   `protobuf:"varint,10,opt,name=marevllous,proto3" json:"marevllous,omitempty"`
+	Remark     string   `protobuf:"bytes,11,opt,name=remark,proto3" json:"remark,omitempty"`
+}
+
+func (x *UpdateArticlePost) Reset() {
+	*x = UpdateArticlePost{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateArticlePost) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateArticlePost) ProtoMessage() {}
+
+func (x *UpdateArticlePost) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateArticlePost.ProtoReflect.Descriptor instead.
+func (*UpdateArticlePost) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UpdateArticlePost) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateArticlePost) GetPlateId() uint64 {
+	if x != nil {
+		return x.PlateId
+	}
+	return 0
+}
+
+func (x *UpdateArticlePost) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
+func (x *UpdateArticlePost) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *UpdateArticlePost) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *UpdateArticlePost) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *UpdateArticlePost) GetThumbnail() string {
+	if x != nil {
+		return x.Thumbnail
+	}
+	return ""
+}
+
+func (x *UpdateArticlePost) GetAbstract() string {
+	if x != nil {
+		return x.Abstract
+	}
+	return ""
+}
+
+func (x *UpdateArticlePost) GetTop() uint64 {
+	if x != nil {
+		return x.Top
+	}
+	return 0
+}
+
+func (x *UpdateArticlePost) GetMarevllous() uint64 {
+	if x != nil {
+		return x.Marevllous
+	}
+	return 0
+}
+
+func (x *UpdateArticlePost) GetRemark() string {
+	if x != nil {
+		return x.Remark
+	}
+	return ""
+}
+
+// ArticleResponse 后台，文章信息返回
+type ArticleResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Message string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *Article `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *ArticleResponse) Reset() {
+	*x = ArticleResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArticleResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArticleResponse) ProtoMessage() {}
+
+func (x *ArticleResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArticleResponse.ProtoReflect.Descriptor instead.
+func (*ArticleResponse) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ArticleResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *ArticleResponse) GetData() *Article {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+// ArticlePaginationResponse 后台，文章列表返回
+type ArticlePaginationResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Message string                              `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *ArticlePaginationResponse_Articles `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *ArticlePaginationResponse) Reset() {
+	*x = ArticlePaginationResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArticlePaginationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArticlePaginationResponse) ProtoMessage() {}
+
+func (x *ArticlePaginationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArticlePaginationResponse.ProtoReflect.Descriptor instead.
+func (*ArticlePaginationResponse) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ArticlePaginationResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *ArticlePaginationResponse) GetData() *ArticlePaginationResponse_Articles {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+// ArticleDetailResponse 客户端，文章详情返回
+type ArticleDetailResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Message string         `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *ArticleDetail `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *ArticleDetailResponse) Reset() {
+	*x = ArticleDetailResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArticleDetailResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArticleDetailResponse) ProtoMessage() {}
+
+func (x *ArticleDetailResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArticleDetailResponse.ProtoReflect.Descriptor instead.
+func (*ArticleDetailResponse) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ArticleDetailResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *ArticleDetailResponse) GetData() *ArticleDetail {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type ArticlePaginationResponse_Articles struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	List  []*Article `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	Total int64      `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *ArticlePaginationResponse_Articles) Reset() {
+	*x = ArticlePaginationResponse_Articles{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_content_article_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ArticlePaginationResponse_Articles) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ArticlePaginationResponse_Articles) ProtoMessage() {}
+
+func (x *ArticlePaginationResponse_Articles) ProtoReflect() protoreflect.Message {
+	mi := &file_content_article_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ArticlePaginationResponse_Articles.ProtoReflect.Descriptor instead.
+func (*ArticlePaginationResponse_Articles) Descriptor() ([]byte, []int) {
+	return file_content_article_proto_rawDescGZIP(), []int{6, 0}
+}
+
+func (x *ArticlePaginationResponse_Articles) GetList() []*Article {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+func (x *ArticlePaginationResponse_Articles) GetTotal() int64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+var File_content_article_proto protoreflect.FileDescriptor
+
+var file_content_article_proto_rawDesc = []byte{
+	0x0a, 0x15, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2f, 0x61, 0x72, 0x74, 0x69, 0x63, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74,
+	0x22, 0xfa, 0x02, 0x0a, 0x07, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04,
+	0x75, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x04, 0x75, 0x75, 0x69, 0x64,
+	0x12, 0x19, 0x0a, 0x08, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x04, 0x52, 0x07, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74,
+	0x61, 0x67, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12,
+	0x12, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64,
+	0x61, 0x74, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x06, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e,
+	0x74, 0x65, 0x6e, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c,
+	0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69,
+	0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x61, 0x62, 0x73, 0x74, 0x72, 0x61, 0x63, 0x74, 0x18, 0x09, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x08, 0x61, 0x62, 0x73, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x10, 0x0a,
+	0x03, 0x74, 0x6f, 0x70, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x74, 0x6f, 0x70, 0x12,
+	0x1e, 0x0a, 0x0a, 0x6d, 0x61, 0x72, 0x65, 0x76, 0x6c, 0x6c, 0x6f, 0x75, 0x73, 0x18, 0x0b, 0x20,
+	0x01, 0x28, 0x04, 0x52, 0x0a, 0x6d, 0x61, 0x72, 0x65, 0x76, 0x6c, 0x6c, 0x6f, 0x75, 0x73, 0x12,
+	0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x6d, 0x61, 0x72,
+	0x6b, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x6d, 0x61, 0x72, 0x6b, 0x12,
+	0x1d, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x0e, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1d,
+	0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x0f, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0x0f, 0x0a,
+	0x0d, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x22, 0x57,
+	0x0a, 0x15, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x50, 0x6f, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x61, 0x67, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x04, 0x70, 0x61, 0x67, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x04, 0x73, 0x69, 0x7a, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x22, 0x8a, 0x02, 0x0a, 0x11, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x50, 0x6f, 0x73, 0x74, 0x12, 0x19, 0x0a,
+	0x08, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x07, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73,
+	0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x12, 0x0a, 0x04,
+	0x64, 0x61, 0x74, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65,
+	0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e,
+	0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74,
+	0x12, 0x1c, 0x0a, 0x09, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c, 0x12, 0x1a,
+	0x0a, 0x08, 0x61, 0x62, 0x73, 0x74, 0x72, 0x61, 0x63, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x08, 0x61, 0x62, 0x73, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x6f,
+	0x70, 0x18, 0x09, 0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x74, 0x6f, 0x70, 0x12, 0x1e, 0x0a, 0x0a,
+	0x6d, 0x61, 0x72, 0x65, 0x76, 0x6c, 0x6c, 0x6f, 0x75, 0x73, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x0a, 0x6d, 0x61, 0x72, 0x65, 0x76, 0x6c, 0x6c, 0x6f, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x06,
+	0x72, 0x65, 0x6d, 0x61, 0x72, 0x6b, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65,
+	0x6d, 0x61, 0x72, 0x6b, 0x22, 0x9a, 0x02, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41,
+	0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x50, 0x6f, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x70, 0x6c,
+	0x61, 0x74, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x07, 0x70, 0x6c,
+	0x61, 0x74, 0x65, 0x49, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x74, 0x61, 0x67, 0x73, 0x18, 0x03, 0x20,
+	0x03, 0x28, 0x09, 0x52, 0x04, 0x74, 0x61, 0x67, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x61, 0x74,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x61, 0x74, 0x65, 0x12, 0x14, 0x0a,
+	0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69,
+	0x74, 0x6c, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x06,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x12, 0x1c, 0x0a,
+	0x09, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x74, 0x68, 0x75, 0x6d, 0x62, 0x6e, 0x61, 0x69, 0x6c, 0x12, 0x1a, 0x0a, 0x08, 0x61,
+	0x62, 0x73, 0x74, 0x72, 0x61, 0x63, 0x74, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x61,
+	0x62, 0x73, 0x74, 0x72, 0x61, 0x63, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x74, 0x6f, 0x70, 0x18, 0x09,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x03, 0x74, 0x6f, 0x70, 0x12, 0x1e, 0x0a, 0x0a, 0x6d, 0x61, 0x72,
+	0x65, 0x76, 0x6c, 0x6c, 0x6f, 0x75, 0x73, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x6d,
+	0x61, 0x72, 0x65, 0x76, 0x6c, 0x6c, 0x6f, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x6d,
+	0x61, 0x72, 0x6b, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x6d, 0x61, 0x72,
+	0x6b, 0x22, 0x51, 0x0a, 0x0f, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x24,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63,
+	0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x2e, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x52, 0x04,
+	0x64, 0x61, 0x74, 0x61, 0x22, 0xbe, 0x01, 0x0a, 0x19, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65,
+	0x50, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x3f, 0x0a, 0x04,
+	0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x63, 0x6f, 0x6e,
+	0x74, 0x65, 0x6e, 0x74, 0x2e, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x50, 0x61, 0x67, 0x69,
+	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x41,
+	0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x73, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x1a, 0x46, 0x0a,
+	0x08, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x73, 0x12, 0x24, 0x0a, 0x04, 0x6c, 0x69, 0x73,
+	0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e,
+	0x74, 0x2e, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x12,
+	0x14, 0x0a, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x22, 0x5d, 0x0a, 0x15, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65,
+	0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x18,
+	0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x2a, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74,
+	0x2e, 0x41, 0x72, 0x74, 0x69, 0x63, 0x6c, 0x65, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x52, 0x04,
+	0x64, 0x61, 0x74, 0x61, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x62, 0x3b, 0x70, 0x62, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+}
+
+var (
+	file_content_article_proto_rawDescOnce sync.Once
+	file_content_article_proto_rawDescData = file_content_article_proto_rawDesc
+)
+
+func file_content_article_proto_rawDescGZIP() []byte {
+	file_content_article_proto_rawDescOnce.Do(func() {
+		file_content_article_proto_rawDescData = protoimpl.X.CompressGZIP(file_content_article_proto_rawDescData)
+	})
+	return file_content_article_proto_rawDescData
+}
+
+var file_content_article_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_content_article_proto_goTypes = []interface{}{
+	(*Article)(nil),                            // 0: content.Article
+	(*ArticleDetail)(nil),                      // 1: content.ArticleDetail
+	(*ArticlePaginationPost)(nil),              // 2: content.ArticlePaginationPost
+	(*CreateArticlePost)(nil),                  // 3: content.CreateArticlePost
+	(*UpdateArticlePost)(nil),                  // 4: content.UpdateArticlePost
+	(*ArticleResponse)(nil),                    // 5: content.ArticleResponse
+	(*ArticlePaginationResponse)(nil),          // 6: content.ArticlePaginationResponse
+	(*ArticleDetailResponse)(nil),              // 7: content.ArticleDetailResponse
+	(*ArticlePaginationResponse_Articles)(nil), // 8: content.ArticlePaginationResponse.Articles
+}
+var file_content_article_proto_depIdxs = []int32{
+	0, // 0: content.ArticleResponse.data:type_name -> content.Article
+	8, // 1: content.ArticlePaginationResponse.data:type_name -> content.ArticlePaginationResponse.Articles
+	1, // 2: content.ArticleDetailResponse.data:type_name -> content.ArticleDetail
+	0, // 3: content.ArticlePaginationResponse.Articles.list:type_name -> content.Article
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
+}
+
+func init() { file_content_article_proto_init() }
+func file_content_article_proto_init() {
+	if File_content_article_proto != nil {
 		return
 	}
-	file_global_global_proto_init()
-	file_article_tag_proto_init()
+	if !protoimpl.UnsafeEnabled {
+		file_content_article_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Article); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArticleDetail); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArticlePaginationPost); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateArticlePost); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateArticlePost); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArticleResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArticlePaginationResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArticleDetailResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_content_article_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ArticlePaginationResponse_Articles); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_article_article_proto_rawDesc,
+			RawDescriptor: file_content_article_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   9,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   0,
 		},
-		GoTypes:           file_article_article_proto_goTypes,
-		DependencyIndexes: file_article_article_proto_depIdxs,
+		GoTypes:           file_content_article_proto_goTypes,
+		DependencyIndexes: file_content_article_proto_depIdxs,
+		MessageInfos:      file_content_article_proto_msgTypes,
 	}.Build()
-	File_article_article_proto = out.File
-	file_article_article_proto_rawDesc = nil
-	file_article_article_proto_goTypes = nil
-	file_article_article_proto_depIdxs = nil
+	File_content_article_proto = out.File
+	file_content_article_proto_rawDesc = nil
+	file_content_article_proto_goTypes = nil
+	file_content_article_proto_depIdxs = nil
 }

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package content;
+
+option go_package = "./pb;pb";
+
+import "global/global.proto";
+import "content/tag.proto";
+import "content/article.proto";
+
+// ContentService 内容服务
+service ContentService {
+    // 标签管理
+    rpc Tag (global.InfoPost) returns (TagResponse) {}  // 获取 单个 标签
+    rpc Tags (global.EmptyPost) returns (TagsResponse) {}  // 获取 标签列表
+    rpc TagPagination (global.PaginationPost) returns (TagPaginationResponse) {}  // 获取标签分页
+    rpc CreateTag (CreateTagPost) returns (TagResponse) {} // 创建标签
+    rpc UpdateTag (UpdateTagPost) returns (TagResponse) {}  // 更新标签
+    rpc ChangeTagStatus (global.ChangeStatusPost) returns (TagResponse) {}  // 修改标签状态
+    // 文章管理
+    rpc Article (global.InfoPost) returns (ArticleResponse) {}  // 获取文章信息，用于编辑
+    rpc ArticlePagination (ArticlePaginationPost) returns (ArticlePaginationResponse) {}  // 后台，获取文章分页
+    rpc CreateArticle (CreateArticlePost) returns (ArticleResponse) {}  // 发布文章
+    rpc UpdateArticle (UpdateArticlePost) returns (ArticleResponse) {}  // 编辑文章
+    // 文章展示
+
+    // 文章互动
+
+    // 文章统计
+}
