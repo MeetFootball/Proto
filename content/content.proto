@@ -23,8 +23,14 @@ service ContentService {
     rpc CreateArticle (CreateArticlePost) returns (ArticleResponse) {}  // 发布文章
     rpc UpdateArticle (UpdateArticlePost) returns (ArticleResponse) {}  // 编辑文章
     // 文章展示
+    rpc ArticleDetail (global.InfoPost) returns (ArticleDetailResponse) {} // 客户端获取文章详情
+    rpc SearchArticle (SearchArticlePost) returns (ArticlePaginationResponse) {} // 客户端 展示文章
+    // rpc SearchAuthorArticle (Request) returns (Response);
+    // 文章订阅
 
-    // 文章互动
+    // 文章通知
+
+    // 文章交互
 
     // 文章统计
 }

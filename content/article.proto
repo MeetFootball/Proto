@@ -80,8 +80,6 @@ message CreateArticlePost {
   string   content     = 6;
   string   thumbnail   = 7;
   string   abstract    = 8;
-  uint64   top         = 9;
-  uint64   marevllous  = 10;
   string   remark      = 11;
 }
 
@@ -95,9 +93,33 @@ message UpdateArticlePost {
   string   content     = 6;
   string   thumbnail   = 7;
   string   abstract    = 8;
-  uint64   top         = 9;
-  uint64   marevllous  = 10;
   string   remark      = 11;
+}
+
+// SetArticleTopPost 设置文章是否置顶
+message SetArticleTopPost {
+  uint64 id  = 1;
+  uint64 top = 2;
+}
+
+// SetArticleMarvellousPost 设置文章是否精华
+message SetArticleMarvellousPost {
+  uint64 id = 1;
+  uint64 marvellous = 2;
+}
+
+// SearchArticlePost 客户端 搜索文章
+message SearchArticlePost {
+  uint64 page   = 1;
+  uint64 size   = 2;
+  string author = 3;
+}
+
+// SearchAuthorArticlePost 根据作者搜索文章
+message SearchAuthorArticlePost {
+  uint64 page   = 1;
+  uint64 size   = 2;
+  string author = 3;
 }
 
 /**************** 返回结构 ****************/

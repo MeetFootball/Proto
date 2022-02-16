@@ -29,11 +29,23 @@ message DatePost {
   string End = 2;
 }
 
+// PaginationPost 普通分页 传参
 message PaginationPost {
   uint64 Size = 1;
   uint64 Page = 2;
 }
 
+// SearchPaginationPost 搜索分页 传参
+message SearchPaginationPost {
+  uint64 Size    = 1;
+  uint64 Page    = 2;
+  string Keyword = 3;
+  uint64 Status  = 4;
+  string Start   = 5;
+  string End     = 6;
+}
+
+// ChangeStatusPost 通用修改状态 传参
 message ChangeStatusPost {
   uint64 ID = 1;
   uint64 Status = 2;

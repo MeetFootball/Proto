@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package external;
+
+option go_package = "./pb;pb";
+
+import "global/global.proto";
+import "external/website.proto";
+
+// ExternalService 外部数据服务
+service ExternalService {
+    rpc Website (global.InfoPost) returns (WebsiteResponse) {} // 获取 单个站点信息
+    rpc Websites (global.EmptyPost) returns (WebsitesResponse) {}  // 获取 站点列表
+    rpc TagPagination (global.PaginationPost) returns (WebsitePaginationResponse) {}  // 获取 站点分页
+    rpc CreateWebsite (CreateWebsitePost) returns (WebsiteResponse) {} // 创建站点
+    rpc UpdateWebsite (UpdateWebsitePost) returns (WebsiteResponse) {}  // 更新站点
+    rpc ChangeWebsiteStatus (global.ChangeStatusPost) returns (WebsiteResponse) {}  // 修改长点状态
+}

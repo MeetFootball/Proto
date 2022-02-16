@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package external;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// Website 外部站点
+message Website {
+  uint64 id         = 1;
+  string name       = 2;
+  string en_name    = 3;
+  string url        = 4;
+  uint64 vpn        = 5;
+  uint64 free       = 6;
+  uint64 copyright  = 7;
+  uint64 status     = 8;
+  string remark     = 9;
+  string created_at = 10;
+  string updated_at = 11;
+}
+
+/**************** 请求结构 ****************/
+
+// CreateWebsitePost 创建外部站点
+message CreateWebsitePost {
+  string name      = 2;
+  string en_name   = 3;
+  string url       = 4;
+  uint64 vpn       = 5;
+  uint64 free      = 6;
+  uint64 copyright = 7;
+  string remark    = 8;
+}
+
+// UpdateWebsitePost 更新外部站点
+message UpdateWebsitePost {
+  uint64 id        = 1;
+  string name      = 2;
+  string en_name   = 3;
+  string url       = 4;
+  uint64 vpn       = 5;
+  uint64 free      = 6;
+  uint64 copyright = 7;
+  string remark    = 8;
+}
+
+/**************** 返回结构 ****************/
+
+// WebsiteResponse 返回 站点
+message WebsiteResponse {
+  string  message = 1;
+  Website data    = 2;
+}
+
+// WebsitesResponse 返回 站点列表
+message WebsitesResponse {
+  string   message      = 1;
+  repeated Website data = 2;
+}
+
+// WebsitePaginationResponse 返回 站点分页
+message WebsitePaginationResponse {
+  message Websites {
+    repeated Website list = 1;
+    uint64   total        = 2;
+  }
+  string   message = 1;
+  Websites data    = 2;
+}
+

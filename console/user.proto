@@ -59,14 +59,14 @@ message ScopesResponse {
 
 /* 返回单条数据 */
 message UserResponse {
-  string Message = 1;
-  User   Data    = 2;
+  string message = 1;
+  User   data    = 2;
 }
 
 /* 返回列表数据 */
 message UsersResponse {
-  string   Message   = 1;
-  repeated User Data = 2;
+  string   message   = 1;
+  repeated User data = 2;
 }
 
 /* 返回分页数据 */
@@ -75,6 +75,6 @@ message UserPaginationResponse {
     repeated User list = 1;
     int64    total     = 2;
   }
-  string Message = 1;
-  Users  Data    = 2;
+  string message = 1;
+  Users  data    = 2;
 }

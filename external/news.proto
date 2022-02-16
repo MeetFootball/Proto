@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package external;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// News 外部新闻数据
+message News {
+  
+}
