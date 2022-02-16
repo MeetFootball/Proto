@@ -16,9 +16,10 @@ message Website {
   uint64 free       = 6;
   uint64 copyright  = 7;
   uint64 status     = 8;
-  string remark     = 9;
-  string created_at = 10;
-  string updated_at = 11;
+  bool   check      = 9;
+  string remark     = 10;
+  string created_at = 11;
+  string updated_at = 12;
 }
 
 /**************** 请求结构 ****************/
