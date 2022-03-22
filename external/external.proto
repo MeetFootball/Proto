@@ -6,13 +6,32 @@ option go_package = "./pb;pb";
 
 import "global/global.proto";
 import "external/website.proto";
+import "external/website_job.proto";
+import "external/news.proto";
 
 // ExternalService 外部数据服务
 service ExternalService {
+    // 外网站点信息
     rpc Website (global.InfoPost) returns (WebsiteResponse) {} // 获取 单个站点信息
     rpc Websites (global.EmptyPost) returns (WebsitesResponse) {}  // 获取 站点列表
-    rpc TagPagination (global.PaginationPost) returns (WebsitePaginationResponse) {}  // 获取 站点分页
+    rpc WebsitePagination (global.SearchPaginationPost) returns (WebsitePaginationResponse) {}  // 获取 站点分页
     rpc CreateWebsite (CreateWebsitePost) returns (WebsiteResponse) {} // 创建站点
     rpc UpdateWebsite (UpdateWebsitePost) returns (WebsiteResponse) {}  // 更新站点
-    rpc ChangeWebsiteStatus (global.ChangeStatusPost) returns (WebsiteResponse) {}  // 修改长点状态
+    rpc ChangeWebsiteStatus (global.ChangeStatusPost) returns (WebsiteResponse) {}  // 修改站点状态
+    // 外网站点 抓取任务
+    rpc WebsiteJob (global.InfoPost) returns (WebsiteJobResponse) {} // 获取 单个任务信息
+    rpc WebsiteJobs (global.EmptyPost) returns (WebsiteJobsResponse) {}  // 获取 任务列表
+    rpc WebsiteJobPagination (SearchWebsiteJobPaginationPost) returns (WebsiteJobPaginationResponse) {}  // 获取 任务分页
+    rpc CreateWebsiteJob (CreateWebsiteJobPost) returns (WebsiteJobResponse) {} // 创建任务
+    rpc UpdateWebsiteJob (UpdateWebsiteJobPost) returns (WebsiteJobResponse) {}  // 更新任务
+    rpc ChangeWebsiteJobStatus (global.ChangeStatusPost) returns (WebsiteJobResponse) {}  // 修改任务状态
+    // 抓取新闻
+    rpc News (global.InfoPost) returns (NewsResponse) {} // 单个新闻
+    rpc NewsPagination (SearchNewsPaginationPost) returns (NewsPaginationResponse) {} // 新闻分页
+    rpc ManualGrabNewsList (ManualGrabNewsListPost) returns (global.Response) {} // 手动抓取新闻列表
+    rpc GrabNews (GrabNewsPost) returns (global.Response) {}  // 抓取并写入新闻
+    rpc TranslateNews (TranslateNewsPost) returns (NewsResponse) {} // 翻译新闻信息
+    rpc TranslateNewsContent (TranslateNewsContentPost) returns (NewsResponse) {} // 翻译新闻内容
+    rpc UpdateNews (UpdateNewsPost) returns (NewsResponse) {} // 更新新闻
+    rpc RemoveNews (RemoveNewsPost) returns (NewsResponse) {} // 移除新闻
 }

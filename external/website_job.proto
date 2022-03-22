@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package external;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// WebsiteJob 抓取任务
+message WebsiteJob {
+  uint64 id = 1;
+  uint64 website_id = 2;
+  string name       = 3;
+  string url        = 4;
+  string start_at   = 5;
+  string end_at     = 6;
+  uint64 interval   = 7;
+  uint64 status     = 8;
+  bool   checked    = 9;
+  string remark     = 10;
+  string created_at = 11;
+  string updated_at = 12;
+}
+
+/**************** 请求结构 ****************/
+
+// SearchWebsiteJobPaginationPost 搜索参数
+message SearchWebsiteJobPaginationPost {
+  uint64 size       = 1;
+  uint64 page       = 2;
+  string keyword    = 3;
+  uint64 status     = 4;
+  uint64 website_id = 5;
+}
+
+// CreateWebsiteJobPost 创建抓取任务
+message CreateWebsiteJobPost {
+  uint64 website_id = 2;
+  string name       = 3;
+  string url        = 4;
+  string start_at   = 5;
+  string end_at     = 6;
+  uint64 interval   = 7;
+  string remark     = 8;
+}
+
+// UpdateWebsiteJobPost 更新抓取任务
+message UpdateWebsiteJobPost {
+  uint64 id         = 1;
+  uint64 website_id = 2;
+  string name       = 3;
+  string url        = 4;
+  string start_at   = 5;
+  string end_at     = 6;
+  uint64 interval   = 7;
+  string remark     = 8;
+}
+
+
+/**************** 返回结构 ****************/
+
+// WebsiteJobResponse 返回 单个抓取任务
+message WebsiteJobResponse {
+  string message = 1;
+  WebsiteJob data = 2;
+}
+
+// WebsiteJobsResponse 返回 任务列表
+message WebsiteJobsResponse {
+  string message = 1;
+  repeated WebsiteJob data = 2;
+}
+
+// WebsiteJobPaginationResponse 返回 任务分页
+message WebsiteJobPaginationResponse {
+  message WebsiteJobs {
+    repeated WebsiteJob list = 1;
+    int64 total = 2;
+  }
+  string message = 1;
+  WebsiteJobs data = 2;
+}

@@ -8,5 +8,118 @@ option go_package = "./pb;pb";
 
 // News 外部新闻数据
 message News {
-  
+  uint64 id                   = 1;
+  string code = 2;
+  string url                  = 3;
+  uint64 website_id           = 4;
+  string release_date         = 5;
+  string release_at           = 6;
+  string grab_date            = 7;
+  string grab_at              = 8;
+  string tags                 = 9;
+  string author               = 10;
+  string origin_title         = 11;
+  string title                = 12;
+  string original_description = 13;
+  string description          = 14;
+  string original             = 15;
+  string content              = 16;
+  uint64 status               = 17;
+  bool   checked              = 18;
+  string remark               = 19;
+  string created_at           = 20;
+  string updated_at           = 21;
+}
+
+/**************** 请求结构 ****************/
+
+// SearchNewsPaginationPost 搜索新闻分页 传参
+message SearchNewsPaginationPost {
+  uint64 Size       = 1;
+  uint64 Page       = 2;
+  uint64 website_id = 3;
+  string Keyword    = 4;
+  uint64 Status     = 5;
+  string Start      = 6;
+  string End        = 7;
+}
+
+// ManualGrabNewsPost 手动抓取新闻
+message ManualGrabNewsListPost {
+  uint64 website_job_id = 1;
+  uint64 start          = 2;  // 开始页码
+  uint64 end            = 3;  // 结束页码
+}
+
+// GrabNewsPost 抓取新闻
+message GrabNewsPost {
+  string code                 = 1;
+  string url                  = 2;   // 新闻地址
+  uint64 website_id           = 3;
+  string release_date         = 4;
+  string release_at           = 5;
+  string grab_date            = 6;
+  string grab_at              = 7;
+  string author               = 9;
+  string origin_title         = 10;
+  string title                = 11;
+  string original_description = 12;
+  string description          = 13;
+  string original             = 14;
+  string content              = 15;
+}
+
+// TranslateNewsPost 翻译新闻
+message TranslateNewsPost {
+  uint64 id       = 1;
+  string language = 2;
+}
+
+// TranslateNewsContentPost 翻译新闻内容
+message TranslateNewsContentPost {
+  uint64 id       = 1;
+  string language = 2;
+}
+
+// UpdateNewsPost 更新新闻内容
+message UpdateNewsPost {
+  uint64   id           = 1;
+  string   release_date = 2;
+  string   release_at   = 3;
+  repeated string tags  = 4;
+  string   author       = 5;
+  string   title        = 6;
+  string   description  = 7;
+  string   content      = 8;
+  string   remark       = 9;
+}
+
+// RemoveNewsPost 移除新闻
+message RemoveNewsPost {
+  uint64 id         = 1;
+  uint64 website_id = 2;
+}
+
+/**************** 返回结构 ****************/
+
+// NewsResponse 返回 单条新闻
+message NewsResponse {
+  string message = 1;
+  News   data    = 2;
+}
+
+// NewsListResponse 返回 新闻列表
+message NewsListResponse {
+  string   message   = 1;
+  repeated News data = 2;
+}
+
+// NewsPaginationResponse 返回 新闻分页
+message NewsPaginationResponse {
+  message NewsList {
+    repeated News list = 1;
+    int64    total     = 2;
+  }
+  string   message = 1;
+  NewsList data    = 2;
 }

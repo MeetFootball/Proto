@@ -12,14 +12,15 @@ message Website {
   string name       = 2;
   string en_name    = 3;
   string url        = 4;
-  uint64 vpn        = 5;
-  uint64 free       = 6;
-  uint64 copyright  = 7;
-  uint64 status     = 8;
-  bool   check      = 9;
-  string remark     = 10;
-  string created_at = 11;
-  string updated_at = 12;
+  string language   = 5;
+  uint64 vpn        = 6;
+  uint64 free       = 7;
+  uint64 copyright  = 8;
+  uint64 status     = 9;
+  bool   checked    = 10;
+  string remark     = 11;
+  string created_at = 12;
+  string updated_at = 13;
 }
 
 /**************** 请求结构 ****************/
@@ -29,10 +30,11 @@ message CreateWebsitePost {
   string name      = 2;
   string en_name   = 3;
   string url       = 4;
-  uint64 vpn       = 5;
-  uint64 free      = 6;
-  uint64 copyright = 7;
-  string remark    = 8;
+  string language  = 5;
+  uint64 vpn       = 6;
+  uint64 free      = 7;
+  uint64 copyright = 8;
+  string remark    = 9;
 }
 
 // UpdateWebsitePost 更新外部站点
@@ -41,10 +43,11 @@ message UpdateWebsitePost {
   string name      = 2;
   string en_name   = 3;
   string url       = 4;
-  uint64 vpn       = 5;
-  uint64 free      = 6;
-  uint64 copyright = 7;
-  string remark    = 8;
+  string language  = 5;
+  uint64 vpn       = 6;
+  uint64 free      = 7;
+  uint64 copyright = 8;
+  string remark    = 9;
 }
 
 /**************** 返回结构 ****************/
@@ -65,7 +68,7 @@ message WebsitesResponse {
 message WebsitePaginationResponse {
   message Websites {
     repeated Website list = 1;
-    uint64   total        = 2;
+    int64   total        = 2;
   }
   string   message = 1;
   Websites data    = 2;
