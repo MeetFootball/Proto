@@ -8,6 +8,7 @@ import "global/global.proto";
 import "service/oss.proto";
 import "service/oss_endpoint.proto";
 import "service/oss_bucket.proto";
+import "service/translate.proto";
 
 service ServiceService {
     /* 对象存储账号管理 */
@@ -34,4 +35,6 @@ service ServiceService {
     rpc UpdateOssBucket (UpdateOssBucketPost) returns (OssBucketResponse) {} // 更新 存储空间
     rpc RemoveOssBucket (RemoveOssBucketPost) returns (OssBucketResponse) {} // 移除 存储空间
     rpc ChangeOssBucketStatus (global.ChangeStatusPost) returns (OssBucketResponse) {} // 修改 存储空间 状态
+    // 翻译
+    rpc BaiduTranslate (BaiduTranslatePost) returns (BaiduTranslateResponse) {} // 百度翻译
 }

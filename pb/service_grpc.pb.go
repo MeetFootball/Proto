@@ -42,6 +42,8 @@ type ServiceServiceClient interface {
 	UpdateOssBucket(ctx context.Context, in *UpdateOssBucketPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
 	RemoveOssBucket(ctx context.Context, in *RemoveOssBucketPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
 	ChangeOssBucketStatus(ctx context.Context, in *ChangeStatusPost, opts ...grpc.CallOption) (*OssBucketResponse, error)
+	// 翻译
+	BaiduTranslate(ctx context.Context, in *BaiduTranslatePost, opts ...grpc.CallOption) (*BaiduTranslateResponse, error)
 }
 
 type serviceServiceClient struct {
@@ -241,6 +243,15 @@ func (c *serviceServiceClient) ChangeOssBucketStatus(ctx context.Context, in *Ch
 	return out, nil
 }
 
+func (c *serviceServiceClient) BaiduTranslate(ctx context.Context, in *BaiduTranslatePost, opts ...grpc.CallOption) (*BaiduTranslateResponse, error) {
+	out := new(BaiduTranslateResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/BaiduTranslate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServiceServer is the server API for ServiceService service.
 // All implementations must embed UnimplementedServiceServiceServer
 // for forward compatibility
@@ -269,6 +280,8 @@ type ServiceServiceServer interface {
 	UpdateOssBucket(context.Context, *UpdateOssBucketPost) (*OssBucketResponse, error)
 	RemoveOssBucket(context.Context, *RemoveOssBucketPost) (*OssBucketResponse, error)
 	ChangeOssBucketStatus(context.Context, *ChangeStatusPost) (*OssBucketResponse, error)
+	// 翻译
+	BaiduTranslate(context.Context, *BaiduTranslatePost) (*BaiduTranslateResponse, error)
 	mustEmbedUnimplementedServiceServiceServer()
 }
 
@@ -338,6 +351,9 @@ func (UnimplementedServiceServiceServer) RemoveOssBucket(context.Context, *Remov
 }
 func (UnimplementedServiceServiceServer) ChangeOssBucketStatus(context.Context, *ChangeStatusPost) (*OssBucketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeOssBucketStatus not implemented")
+}
+func (UnimplementedServiceServiceServer) BaiduTranslate(context.Context, *BaiduTranslatePost) (*BaiduTranslateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BaiduTranslate not implemented")
 }
 func (UnimplementedServiceServiceServer) mustEmbedUnimplementedServiceServiceServer() {}
 
@@ -730,6 +746,24 @@ func _ServiceService_ChangeOssBucketStatus_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServiceService_BaiduTranslate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BaiduTranslatePost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).BaiduTranslate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/BaiduTranslate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).BaiduTranslate(ctx, req.(*BaiduTranslatePost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ServiceService_ServiceDesc is the grpc.ServiceDesc for ServiceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -820,6 +854,10 @@ var ServiceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeOssBucketStatus",
 			Handler:    _ServiceService_ChangeOssBucketStatus_Handler,
+		},
+		{
+			MethodName: "BaiduTranslate",
+			Handler:    _ServiceService_BaiduTranslate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

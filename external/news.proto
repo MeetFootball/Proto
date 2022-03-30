@@ -8,27 +8,29 @@ option go_package = "./pb;pb";
 
 // News 外部新闻数据
 message News {
-  uint64 id                   = 1;
-  string code = 2;
-  string url                  = 3;
-  uint64 website_id           = 4;
-  string release_date         = 5;
-  string release_at           = 6;
-  string grab_date            = 7;
-  string grab_at              = 8;
-  string tags                 = 9;
-  string author               = 10;
-  string origin_title         = 11;
-  string title                = 12;
-  string original_description = 13;
-  string description          = 14;
-  string original             = 15;
-  string content              = 16;
-  uint64 status               = 17;
-  bool   checked              = 18;
-  string remark               = 19;
-  string created_at           = 20;
-  string updated_at           = 21;
+  uint64   id                   = 1;
+  string   code                 = 2;
+  string   url                  = 3;
+  uint64   website_id           = 4;
+  string   website_name         = 5;
+  string   release_date         = 6;
+  string   release_at           = 7;
+  string   grab_date            = 8;
+  string   grab_at              = 9;
+  string   tags                 = 10;
+  string   author               = 11;
+  string   origin_title         = 12;
+  string   title                = 13;
+  string   original_description = 14;
+  string   description          = 15;
+  string   original             = 16;
+  string   content              = 17;
+  repeated string contents      = 18;
+  uint64   status               = 19;
+  bool     checked              = 20;
+  string   remark               = 21;
+  string   created_at           = 22;
+  string   updated_at           = 23;
 }
 
 /**************** 请求结构 ****************/
