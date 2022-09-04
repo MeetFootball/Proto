@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package service;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// ExamineText 文字审核结果
+message ExamineText {
+  bool     result       = 1;
+  repeated string words = 2;
+}
+
+// ExamineImage 图片审核结果
+message ExamineImage {
+  bool   result = 1;
+  string error  = 2;
+}
+
+/**************** 请求结构 ****************/
+
+// ExamineTextPost 文字审核
+message ExamineTextPost {
+  uint64 UUID   = 1;
+  uint64 client = 2;
+  string text   = 3;
+}
+
+// ExamineImagePost 图片审核
+message ExamineImagePost {
+  uint64 UUID   = 1;
+  uint64 client = 2;
+  uint64 type   = 3;
+  string image  = 4;
+}
+
+/**************** 返回结构 ****************/
+
+// ExamineTextResponse 返回 文字审核结果
+message ExamineTextResponse {
+  string      message = 1;
+  ExamineText data    = 2;
+}
+
+// ExamineImageResponse 返回 审核结果
+message ExamineImageResponse {
+  string       message = 1;
+  ExamineImage data    = 2;
+}

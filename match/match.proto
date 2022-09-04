@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package match;
+
+option go_package = "./pb;pb";
+
+import "global/global.proto";
+
+service MathService {
+  // 俱乐部
+  rpc Club (global.InfoPost) returns (global.BoolResponse) {}
+}

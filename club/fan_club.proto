@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package club;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// FanClub 球迷会
+message FanClub {
+  string Country     = 1;
+  string Province    = 2;
+  string City        = 3;
+  string Name        = 4;
+  string Logo        = 5;
+  string Base        = 6;
+  uint64 Rank        = 7;
+  uint64 Members     = 8;
+  uint64 Join        = 9;
+  uint64 Status      = 10;
+  string EstablishAt = 11;
+}
+
+/**************** 请求结构 ****************/
+
+// FanClubPaginationPost 球迷会 分页
+message FanClubPaginationPost {
+  uint64 Country  = 1;
+  uint64 Province = 2;
+  uint64 City     = 3;
+  uint64 Join     = 4;
+  uint64 Page     = 5;
+  uint64 Size     = 6;
+}
+
+// CreateFanClubPost 创建球迷会
+message CreateFanClubPost {
+  uint64 ClubID       = 1;
+  uint64 CountryCode  = 2;
+  uint64 ProvinceCode = 3;
+  uint64 CityCode     = 4;
+  string Country      = 5;
+  string Province     = 6;
+  string City         = 7;
+  string Name         = 8;
+  string Logo         = 9;
+  string Base         = 10;
+  uint64 Join         = 11;
+  string EstablishAt  = 12;
+}
+
+// InviteFanPost 邀请 粉丝加入球迷会
+message InviteFanPost {
+  string Fan    = 1;
+  string Reason = 2;
+}
+
+// RejectInvitePost 拒绝邀请
+message RejectInvitePost {
+  uint64 ID     = 1;
+  string Reason = 2;
+}
+
+// JoinFanClubPost 申请/同意/拒绝 加入球迷会
+message JoinFanClubPost {
+  uint64 ID     = 1;
+  string Reason = 2;
+}
+
+// LeaveFanClubPost 离开球迷会
+message LeaveFanClubPost {
+  string Reason = 1;
+}
+
+// KickOutPost 踢出球迷会
+message KickOutPost {
+  uint64 FanID  = 1;
+  string Reason = 2;
+}
+
+/**************** 返回结构 ****************/
+
+// FanClubResponse 球迷会 返回
+message FanClubResponse {
+  string  message = 1;
+  FanClub data    = 2;
+}
+
+// FanClubsResponse 球迷会 列表
+message FanClubsResponse {
+  string   message      = 1;
+  repeated FanClub data = 2;
+}
+
+// FanClubPaginationResponse 球迷会 分页返回
+message FanClubPaginationResponse {
+  message Clubs {
+    repeated FanClub list = 1;
+    int64    total        = 2;
+  }
+  string message = 1;
+  Clubs  data    = 2;
+}

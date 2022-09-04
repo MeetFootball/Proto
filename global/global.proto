@@ -16,7 +16,7 @@ message InfoPost {
   uint64 ID = 1;
 }
 
-message InfoKeyPost {
+message KeyPost {
   string Key = 1;
 }
 
@@ -56,6 +56,16 @@ message ChangeStatusByKeyPost {
   uint64 Status = 2;
 }
 
+// UpdateAreaPost 更新所在区域
+message UpdateAreaPost {
+  uint64 CountryCode  = 1;
+  uint64 ProvinceCode = 2;
+  uint64 CityCode     = 3;
+  string Country      = 4;
+  string Province     = 5;
+  string City         = 6;
+}
+
 /** ************** 全局返回数据 ************** **/
 
 message Response {
@@ -63,8 +73,24 @@ message Response {
   map<string, string> Data = 2;
 }
 
+message StringResponse {
+  string message = 1;
+  string Data    = 2;
+}
+
+// BoolResponse 返回 Bool
+message BoolResponse {
+  string Message = 1;
+  bool   Data    = 2;
+}
+
 message CheckResponse {
   string Message = 1;
-  bool  Data = 2;
+  bool   Data    = 2;
+}
+
+message ResultResponse {
+  string Message = 1;
+  bool   Data    = 2;
 }
 

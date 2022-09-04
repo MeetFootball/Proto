@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package club;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+// Me 我的信息
+message Me {
+  string account        = 1;
+  string nickname       = 2;
+  string avatar         = 3;
+  string club           = 4;
+  bool   authentication = 5;
+}
+
+// Fan 粉丝信息
+message Fan {
+  string account        = 1;
+  string nickname       = 2;
+  string avatar         = 3;
+  string club           = 4;
+  bool   authentication = 5;
+}
+
+/**************** 请求结构 ****************/
+
+// NewFanPost 新用户
+message NewFanPost {
+  uint64 WeChatUserID = 1;
+  string Account      = 2;
+  string Avatar       = 3;
+  string Nickname     = 4;
+}
+
+// ChangeFanNicknamePost 修改昵称
+message ChangeFanNicknamePost {
+  string Nickname = 1;
+}
+
+// ChangeFanAccountPost 修改账号
+message ChangeFanAccountPost {
+  string Account = 2;
+}
+
+/**************** 返回结构 ****************/
+
+message MeResponse {
+  string message = 1;
+  Me     data    = 2;
+}
+
+// FanResponse 返回 粉丝信息
+message FanResponse {
+  string message = 1;
+  Fan    data    = 2;
+}

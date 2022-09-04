@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package we_chat;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+message WeChatUser {
+  string avatar   = 1;
+  string nickname = 2;
+}
+
+/**************** 请求结构 ****************/
+
+message LoginPost {
+  string code = 1;
+}
+
+/**************** 返回结构 ****************/
+
+// LoginResponse 登录返回
+message LoginResponse {
+  string message = 1;
+  string data    = 2;
+}
+
+// WeChatUserResponse 返回 微信用户昵称 头像
+message WeChatUserResponse {
+  string     message = 1;
+  WeChatUser data    = 2;
+}

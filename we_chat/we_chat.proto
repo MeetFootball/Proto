@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package we_chat;
+
+option go_package = "./pb;pb";
+
+import "global/global.proto";
+import "we_chat/we_chat_user.proto";
+
+service WeChatService {
+  // Login
+  rpc CheckToken (global.EmptyPost) returns (global.BoolResponse) {}
+  rpc Login (LoginPost) returns (LoginResponse) {}
+
+  // User
+  rpc Self (global.EmptyPost) returns (WeChatUserResponse) {}
+}
