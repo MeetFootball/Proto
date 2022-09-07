@@ -5,6 +5,7 @@ package service;
 option go_package = "./pb;pb";
 
 import "global/global.proto";
+import "service/district.proto";
 import "service/examine.proto";
 import "service/translate.proto";
 
@@ -18,4 +19,7 @@ service ServiceService {
     // 网易
 
     // 腾讯
+
+    // 地区
+    rpc CityList (global.EmptyPost) returns (CityListResponse) {}
 }

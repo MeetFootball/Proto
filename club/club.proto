@@ -6,6 +6,7 @@ option go_package = "./pb;pb";
 
 import "global/global.proto";
 import "club/fan.proto";
+import "club/fan_info.proto";
 import "club/fan_club.proto";
 
 service ClubService {
@@ -13,8 +14,11 @@ service ClubService {
   rpc NewFan (NewFanPost) returns (global.BoolResponse) {}
   rpc Me (global.EmptyPost) returns (MeResponse) {}
   rpc Fan (global.KeyPost) returns (FanResponse) {}
+  rpc SelfInfo(global.EmptyPost) returns (FanInfoResponse) {}
+  rpc FanInfo(global.InfoPost) returns (FanInfoResponse) {}
   rpc ChangeNickname (ChangeFanNicknamePost) returns (global.BoolResponse) {}
   rpc ChangeAccount (ChangeFanAccountPost) returns (global.BoolResponse) {}
+  rpc ChangeSex(ChangeSexPost) returns (global.BoolResponse) {}
   rpc UpdateFanArea (global.UpdateAreaPost) returns (global.BoolResponse) {}
 
   // Club

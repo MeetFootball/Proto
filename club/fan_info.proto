@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package club;
+
+option go_package = "./pb;pb";
+
+/**************** 数据结构 ****************/
+
+message FanInfo {
+  uint64 FanID        = 1;
+  uint64 Sex          = 2;
+  bool   SecretSex    = 3;
+  uint64 Age          = 4;
+  string Phone        = 5;
+  uint64 CountryCode  = 6;
+  uint64 ProvinceCode = 7;
+  uint64 CityCode     = 8;
+  string Country      = 9;
+  string Province     = 10;
+  string City         = 11;
+}
+
+/**************** 请求结构 ****************/
+
+// ChangeSexPost 修改性别
+message ChangeSexPost {
+  uint64 sex       = 1;
+  bool   secret_sex = 2;
+}
+
+/**************** 返回结构 ****************/
+
+// FanInfoResponse 返回粉丝信息
+message FanInfoResponse {
+  string  message = 1;
+  FanInfo data    = 2;
+}

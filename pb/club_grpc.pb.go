@@ -22,8 +22,11 @@ type ClubServiceClient interface {
 	NewFan(ctx context.Context, in *NewFanPost, opts ...grpc.CallOption) (*BoolResponse, error)
 	Me(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*MeResponse, error)
 	Fan(ctx context.Context, in *KeyPost, opts ...grpc.CallOption) (*FanResponse, error)
+	SelfInfo(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*FanInfoResponse, error)
+	FanInfo(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanInfoResponse, error)
 	ChangeNickname(ctx context.Context, in *ChangeFanNicknamePost, opts ...grpc.CallOption) (*BoolResponse, error)
 	ChangeAccount(ctx context.Context, in *ChangeFanAccountPost, opts ...grpc.CallOption) (*BoolResponse, error)
+	ChangeSex(ctx context.Context, in *ChangeSexPost, opts ...grpc.CallOption) (*BoolResponse, error)
 	UpdateFanArea(ctx context.Context, in *UpdateAreaPost, opts ...grpc.CallOption) (*BoolResponse, error)
 	// Club
 	Club(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanClubResponse, error)
@@ -82,6 +85,24 @@ func (c *clubServiceClient) Fan(ctx context.Context, in *KeyPost, opts ...grpc.C
 	return out, nil
 }
 
+func (c *clubServiceClient) SelfInfo(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*FanInfoResponse, error) {
+	out := new(FanInfoResponse)
+	err := c.cc.Invoke(ctx, "/club.ClubService/SelfInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clubServiceClient) FanInfo(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanInfoResponse, error) {
+	out := new(FanInfoResponse)
+	err := c.cc.Invoke(ctx, "/club.ClubService/FanInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *clubServiceClient) ChangeNickname(ctx context.Context, in *ChangeFanNicknamePost, opts ...grpc.CallOption) (*BoolResponse, error) {
 	out := new(BoolResponse)
 	err := c.cc.Invoke(ctx, "/club.ClubService/ChangeNickname", in, out, opts...)
@@ -94,6 +115,15 @@ func (c *clubServiceClient) ChangeNickname(ctx context.Context, in *ChangeFanNic
 func (c *clubServiceClient) ChangeAccount(ctx context.Context, in *ChangeFanAccountPost, opts ...grpc.CallOption) (*BoolResponse, error) {
 	out := new(BoolResponse)
 	err := c.cc.Invoke(ctx, "/club.ClubService/ChangeAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *clubServiceClient) ChangeSex(ctx context.Context, in *ChangeSexPost, opts ...grpc.CallOption) (*BoolResponse, error) {
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, "/club.ClubService/ChangeSex", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -261,8 +291,11 @@ type ClubServiceServer interface {
 	NewFan(context.Context, *NewFanPost) (*BoolResponse, error)
 	Me(context.Context, *EmptyPost) (*MeResponse, error)
 	Fan(context.Context, *KeyPost) (*FanResponse, error)
+	SelfInfo(context.Context, *EmptyPost) (*FanInfoResponse, error)
+	FanInfo(context.Context, *InfoPost) (*FanInfoResponse, error)
 	ChangeNickname(context.Context, *ChangeFanNicknamePost) (*BoolResponse, error)
 	ChangeAccount(context.Context, *ChangeFanAccountPost) (*BoolResponse, error)
+	ChangeSex(context.Context, *ChangeSexPost) (*BoolResponse, error)
 	UpdateFanArea(context.Context, *UpdateAreaPost) (*BoolResponse, error)
 	// Club
 	Club(context.Context, *InfoPost) (*FanClubResponse, error)
@@ -300,11 +333,20 @@ func (UnimplementedClubServiceServer) Me(context.Context, *EmptyPost) (*MeRespon
 func (UnimplementedClubServiceServer) Fan(context.Context, *KeyPost) (*FanResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Fan not implemented")
 }
+func (UnimplementedClubServiceServer) SelfInfo(context.Context, *EmptyPost) (*FanInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SelfInfo not implemented")
+}
+func (UnimplementedClubServiceServer) FanInfo(context.Context, *InfoPost) (*FanInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FanInfo not implemented")
+}
 func (UnimplementedClubServiceServer) ChangeNickname(context.Context, *ChangeFanNicknamePost) (*BoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeNickname not implemented")
 }
 func (UnimplementedClubServiceServer) ChangeAccount(context.Context, *ChangeFanAccountPost) (*BoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeAccount not implemented")
+}
+func (UnimplementedClubServiceServer) ChangeSex(context.Context, *ChangeSexPost) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeSex not implemented")
 }
 func (UnimplementedClubServiceServer) UpdateFanArea(context.Context, *UpdateAreaPost) (*BoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFanArea not implemented")
@@ -424,6 +466,42 @@ func _ClubService_Fan_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ClubService_SelfInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClubServiceServer).SelfInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/club.ClubService/SelfInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClubServiceServer).SelfInfo(ctx, req.(*EmptyPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClubService_FanInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InfoPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClubServiceServer).FanInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/club.ClubService/FanInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClubServiceServer).FanInfo(ctx, req.(*InfoPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ClubService_ChangeNickname_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeFanNicknamePost)
 	if err := dec(in); err != nil {
@@ -456,6 +534,24 @@ func _ClubService_ChangeAccount_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ClubServiceServer).ChangeAccount(ctx, req.(*ChangeFanAccountPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ClubService_ChangeSex_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeSexPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ClubServiceServer).ChangeSex(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/club.ClubService/ChangeSex",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ClubServiceServer).ChangeSex(ctx, req.(*ChangeSexPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -786,12 +882,24 @@ var ClubService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ClubService_Fan_Handler,
 		},
 		{
+			MethodName: "SelfInfo",
+			Handler:    _ClubService_SelfInfo_Handler,
+		},
+		{
+			MethodName: "FanInfo",
+			Handler:    _ClubService_FanInfo_Handler,
+		},
+		{
 			MethodName: "ChangeNickname",
 			Handler:    _ClubService_ChangeNickname_Handler,
 		},
 		{
 			MethodName: "ChangeAccount",
 			Handler:    _ClubService_ChangeAccount_Handler,
+		},
+		{
+			MethodName: "ChangeSex",
+			Handler:    _ClubService_ChangeSex_Handler,
 		},
 		{
 			MethodName: "UpdateFanArea",

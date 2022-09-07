@@ -58,12 +58,12 @@ message ChangeStatusByKeyPost {
 
 // UpdateAreaPost 更新所在区域
 message UpdateAreaPost {
-  uint64 CountryCode  = 1;
-  uint64 ProvinceCode = 2;
-  uint64 CityCode     = 3;
-  string Country      = 4;
-  string Province     = 5;
-  string City         = 6;
+  uint64 country_code  = 1;
+  uint64 province_code = 2;
+  uint64 city_code     = 3;
+  string country       = 4;
+  string province      = 5;
+  string city          = 6;
 }
 
 /** ************** 全局返回数据 ************** **/
@@ -80,17 +80,17 @@ message StringResponse {
 
 // BoolResponse 返回 Bool
 message BoolResponse {
-  string Message = 1;
-  bool   Data    = 2;
+  string message = 1;
+  bool   data    = 2;
 }
 
 message CheckResponse {
-  string Message = 1;
-  bool   Data    = 2;
+  string message = 1;
+  bool   data    = 2;
 }
 
 message ResultResponse {
-  string Message = 1;
-  bool   Data    = 2;
+  string message = 1;
+  bool   data    = 2;
 }
 

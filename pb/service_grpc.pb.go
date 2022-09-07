@@ -23,6 +23,8 @@ type ServiceServiceClient interface {
 	ExamineImage(ctx context.Context, in *ExamineImagePost, opts ...grpc.CallOption) (*ResultResponse, error)
 	// 翻译
 	BaiduTranslate(ctx context.Context, in *BaiduTranslatePost, opts ...grpc.CallOption) (*BaiduTranslateResponse, error)
+	// 地区
+	CityList(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*CityListResponse, error)
 }
 
 type serviceServiceClient struct {
@@ -60,6 +62,15 @@ func (c *serviceServiceClient) BaiduTranslate(ctx context.Context, in *BaiduTran
 	return out, nil
 }
 
+func (c *serviceServiceClient) CityList(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*CityListResponse, error) {
+	out := new(CityListResponse)
+	err := c.cc.Invoke(ctx, "/service.ServiceService/CityList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServiceServer is the server API for ServiceService service.
 // All implementations must embed UnimplementedServiceServiceServer
 // for forward compatibility
@@ -69,6 +80,8 @@ type ServiceServiceServer interface {
 	ExamineImage(context.Context, *ExamineImagePost) (*ResultResponse, error)
 	// 翻译
 	BaiduTranslate(context.Context, *BaiduTranslatePost) (*BaiduTranslateResponse, error)
+	// 地区
+	CityList(context.Context, *EmptyPost) (*CityListResponse, error)
 	mustEmbedUnimplementedServiceServiceServer()
 }
 
@@ -84,6 +97,9 @@ func (UnimplementedServiceServiceServer) ExamineImage(context.Context, *ExamineI
 }
 func (UnimplementedServiceServiceServer) BaiduTranslate(context.Context, *BaiduTranslatePost) (*BaiduTranslateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BaiduTranslate not implemented")
+}
+func (UnimplementedServiceServiceServer) CityList(context.Context, *EmptyPost) (*CityListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CityList not implemented")
 }
 func (UnimplementedServiceServiceServer) mustEmbedUnimplementedServiceServiceServer() {}
 
@@ -152,6 +168,24 @@ func _ServiceService_BaiduTranslate_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ServiceService_CityList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServiceServer).CityList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/service.ServiceService/CityList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServiceServer).CityList(ctx, req.(*EmptyPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ServiceService_ServiceDesc is the grpc.ServiceDesc for ServiceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -170,6 +204,10 @@ var ServiceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BaiduTranslate",
 			Handler:    _ServiceService_BaiduTranslate_Handler,
+		},
+		{
+			MethodName: "CityList",
+			Handler:    _ServiceService_CityList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
