@@ -4,7 +4,7 @@
 // 	protoc        v3.19.1
 // source: service/district.proto
 
-package pb
+package service
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -26,8 +26,8 @@ type CityList struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProvinceList map[uint64]string `protobuf:"bytes,1,rep,name=province_list,json=provinceList,proto3" json:"province_list" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	CityList     map[uint64]string `protobuf:"bytes,2,rep,name=city_list,json=cityList,proto3" json:"city_list" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	ProvinceList map[uint64]string `protobuf:"bytes,1,rep,name=province_list,json=provinceList,proto3" json:"province_list,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	CityList     map[uint64]string `protobuf:"bytes,2,rep,name=city_list,json=cityList,proto3" json:"city_list,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *CityList) Reset() {
@@ -82,8 +82,8 @@ type CityListResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string    `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    *CityList `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Message string    `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *CityList `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *CityListResponse) Reset() {
@@ -159,8 +159,9 @@ var file_service_district_proto_rawDesc = []byte{
 	0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
 	0x67, 0x65, 0x12, 0x25, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x11, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x43, 0x69, 0x74, 0x79, 0x4c,
-	0x69, 0x73, 0x74, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70,
-	0x62, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x73, 0x74, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x3b, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

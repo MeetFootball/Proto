@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package service;
 
-option go_package = "./pb;pb";
+option go_package = "./service;service";
 
 /**************** 数据结构 ****************/
 

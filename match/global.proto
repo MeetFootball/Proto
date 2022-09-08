@@ -1,0 +1,96 @@
+/* 全局 Protobuf */
+
+syntax = "proto3";
+
+package match;
+
+option go_package = "./match;match";
+option java_multiple_files = true;
+option java_outer_classname = "global";
+
+/** ************** 全局请求参数 ************** **/
+
+message EmptyPost {}
+
+message InfoPost {
+  uint64 ID = 1;
+}
+
+message KeyPost {
+  string Key = 1;
+}
+
+message KeywordPost {
+  string Keyword = 1;
+}
+
+message DatePost {
+  string Start = 1;
+  string End = 2;
+}
+
+// PaginationPost 普通分页 传参
+message PaginationPost {
+  uint64 Size = 1;
+  uint64 Page = 2;
+}
+
+// SearchPaginationPost 搜索分页 传参
+message SearchPaginationPost {
+  uint64 Size    = 1;
+  uint64 Page    = 2;
+  string Keyword = 3;
+  uint64 Status  = 4;
+  string Start   = 5;
+  string End     = 6;
+}
+
+// ChangeStatusPost 通用修改状态 传参
+message ChangeStatusPost {
+  uint64 ID = 1;
+  uint64 Status = 2;
+}
+
+message ChangeStatusByKeyPost {
+  string Key = 1;
+  uint64 Status = 2;
+}
+
+// UpdateAreaPost 更新所在区域
+message UpdateAreaPost {
+  uint64 country_code  = 1;
+  uint64 province_code = 2;
+  uint64 city_code     = 3;
+  string country       = 4;
+  string province      = 5;
+  string city          = 6;
+}
+
+/** ************** 全局返回数据 ************** **/
+
+message Response {
+  string Message = 1;
+  map<string, string> Data = 2;
+}
+
+message StringResponse {
+  string message = 1;
+  string Data    = 2;
+}
+
+// BoolResponse 返回 Bool
+message BoolResponse {
+  string message = 1;
+  bool   data    = 2;
+}
+
+message CheckResponse {
+  string message = 1;
+  bool   data    = 2;
+}
+
+message ResultResponse {
+  string message = 1;
+  bool   data    = 2;
+}
+

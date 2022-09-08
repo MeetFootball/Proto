@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package fan;
+
+option go_package = "./fan;fan";
+
+import "fan/global.proto";
+import "fan/fan_info.proto";
+import "fan/fan_club.proto";
+
+/**************** 数据结构 ****************/
+
+// Me 我的信息
+message Me {
+  string account        = 1;
+  string nickname       = 2;
+  string avatar         = 3;
+  string club           = 4;
+  bool   authentication = 5;
+}
+
+// Fan 粉丝信息
+message Fan {
+  string account        = 1;
+  string nickname       = 2;
+  string avatar         = 3;
+  string club           = 4;
+  bool   authentication = 5;
+}
+
+/**************** 请求结构 ****************/
+
+// NewFanPost 新用户
+message NewFanPost {
+  uint64 WeChatUserID = 1;
+  string Account      = 2;
+  string Avatar       = 3;
+  string Nickname     = 4;
+}
+
+// ChangeFanNicknamePost 修改昵称
+message ChangeFanNicknamePost {
+  string Nickname = 1;
+}
+
+// ChangeFanAccountPost 修改账号
+message ChangeFanAccountPost {
+  string Account = 2;
+}
+
+/**************** 返回结构 ****************/
+
+message MeResponse {
+  string message = 1;
+  Me     data    = 2;
+}
+
+// FanResponse 返回 粉丝信息
+message FanResponse {
+  string message = 1;
+  Fan    data    = 2;
+}
+
+/* 服务 */
+
+service FanService {
+  // Fan
+  rpc NewFan (NewFanPost) returns (BoolResponse) {}
+  rpc Me (EmptyPost) returns (MeResponse) {}
+  rpc Fan (KeyPost) returns (FanResponse) {}
+  rpc SelfInfo(EmptyPost) returns (FanInfoResponse) {}
+  rpc FanInfo(InfoPost) returns (FanInfoResponse) {}
+  rpc ChangeNickname (ChangeFanNicknamePost) returns (BoolResponse) {}
+  rpc ChangeAccount (ChangeFanAccountPost) returns (BoolResponse) {}
+  rpc ChangeSex(ChangeSexPost) returns (BoolResponse) {}
+  rpc UpdateFanArea (UpdateAreaPost) returns (BoolResponse) {}
+
+  // Club
+  rpc Club (InfoPost) returns (FanClubResponse) {}
+  rpc MyFanClub (EmptyPost) returns (FanClubResponse) {}
+  rpc Pagination (FanClubPaginationPost) returns (FanClubPaginationResponse) {}
+  rpc Create (CreateFanClubPost) returns (FanClubResponse) {}
+  rpc Transfer (EmptyPost) returns (BoolResponse) {} // 转移球迷会 会长权限
+  rpc UpdateClubArea (UpdateAreaPost) returns (BoolResponse) {} // 更新球迷会所在区域
+  
+  // Invite
+  rpc Invite (InviteFanPost) returns (BoolResponse) {} // 邀请粉丝加入球迷会
+  rpc CancelInvite (InfoPost) returns (BoolResponse) {}  // 取消邀请
+  rpc AcceptInvite (InfoPost) returns (BoolResponse) {}  // 接受邀请
+  rpc RejectInvite (RejectInvitePost) returns (BoolResponse) {} // 拒绝邀请
+
+  // Join
+  rpc Join (JoinFanClubPost) returns (BoolResponse) {}
+  rpc CancelJoin (InfoPost) returns (BoolResponse) {} // 取消申请
+  rpc AgreeJoin (InfoPost) returns (BoolResponse) {}
+  rpc RejectJoin (JoinFanClubPost) returns (BoolResponse) {}
+
+  // Leave
+  rpc Leave (LeaveFanClubPost) returns (BoolResponse) {} // 离开球迷会
+  rpc KickOut (KickOutPost) returns (BoolResponse) {} // 踢出球迷会
+
+  // Moment
+}

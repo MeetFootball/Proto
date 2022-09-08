@@ -4,7 +4,7 @@
 // 	protoc        v3.19.1
 // source: we_chat/we_chat_user.proto
 
-package pb
+package we_chat
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -25,8 +25,8 @@ type WeChatUser struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Avatar   string `protobuf:"bytes,1,opt,name=avatar,proto3" json:"avatar"`
-	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
+	Avatar   string `protobuf:"bytes,1,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
 }
 
 func (x *WeChatUser) Reset() {
@@ -80,7 +80,7 @@ type LoginPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code"`
+	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 }
 
 func (x *LoginPost) Reset() {
@@ -128,8 +128,8 @@ type LoginResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    string `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    string `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *LoginResponse) Reset() {
@@ -184,8 +184,8 @@ type WeChatUserResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string      `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    *WeChatUser `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Message string      `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *WeChatUser `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *WeChatUserResponse) Reset() {
@@ -255,8 +255,8 @@ var file_we_chat_we_chat_user_proto_rawDesc = []byte{
 	0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x27, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x77, 0x65, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x2e,
 	0x57, 0x65, 0x43, 0x68, 0x61, 0x74, 0x55, 0x73, 0x65, 0x72, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61,
-	0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x62, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x42, 0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x77, 0x65, 0x5f, 0x63, 0x68, 0x61, 0x74, 0x3b, 0x77, 0x65,
+	0x5f, 0x63, 0x68, 0x61, 0x74, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

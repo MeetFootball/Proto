@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package we_chat;
 
-option go_package = "./pb;pb";
+option go_package = "./we_chat;we_chat";
 
 /**************** 数据结构 ****************/
 

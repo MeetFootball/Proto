@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package service;
 
-option go_package = "./pb;pb";
+option go_package = "./service;service";
 
-import "global/global.proto";
+import "service/global.proto";
 import "service/district.proto";
 import "service/examine.proto";
 import "service/translate.proto";
@@ -12,7 +12,7 @@ import "service/translate.proto";
 service ServiceService {
     // 审核
     rpc ExamineText (ExamineTextPost) returns (ExamineTextResponse) {} // 百度 文字审核
-    rpc ExamineImage (ExamineImagePost) returns (global.ResultResponse) {} // 百度 图片审核
+    rpc ExamineImage (ExamineImagePost) returns (ResultResponse) {} // 百度 图片审核
     // 翻译
     rpc BaiduTranslate (BaiduTranslatePost) returns (BaiduTranslateResponse) {} // 百度翻译
 
@@ -21,5 +21,5 @@ service ServiceService {
     // 腾讯
 
     // 地区
-    rpc CityList (global.EmptyPost) returns (CityListResponse) {}
+    rpc CityList (EmptyPost) returns (CityListResponse) {}
 }

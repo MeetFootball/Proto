@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package club;
+package fan;
 
-option go_package = "./pb;pb";
+option go_package = "./fan;fan";
 
 /**************** 数据结构 ****************/
 

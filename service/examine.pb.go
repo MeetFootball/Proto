@@ -4,7 +4,7 @@
 // 	protoc        v3.19.1
 // source: service/examine.proto
 
-package pb
+package service
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -26,8 +26,8 @@ type ExamineText struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result bool     `protobuf:"varint,1,opt,name=result,proto3" json:"result"`
-	Words  []string `protobuf:"bytes,2,rep,name=words,proto3" json:"words"`
+	Result bool     `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Words  []string `protobuf:"bytes,2,rep,name=words,proto3" json:"words,omitempty"`
 }
 
 func (x *ExamineText) Reset() {
@@ -82,8 +82,8 @@ type ExamineImage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result bool   `protobuf:"varint,1,opt,name=result,proto3" json:"result"`
-	Error  string `protobuf:"bytes,2,opt,name=error,proto3" json:"error"`
+	Result bool   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Error  string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
 }
 
 func (x *ExamineImage) Reset() {
@@ -138,9 +138,9 @@ type ExamineTextPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID"`
-	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client"`
-	Text   string `protobuf:"bytes,3,opt,name=text,proto3" json:"text"`
+	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID,omitempty"`
+	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client,omitempty"`
+	Text   string `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
 }
 
 func (x *ExamineTextPost) Reset() {
@@ -202,10 +202,10 @@ type ExamineImagePost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID"`
-	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client"`
-	Type   uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type"`
-	Image  string `protobuf:"bytes,4,opt,name=image,proto3" json:"image"`
+	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID,omitempty"`
+	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client,omitempty"`
+	Type   uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
+	Image  string `protobuf:"bytes,4,opt,name=image,proto3" json:"image,omitempty"`
 }
 
 func (x *ExamineImagePost) Reset() {
@@ -274,8 +274,8 @@ type ExamineTextResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string       `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    *ExamineText `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Message string       `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *ExamineText `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *ExamineTextResponse) Reset() {
@@ -330,8 +330,8 @@ type ExamineImageResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string        `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
-	Data    *ExamineImage `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
+	Message string        `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Data    *ExamineImage `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 }
 
 func (x *ExamineImageResponse) Reset() {
@@ -416,8 +416,8 @@ var file_service_examine_proto_rawDesc = []byte{
 	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x29, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x45, 0x78,
 	0x61, 0x6d, 0x69, 0x6e, 0x65, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61,
-	0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x70, 0x62, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x42, 0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x3b, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

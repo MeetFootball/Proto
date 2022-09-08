@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package match;
+
+option go_package = "./match;match";
+
+/**************** 数据结构 ****************/
+
+// LeaguesClub 俱乐部
+message LeaguesClub {
+  string code    = 1;
+  string logo    = 2;
+  string name    = 3;
+  string en_name = 4;
+  uint64 fans    = 5;
+}
+
+// LeaguesClubs 联赛下的俱乐部
+message LeaguesTree {
+  string   code              = 1;
+  string   logo              = 2;
+  string   name              = 3;
+  string   en_name           = 4;
+  repeated LeaguesClub clubs = 5;
+}
+
+/**************** 请求结构 ****************/
+
+
+/**************** 返回结构 ****************/
+
+// LeaguesClubsTree 联赛球队（树状结构）
+message LeaguesClubsTree {
+  string       message = 1;
+  LeaguesTree data    = 2;
+}
