@@ -6,8 +6,21 @@ option go_package = "./match;match";
 
 /**************** 数据结构 ****************/
 
+// Club 俱乐部
+message Club {
+  string code    = 1;
+  string logo    = 2;
+  string name    = 3;
+  string en_name = 4;
+}
 
 /**************** 请求结构 ****************/
 
 
 /**************** 返回结构 ****************/
+
+// ClubResponse 返回俱乐部信息
+message ClubResponse {
+  string message = 1;
+  Club   data    = 2;
+}

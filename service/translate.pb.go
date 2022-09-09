@@ -26,10 +26,10 @@ type BaiduTranslatePost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Content string `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
-	From    string `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
-	To      string `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
-	Encode  bool   `protobuf:"varint,4,opt,name=encode,proto3" json:"encode,omitempty"`
+	Content string `protobuf:"bytes,1,opt,name=content,proto3" json:"content"`
+	From    string `protobuf:"bytes,2,opt,name=from,proto3" json:"from"`
+	To      string `protobuf:"bytes,3,opt,name=to,proto3" json:"to"`
+	Encode  bool   `protobuf:"varint,4,opt,name=encode,proto3" json:"encode"`
 }
 
 func (x *BaiduTranslatePost) Reset() {
@@ -98,8 +98,8 @@ type BaiduTranslateResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"content"`
 }
 
 func (x *BaiduTranslateResponse) Reset() {

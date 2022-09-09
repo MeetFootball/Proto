@@ -6,6 +6,14 @@ option go_package = "./fan;fan";
 
 /**************** 数据结构 ****************/
 
+// Club 俱乐部
+message Club {
+  string code    = 1;
+  string logo    = 2;
+  string name    = 3;
+  string en_name = 4;
+}
+
 // FanClub 球迷会
 message FanClub {
   string Country     = 1;
@@ -79,6 +87,11 @@ message KickOutPost {
 }
 
 /**************** 返回结构 ****************/
+
+message ClubResponse {
+  string message = 1;
+  Club   data    = 2;
+}
 
 // FanClubResponse 球迷会 返回
 message FanClubResponse {

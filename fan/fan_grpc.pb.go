@@ -29,7 +29,10 @@ type FanServiceClient interface {
 	ChangeSex(ctx context.Context, in *ChangeSexPost, opts ...grpc.CallOption) (*BoolResponse, error)
 	UpdateFanArea(ctx context.Context, in *UpdateAreaPost, opts ...grpc.CallOption) (*BoolResponse, error)
 	// Club
-	Club(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanClubResponse, error)
+	MyClub(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*ClubResponse, error)
+	ChooseClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BoolResponse, error)
+	// FanClub
+	FanClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanClubResponse, error)
 	MyFanClub(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*FanClubResponse, error)
 	Pagination(ctx context.Context, in *FanClubPaginationPost, opts ...grpc.CallOption) (*FanClubPaginationResponse, error)
 	Create(ctx context.Context, in *CreateFanClubPost, opts ...grpc.CallOption) (*FanClubResponse, error)
@@ -139,9 +142,27 @@ func (c *fanServiceClient) UpdateFanArea(ctx context.Context, in *UpdateAreaPost
 	return out, nil
 }
 
-func (c *fanServiceClient) Club(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanClubResponse, error) {
+func (c *fanServiceClient) MyClub(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*ClubResponse, error) {
+	out := new(ClubResponse)
+	err := c.cc.Invoke(ctx, "/fan.FanService/MyClub", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanServiceClient) ChooseClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BoolResponse, error) {
+	out := new(BoolResponse)
+	err := c.cc.Invoke(ctx, "/fan.FanService/ChooseClub", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fanServiceClient) FanClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*FanClubResponse, error) {
 	out := new(FanClubResponse)
-	err := c.cc.Invoke(ctx, "/fan.FanService/Club", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fan.FanService/FanClub", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -298,7 +319,10 @@ type FanServiceServer interface {
 	ChangeSex(context.Context, *ChangeSexPost) (*BoolResponse, error)
 	UpdateFanArea(context.Context, *UpdateAreaPost) (*BoolResponse, error)
 	// Club
-	Club(context.Context, *InfoPost) (*FanClubResponse, error)
+	MyClub(context.Context, *EmptyPost) (*ClubResponse, error)
+	ChooseClub(context.Context, *InfoPost) (*BoolResponse, error)
+	// FanClub
+	FanClub(context.Context, *InfoPost) (*FanClubResponse, error)
 	MyFanClub(context.Context, *EmptyPost) (*FanClubResponse, error)
 	Pagination(context.Context, *FanClubPaginationPost) (*FanClubPaginationResponse, error)
 	Create(context.Context, *CreateFanClubPost) (*FanClubResponse, error)
@@ -351,8 +375,14 @@ func (UnimplementedFanServiceServer) ChangeSex(context.Context, *ChangeSexPost) 
 func (UnimplementedFanServiceServer) UpdateFanArea(context.Context, *UpdateAreaPost) (*BoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateFanArea not implemented")
 }
-func (UnimplementedFanServiceServer) Club(context.Context, *InfoPost) (*FanClubResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Club not implemented")
+func (UnimplementedFanServiceServer) MyClub(context.Context, *EmptyPost) (*ClubResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MyClub not implemented")
+}
+func (UnimplementedFanServiceServer) ChooseClub(context.Context, *InfoPost) (*BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChooseClub not implemented")
+}
+func (UnimplementedFanServiceServer) FanClub(context.Context, *InfoPost) (*FanClubResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FanClub not implemented")
 }
 func (UnimplementedFanServiceServer) MyFanClub(context.Context, *EmptyPost) (*FanClubResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MyFanClub not implemented")
@@ -574,20 +604,56 @@ func _FanService_UpdateFanArea_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FanService_Club_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FanService_MyClub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanServiceServer).MyClub(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fan.FanService/MyClub",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanServiceServer).MyClub(ctx, req.(*EmptyPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FanService_ChooseClub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InfoPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FanServiceServer).Club(ctx, in)
+		return srv.(FanServiceServer).ChooseClub(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fan.FanService/Club",
+		FullMethod: "/fan.FanService/ChooseClub",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FanServiceServer).Club(ctx, req.(*InfoPost))
+		return srv.(FanServiceServer).ChooseClub(ctx, req.(*InfoPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FanService_FanClub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InfoPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FanServiceServer).FanClub(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fan.FanService/FanClub",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FanServiceServer).FanClub(ctx, req.(*InfoPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -906,8 +972,16 @@ var FanService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FanService_UpdateFanArea_Handler,
 		},
 		{
-			MethodName: "Club",
-			Handler:    _FanService_Club_Handler,
+			MethodName: "MyClub",
+			Handler:    _FanService_MyClub_Handler,
+		},
+		{
+			MethodName: "ChooseClub",
+			Handler:    _FanService_ChooseClub_Handler,
+		},
+		{
+			MethodName: "FanClub",
+			Handler:    _FanService_FanClub_Handler,
 		},
 		{
 			MethodName: "MyFanClub",

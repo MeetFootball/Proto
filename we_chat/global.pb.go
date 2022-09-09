@@ -65,7 +65,7 @@ type InfoPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ID uint64 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	ID uint64 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID"`
 }
 
 func (x *InfoPost) Reset() {
@@ -112,7 +112,7 @@ type KeyPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Key string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty"`
+	Key string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key"`
 }
 
 func (x *KeyPost) Reset() {
@@ -159,7 +159,7 @@ type KeywordPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Keyword string `protobuf:"bytes,1,opt,name=Keyword,proto3" json:"Keyword,omitempty"`
+	Keyword string `protobuf:"bytes,1,opt,name=Keyword,proto3" json:"Keyword"`
 }
 
 func (x *KeywordPost) Reset() {
@@ -206,8 +206,8 @@ type DatePost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Start string `protobuf:"bytes,1,opt,name=Start,proto3" json:"Start,omitempty"`
-	End   string `protobuf:"bytes,2,opt,name=End,proto3" json:"End,omitempty"`
+	Start string `protobuf:"bytes,1,opt,name=Start,proto3" json:"Start"`
+	End   string `protobuf:"bytes,2,opt,name=End,proto3" json:"End"`
 }
 
 func (x *DatePost) Reset() {
@@ -262,8 +262,8 @@ type PaginationPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Size uint64 `protobuf:"varint,1,opt,name=Size,proto3" json:"Size,omitempty"`
-	Page uint64 `protobuf:"varint,2,opt,name=Page,proto3" json:"Page,omitempty"`
+	Size uint64 `protobuf:"varint,1,opt,name=Size,proto3" json:"Size"`
+	Page uint64 `protobuf:"varint,2,opt,name=Page,proto3" json:"Page"`
 }
 
 func (x *PaginationPost) Reset() {
@@ -318,12 +318,12 @@ type SearchPaginationPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Size    uint64 `protobuf:"varint,1,opt,name=Size,proto3" json:"Size,omitempty"`
-	Page    uint64 `protobuf:"varint,2,opt,name=Page,proto3" json:"Page,omitempty"`
-	Keyword string `protobuf:"bytes,3,opt,name=Keyword,proto3" json:"Keyword,omitempty"`
-	Status  uint64 `protobuf:"varint,4,opt,name=Status,proto3" json:"Status,omitempty"`
-	Start   string `protobuf:"bytes,5,opt,name=Start,proto3" json:"Start,omitempty"`
-	End     string `protobuf:"bytes,6,opt,name=End,proto3" json:"End,omitempty"`
+	Size    uint64 `protobuf:"varint,1,opt,name=Size,proto3" json:"Size"`
+	Page    uint64 `protobuf:"varint,2,opt,name=Page,proto3" json:"Page"`
+	Keyword string `protobuf:"bytes,3,opt,name=Keyword,proto3" json:"Keyword"`
+	Status  uint64 `protobuf:"varint,4,opt,name=Status,proto3" json:"Status"`
+	Start   string `protobuf:"bytes,5,opt,name=Start,proto3" json:"Start"`
+	End     string `protobuf:"bytes,6,opt,name=End,proto3" json:"End"`
 }
 
 func (x *SearchPaginationPost) Reset() {
@@ -406,8 +406,8 @@ type ChangeStatusPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ID     uint64 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	Status uint64 `protobuf:"varint,2,opt,name=Status,proto3" json:"Status,omitempty"`
+	ID     uint64 `protobuf:"varint,1,opt,name=ID,proto3" json:"ID"`
+	Status uint64 `protobuf:"varint,2,opt,name=Status,proto3" json:"Status"`
 }
 
 func (x *ChangeStatusPost) Reset() {
@@ -461,8 +461,8 @@ type ChangeStatusByKeyPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Key    string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty"`
-	Status uint64 `protobuf:"varint,2,opt,name=Status,proto3" json:"Status,omitempty"`
+	Key    string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key"`
+	Status uint64 `protobuf:"varint,2,opt,name=Status,proto3" json:"Status"`
 }
 
 func (x *ChangeStatusByKeyPost) Reset() {
@@ -517,12 +517,12 @@ type UpdateAreaPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CountryCode  uint64 `protobuf:"varint,1,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
-	ProvinceCode uint64 `protobuf:"varint,2,opt,name=province_code,json=provinceCode,proto3" json:"province_code,omitempty"`
-	CityCode     uint64 `protobuf:"varint,3,opt,name=city_code,json=cityCode,proto3" json:"city_code,omitempty"`
-	Country      string `protobuf:"bytes,4,opt,name=country,proto3" json:"country,omitempty"`
-	Province     string `protobuf:"bytes,5,opt,name=province,proto3" json:"province,omitempty"`
-	City         string `protobuf:"bytes,6,opt,name=city,proto3" json:"city,omitempty"`
+	CountryCode  uint64 `protobuf:"varint,1,opt,name=country_code,json=countryCode,proto3" json:"country_code"`
+	ProvinceCode uint64 `protobuf:"varint,2,opt,name=province_code,json=provinceCode,proto3" json:"province_code"`
+	CityCode     uint64 `protobuf:"varint,3,opt,name=city_code,json=cityCode,proto3" json:"city_code"`
+	Country      string `protobuf:"bytes,4,opt,name=country,proto3" json:"country"`
+	Province     string `protobuf:"bytes,5,opt,name=province,proto3" json:"province"`
+	City         string `protobuf:"bytes,6,opt,name=city,proto3" json:"city"`
 }
 
 func (x *UpdateAreaPost) Reset() {
@@ -604,8 +604,8 @@ type Response struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string            `protobuf:"bytes,1,opt,name=Message,proto3" json:"Message,omitempty"`
-	Data    map[string]string `protobuf:"bytes,2,rep,name=Data,proto3" json:"Data,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Message string            `protobuf:"bytes,1,opt,name=Message,proto3" json:"Message"`
+	Data    map[string]string `protobuf:"bytes,2,rep,name=Data,proto3" json:"Data" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *Response) Reset() {
@@ -659,8 +659,8 @@ type StringResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    string `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    string `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data"`
 }
 
 func (x *StringResponse) Reset() {
@@ -715,8 +715,8 @@ type BoolResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    bool   `protobuf:"varint,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    bool   `protobuf:"varint,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *BoolResponse) Reset() {
@@ -770,8 +770,8 @@ type CheckResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    bool   `protobuf:"varint,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    bool   `protobuf:"varint,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *CheckResponse) Reset() {
@@ -825,8 +825,8 @@ type ResultResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    bool   `protobuf:"varint,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    bool   `protobuf:"varint,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *ResultResponse) Reset() {

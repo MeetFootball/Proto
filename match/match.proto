@@ -6,10 +6,13 @@ option go_package = "./match;match";
 
 import "match/global.proto";
 import "match/league.proto";
+import "match/club.proto";
 
-service MathService {
+service MatchService {
   // 联赛球队
-  rpc LeaguesClubs (EmptyPost) returns (LeaguesClubsTree) {}
+  rpc LeaguesTree (EmptyPost) returns (LeaguesTreeResponse) {}
   // 俱乐部
+  rpc Club (InfoPost) returns (ClubResponse) {}
+
   rpc LeaguesClub (InfoPost) returns (BoolResponse) {}
 }

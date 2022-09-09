@@ -26,8 +26,8 @@ type CityList struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProvinceList map[uint64]string `protobuf:"bytes,1,rep,name=province_list,json=provinceList,proto3" json:"province_list,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	CityList     map[uint64]string `protobuf:"bytes,2,rep,name=city_list,json=cityList,proto3" json:"city_list,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	ProvinceList map[uint64]string `protobuf:"bytes,1,rep,name=province_list,json=provinceList,proto3" json:"province_list" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	CityList     map[uint64]string `protobuf:"bytes,2,rep,name=city_list,json=cityList,proto3" json:"city_list" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (x *CityList) Reset() {
@@ -82,8 +82,8 @@ type CityListResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string    `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *CityList `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string    `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *CityList `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *CityListResponse) Reset() {

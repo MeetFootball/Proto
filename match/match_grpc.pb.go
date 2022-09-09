@@ -14,126 +14,162 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// MathServiceClient is the client API for MathService service.
+// MatchServiceClient is the client API for MatchService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MathServiceClient interface {
+type MatchServiceClient interface {
 	// 联赛球队
-	LeaguesClubs(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*LeaguesClubsTree, error)
+	LeaguesTree(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*LeaguesTreeResponse, error)
 	// 俱乐部
+	Club(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*ClubResponse, error)
 	LeaguesClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BoolResponse, error)
 }
 
-type mathServiceClient struct {
+type matchServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMathServiceClient(cc grpc.ClientConnInterface) MathServiceClient {
-	return &mathServiceClient{cc}
+func NewMatchServiceClient(cc grpc.ClientConnInterface) MatchServiceClient {
+	return &matchServiceClient{cc}
 }
 
-func (c *mathServiceClient) LeaguesClubs(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*LeaguesClubsTree, error) {
-	out := new(LeaguesClubsTree)
-	err := c.cc.Invoke(ctx, "/match.MathService/LeaguesClubs", in, out, opts...)
+func (c *matchServiceClient) LeaguesTree(ctx context.Context, in *EmptyPost, opts ...grpc.CallOption) (*LeaguesTreeResponse, error) {
+	out := new(LeaguesTreeResponse)
+	err := c.cc.Invoke(ctx, "/match.MatchService/LeaguesTree", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mathServiceClient) LeaguesClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BoolResponse, error) {
+func (c *matchServiceClient) Club(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*ClubResponse, error) {
+	out := new(ClubResponse)
+	err := c.cc.Invoke(ctx, "/match.MatchService/Club", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *matchServiceClient) LeaguesClub(ctx context.Context, in *InfoPost, opts ...grpc.CallOption) (*BoolResponse, error) {
 	out := new(BoolResponse)
-	err := c.cc.Invoke(ctx, "/match.MathService/LeaguesClub", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/match.MatchService/LeaguesClub", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MathServiceServer is the server API for MathService service.
-// All implementations must embed UnimplementedMathServiceServer
+// MatchServiceServer is the server API for MatchService service.
+// All implementations must embed UnimplementedMatchServiceServer
 // for forward compatibility
-type MathServiceServer interface {
+type MatchServiceServer interface {
 	// 联赛球队
-	LeaguesClubs(context.Context, *EmptyPost) (*LeaguesClubsTree, error)
+	LeaguesTree(context.Context, *EmptyPost) (*LeaguesTreeResponse, error)
 	// 俱乐部
+	Club(context.Context, *InfoPost) (*ClubResponse, error)
 	LeaguesClub(context.Context, *InfoPost) (*BoolResponse, error)
-	mustEmbedUnimplementedMathServiceServer()
+	mustEmbedUnimplementedMatchServiceServer()
 }
 
-// UnimplementedMathServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedMathServiceServer struct {
+// UnimplementedMatchServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedMatchServiceServer struct {
 }
 
-func (UnimplementedMathServiceServer) LeaguesClubs(context.Context, *EmptyPost) (*LeaguesClubsTree, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LeaguesClubs not implemented")
+func (UnimplementedMatchServiceServer) LeaguesTree(context.Context, *EmptyPost) (*LeaguesTreeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LeaguesTree not implemented")
 }
-func (UnimplementedMathServiceServer) LeaguesClub(context.Context, *InfoPost) (*BoolResponse, error) {
+func (UnimplementedMatchServiceServer) Club(context.Context, *InfoPost) (*ClubResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Club not implemented")
+}
+func (UnimplementedMatchServiceServer) LeaguesClub(context.Context, *InfoPost) (*BoolResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LeaguesClub not implemented")
 }
-func (UnimplementedMathServiceServer) mustEmbedUnimplementedMathServiceServer() {}
+func (UnimplementedMatchServiceServer) mustEmbedUnimplementedMatchServiceServer() {}
 
-// UnsafeMathServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MathServiceServer will
+// UnsafeMatchServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MatchServiceServer will
 // result in compilation errors.
-type UnsafeMathServiceServer interface {
-	mustEmbedUnimplementedMathServiceServer()
+type UnsafeMatchServiceServer interface {
+	mustEmbedUnimplementedMatchServiceServer()
 }
 
-func RegisterMathServiceServer(s grpc.ServiceRegistrar, srv MathServiceServer) {
-	s.RegisterService(&MathService_ServiceDesc, srv)
+func RegisterMatchServiceServer(s grpc.ServiceRegistrar, srv MatchServiceServer) {
+	s.RegisterService(&MatchService_ServiceDesc, srv)
 }
 
-func _MathService_LeaguesClubs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MatchService_LeaguesTree_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MathServiceServer).LeaguesClubs(ctx, in)
+		return srv.(MatchServiceServer).LeaguesTree(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/match.MathService/LeaguesClubs",
+		FullMethod: "/match.MatchService/LeaguesTree",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathServiceServer).LeaguesClubs(ctx, req.(*EmptyPost))
+		return srv.(MatchServiceServer).LeaguesTree(ctx, req.(*EmptyPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MathService_LeaguesClub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MatchService_Club_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InfoPost)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MathServiceServer).LeaguesClub(ctx, in)
+		return srv.(MatchServiceServer).Club(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/match.MathService/LeaguesClub",
+		FullMethod: "/match.MatchService/Club",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MathServiceServer).LeaguesClub(ctx, req.(*InfoPost))
+		return srv.(MatchServiceServer).Club(ctx, req.(*InfoPost))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// MathService_ServiceDesc is the grpc.ServiceDesc for MathService service.
+func _MatchService_LeaguesClub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InfoPost)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MatchServiceServer).LeaguesClub(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/match.MatchService/LeaguesClub",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MatchServiceServer).LeaguesClub(ctx, req.(*InfoPost))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// MatchService_ServiceDesc is the grpc.ServiceDesc for MatchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var MathService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "match.MathService",
-	HandlerType: (*MathServiceServer)(nil),
+var MatchService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "match.MatchService",
+	HandlerType: (*MatchServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "LeaguesClubs",
-			Handler:    _MathService_LeaguesClubs_Handler,
+			MethodName: "LeaguesTree",
+			Handler:    _MatchService_LeaguesTree_Handler,
+		},
+		{
+			MethodName: "Club",
+			Handler:    _MatchService_Club_Handler,
 		},
 		{
 			MethodName: "LeaguesClub",
-			Handler:    _MathService_LeaguesClub_Handler,
+			Handler:    _MatchService_LeaguesClub_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

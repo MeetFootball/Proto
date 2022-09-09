@@ -26,8 +26,8 @@ type ExamineText struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result bool     `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
-	Words  []string `protobuf:"bytes,2,rep,name=words,proto3" json:"words,omitempty"`
+	Result bool     `protobuf:"varint,1,opt,name=result,proto3" json:"result"`
+	Words  []string `protobuf:"bytes,2,rep,name=words,proto3" json:"words"`
 }
 
 func (x *ExamineText) Reset() {
@@ -82,8 +82,8 @@ type ExamineImage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Result bool   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
-	Error  string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
+	Result bool   `protobuf:"varint,1,opt,name=result,proto3" json:"result"`
+	Error  string `protobuf:"bytes,2,opt,name=error,proto3" json:"error"`
 }
 
 func (x *ExamineImage) Reset() {
@@ -138,9 +138,9 @@ type ExamineTextPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID,omitempty"`
-	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client,omitempty"`
-	Text   string `protobuf:"bytes,3,opt,name=text,proto3" json:"text,omitempty"`
+	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID"`
+	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client"`
+	Text   string `protobuf:"bytes,3,opt,name=text,proto3" json:"text"`
 }
 
 func (x *ExamineTextPost) Reset() {
@@ -202,10 +202,10 @@ type ExamineImagePost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID,omitempty"`
-	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client,omitempty"`
-	Type   uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
-	Image  string `protobuf:"bytes,4,opt,name=image,proto3" json:"image,omitempty"`
+	UUID   uint64 `protobuf:"varint,1,opt,name=UUID,proto3" json:"UUID"`
+	Client uint64 `protobuf:"varint,2,opt,name=client,proto3" json:"client"`
+	Type   uint64 `protobuf:"varint,3,opt,name=type,proto3" json:"type"`
+	Image  string `protobuf:"bytes,4,opt,name=image,proto3" json:"image"`
 }
 
 func (x *ExamineImagePost) Reset() {
@@ -274,8 +274,8 @@ type ExamineTextResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string       `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *ExamineText `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string       `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *ExamineText `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *ExamineTextResponse) Reset() {
@@ -330,8 +330,8 @@ type ExamineImageResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string        `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *ExamineImage `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string        `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *ExamineImage `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *ExamineImageResponse) Reset() {

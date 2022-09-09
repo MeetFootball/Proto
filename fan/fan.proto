@@ -76,7 +76,11 @@ service FanService {
   rpc UpdateFanArea (UpdateAreaPost) returns (BoolResponse) {}
 
   // Club
-  rpc Club (InfoPost) returns (FanClubResponse) {}
+  rpc MyClub (EmptyPost) returns (ClubResponse) {}  // 获取粉丝自身喜欢的俱乐部
+  rpc ChooseClub (InfoPost) returns (BoolResponse) {} // 选择喜欢的俱乐部
+
+  // FanClub
+  rpc FanClub (InfoPost) returns (FanClubResponse) {}
   rpc MyFanClub (EmptyPost) returns (FanClubResponse) {}
   rpc Pagination (FanClubPaginationPost) returns (FanClubPaginationResponse) {}
   rpc Create (CreateFanClubPost) returns (FanClubResponse) {}

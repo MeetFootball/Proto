@@ -25,8 +25,8 @@ type WeChatUser struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Avatar   string `protobuf:"bytes,1,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Avatar   string `protobuf:"bytes,1,opt,name=avatar,proto3" json:"avatar"`
+	Nickname string `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname"`
 }
 
 func (x *WeChatUser) Reset() {
@@ -80,7 +80,7 @@ type LoginPost struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code"`
 }
 
 func (x *LoginPost) Reset() {
@@ -128,8 +128,8 @@ type LoginResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    string `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    string `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *LoginResponse) Reset() {
@@ -184,8 +184,8 @@ type WeChatUserResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Message string      `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Data    *WeChatUser `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	Message string      `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
+	Data    *WeChatUser `protobuf:"bytes,2,opt,name=data,proto3" json:"data"`
 }
 
 func (x *WeChatUserResponse) Reset() {
