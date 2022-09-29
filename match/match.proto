@@ -9,10 +9,11 @@ import "match/league.proto";
 import "match/club.proto";
 
 service MatchService {
-  // 联赛球队
+  // 联赛
+  rpc Leagueses (EmptyPost) returns (LeaguesesResponse) {}
   rpc LeaguesTree (EmptyPost) returns (LeaguesTreeResponse) {}
+
   // 俱乐部
   rpc Club (InfoPost) returns (ClubResponse) {}
-
-  rpc LeaguesClub (InfoPost) returns (BoolResponse) {}
+  rpc LeaguesClubs (InfoPost) returns (BoolResponse) {} // 联赛下的俱乐部
 }

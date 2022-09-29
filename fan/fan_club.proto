@@ -4,113 +4,125 @@ package fan;
 
 option go_package = "./fan;fan";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
 // Club 俱乐部
 message Club {
-  string code    = 1;
-  string logo    = 2;
-  string name    = 3;
-  string en_name = 4;
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  string Code   = 2 [(gogoproto.jsontag) = "code"];
+  string Logo   = 3 [(gogoproto.jsontag) = "logo"];
+  string Name   = 4 [(gogoproto.jsontag) = "name"];
+  string EnName = 5 [(gogoproto.jsontag) = "en_name"];
 }
 
 // FanClub 球迷会
 message FanClub {
-  string Country     = 1;
-  string Province    = 2;
-  string City        = 3;
-  string Name        = 4;
-  string Logo        = 5;
-  string Base        = 6;
-  uint64 Rank        = 7;
-  uint64 Members     = 8;
-  uint64 Join        = 9;
-  uint64 Status      = 10;
-  string EstablishAt = 11;
+  uint64 ID           = 1 [(gogoproto.jsontag) = "id"];
+  uint64 ClubID       = 2 [(gogoproto.jsontag) = "club_id"];
+  uint64 CountryCode  = 3 [(gogoproto.jsontag) = "country_code"];
+  string Country      = 4 [(gogoproto.jsontag) = "country"];
+  uint64 ProvinceCode = 5 [(gogoproto.jsontag) = "province_code"];
+  string Province     = 6 [(gogoproto.jsontag) = "province"];
+  uint64 CityCode     = 7 [(gogoproto.jsontag) = "city_code"];
+  string City         = 8 [(gogoproto.jsontag) = "city"];
+  string Name         = 9 [(gogoproto.jsontag) = "name"];
+  string Logo         = 10 [(gogoproto.jsontag) = "logo"];
+  string Base         = 11 [(gogoproto.jsontag) = "base"];
+  uint64 Rank         = 12 [(gogoproto.jsontag) = "rank"];
+  uint64 Members      = 13 [(gogoproto.jsontag) = "members"];
+  uint64 Join         = 14 [(gogoproto.jsontag) = "join"];
+  uint64 Status       = 15 [(gogoproto.jsontag) = "status"];
+  uint64 EstablishAt  = 16 [(gogoproto.jsontag) = "establish_at"];
+  string EstablishStr = 17 [(gogoproto.jsontag) = "establish_str"];
+  Club   Club         = 18 [(gogoproto.jsontag) = "club"];
 }
 
 /**************** 请求结构 ****************/
 
 // FanClubPaginationPost 球迷会 分页
 message FanClubPaginationPost {
-  uint64 Country  = 1;
-  uint64 Province = 2;
-  uint64 City     = 3;
-  uint64 Join     = 4;
-  uint64 Page     = 5;
-  uint64 Size     = 6;
+  uint64 Country  = 1 [(gogoproto.jsontag) = "country"];
+  uint64 Province = 2 [(gogoproto.jsontag) = "province"];
+  uint64 City     = 3 [(gogoproto.jsontag) = "city"];
+  uint64 Join     = 4 [(gogoproto.jsontag) = "join"];
+  string Keyword  = 5 [(gogoproto.jsontag) = "keyword"];
+  uint64 Page     = 6 [(gogoproto.jsontag) = "page"];
+  uint64 Size     = 7 [(gogoproto.jsontag) = "size"];
 }
 
 // CreateFanClubPost 创建球迷会
 message CreateFanClubPost {
-  uint64 ClubID       = 1;
-  uint64 CountryCode  = 2;
-  uint64 ProvinceCode = 3;
-  uint64 CityCode     = 4;
-  string Country      = 5;
-  string Province     = 6;
-  string City         = 7;
-  string Name         = 8;
-  string Logo         = 9;
-  string Base         = 10;
-  uint64 Join         = 11;
-  string EstablishAt  = 12;
+  uint64 ClubID       = 1 [(gogoproto.jsontag) = "club_id"];
+  uint64 CountryCode  = 2 [(gogoproto.jsontag) = "country_code"];
+  uint64 ProvinceCode = 3 [(gogoproto.jsontag) = "province_code"];
+  uint64 CityCode     = 4 [(gogoproto.jsontag) = "city_code"];
+  string Country      = 5 [(gogoproto.jsontag) = "country"];
+  string Province     = 6 [(gogoproto.jsontag) = "province"];
+  string City         = 7 [(gogoproto.jsontag) = "city"];
+  string Name         = 8 [(gogoproto.jsontag) = "name"];
+  string Logo         = 9 [(gogoproto.jsontag) = "logo"];
+  string Base         = 10 [(gogoproto.jsontag) = "base"];
+  uint64 Join         = 11 [(gogoproto.jsontag) = "join"];
+  uint64 EstablishAt  = 12 [(gogoproto.jsontag) = "establish_at"];
 }
 
 // InviteFanPost 邀请 粉丝加入球迷会
 message InviteFanPost {
-  string Fan    = 1;
-  string Reason = 2;
+  string Fan    = 1 [(gogoproto.jsontag) = "fan"];
+  string Reason = 2 [(gogoproto.jsontag) = "reason"];
 }
 
 // RejectInvitePost 拒绝邀请
 message RejectInvitePost {
-  uint64 ID     = 1;
-  string Reason = 2;
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  string Reason = 2 [(gogoproto.jsontag) = "reason"];
 }
 
 // JoinFanClubPost 申请/同意/拒绝 加入球迷会
 message JoinFanClubPost {
-  uint64 ID     = 1;
-  string Reason = 2;
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  string Reason = 2 [(gogoproto.jsontag) = "reason"];
 }
 
 // LeaveFanClubPost 离开球迷会
 message LeaveFanClubPost {
-  string Reason = 1;
+  string Reason = 1 [(gogoproto.jsontag) = "reason"];
 }
 
 // KickOutPost 踢出球迷会
 message KickOutPost {
-  uint64 FanID  = 1;
-  string Reason = 2;
+  uint64 FanID  = 1 [(gogoproto.jsontag) = "fan_id"];
+  string Reason = 2 [(gogoproto.jsontag) = "reason"];
 }
 
 /**************** 返回结构 ****************/
 
+// ClubResponse 返回 粉丝俱乐部信息
 message ClubResponse {
-  string message = 1;
-  Club   data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  Club   Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // FanClubResponse 球迷会 返回
 message FanClubResponse {
-  string  message = 1;
-  FanClub data    = 2;
+  string  Message = 1 [(gogoproto.jsontag) = "message"];
+  FanClub Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // FanClubsResponse 球迷会 列表
 message FanClubsResponse {
-  string   message      = 1;
-  repeated FanClub data = 2;
+  string   Message      = 1 [(gogoproto.jsontag) = "message"];
+  repeated FanClub Data = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // FanClubPaginationResponse 球迷会 分页返回
 message FanClubPaginationResponse {
   message Clubs {
-    repeated FanClub list = 1;
-    int64    total        = 2;
+    repeated FanClub List = 1 [(gogoproto.jsontag) = "list"];
+    int64    Total        = 2 [(gogoproto.jsontag) = "total"];
   }
-  string message = 1;
-  Clubs  data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  Clubs  Data    = 2 [(gogoproto.jsontag) = "data"];
 }

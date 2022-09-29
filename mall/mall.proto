@@ -2,6 +2,6 @@ syntax = "proto3";
 
 package mall;
 
-option go_package = "./pb;pb";
+option go_package = "./mall;mall";
 
 service MallService {}

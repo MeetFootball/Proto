@@ -4,12 +4,14 @@ package service;
 
 option go_package = "./service;service";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
 // CityList 选择地区，精确到城市
 message CityList {
-  map<uint64, string> province_list = 1;
-  map<uint64, string> city_list     = 2;
+  map<uint64, string> ProvinceList = 1 [(gogoproto.jsontag) = "province_list"];
+  map<uint64, string> CityList     = 2 [(gogoproto.jsontag) = "city_list"];
 }
 
 /**************** 请求结构 ****************/
@@ -19,6 +21,6 @@ message CityList {
 
 // CityListResponse 返回选择地区列表
 message CityListResponse {
-  string   message = 1;
-  CityList data    = 2;
+  string   Message = 1 [(gogoproto.jsontag) = "message"];
+  CityList Data    = 2 [(gogoproto.jsontag) = "data"];
 }

@@ -4,24 +4,36 @@ package match;
 
 option go_package = "./match;match";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
+
+// Leagues 联赛
+message Leagues {
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  string Code   = 2 [(gogoproto.jsontag) = "code"];
+  string Logo   = 3 [(gogoproto.jsontag) = "logo"];
+  string Name   = 4 [(gogoproto.jsontag) = "name"];
+  string EnName = 5 [(gogoproto.jsontag) = "en_name"];
+}
 
 // LeaguesClub 俱乐部
 message LeaguesClub {
-  string code    = 1;
-  string logo    = 2;
-  string name    = 3;
-  string en_name = 4;
-  uint64 fans    = 5;
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  string Code   = 2 [(gogoproto.jsontag) = "code"];
+  string Logo   = 3 [(gogoproto.jsontag) = "logo"];
+  string Name   = 4 [(gogoproto.jsontag) = "name"];
+  string EnName = 5 [(gogoproto.jsontag) = "en_name"];
+  uint64 Fans   = 6 [(gogoproto.jsontag) = "fans"];
 }
 
 // LeaguesClubs 联赛下的俱乐部
 message LeaguesTree {
-  string   code              = 1;
-  string   logo              = 2;
-  string   name              = 3;
-  string   en_name           = 4;
-  repeated LeaguesClub clubs = 5;
+  string   Code              = 1 [(gogoproto.jsontag) = "code"];
+  string   Logo              = 2 [(gogoproto.jsontag) = "logo"];
+  string   Name              = 3 [(gogoproto.jsontag) = "name"];
+  string   EnName            = 4 [(gogoproto.jsontag) = "en_name"];
+  repeated LeaguesClub Clubs = 5 [(gogoproto.jsontag) = "clubs"];
 }
 
 /**************** 请求结构 ****************/
@@ -29,8 +41,20 @@ message LeaguesTree {
 
 /**************** 返回结构 ****************/
 
+// LeaguesResponse 返回 联赛
+message LeaguesResponse {
+  string  Message = 1 [(gogoproto.jsontag) = "message"];
+  Leagues Data    = 2 [(gogoproto.jsontag) = "data"];
+}
+
+// LeaguesesResponse 返回 联赛列表
+message LeaguesesResponse {
+  string   Message      = 1 [(gogoproto.jsontag) = "message"];
+  repeated Leagues Data = 2 [(gogoproto.jsontag) = "data"];
+}
+
 // LeaguesTreeResponse 联赛球队（树状结构）
 message LeaguesTreeResponse {
-  string   message          = 1;
-  repeated LeaguesTree data = 2;
+  string   Message          = 1 [(gogoproto.jsontag) = "message"];
+  repeated LeaguesTree Data = 2 [(gogoproto.jsontag) = "data"];
 }

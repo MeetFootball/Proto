@@ -4,34 +4,37 @@ package fan;
 
 option go_package = "./fan;fan";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
+// FanInfo 粉丝信息
 message FanInfo {
-  uint64 FanID        = 1;
-  uint64 Sex          = 2;
-  bool   SecretSex    = 3;
-  uint64 Age          = 4;
-  string Phone        = 5;
-  uint64 CountryCode  = 6;
-  uint64 ProvinceCode = 7;
-  uint64 CityCode     = 8;
-  string Country      = 9;
-  string Province     = 10;
-  string City         = 11;
+  uint64 FanID        = 1 [(gogoproto.jsontag) = "fan_id"];
+  uint64 Sex          = 2 [(gogoproto.jsontag) = "sex"];
+  bool   SecretSex    = 3 [(gogoproto.jsontag) = "secret_sex"];
+  uint64 Age          = 4 [(gogoproto.jsontag) = "age"];
+  string Phone        = 5 [(gogoproto.jsontag) = "phone"];
+  uint64 CountryCode  = 6 [(gogoproto.jsontag) = "country_code"];
+  uint64 ProvinceCode = 7 [(gogoproto.jsontag) = "province_code"];
+  uint64 CityCode     = 8 [(gogoproto.jsontag) = "city_code"];
+  string Country      = 9 [(gogoproto.jsontag) = "country"];
+  string Province     = 10 [(gogoproto.jsontag) = "province"];
+  string City         = 11 [(gogoproto.jsontag) = "city"];
 }
 
 /**************** 请求结构 ****************/
 
 // ChangeSexPost 修改性别
 message ChangeSexPost {
-  uint64 sex       = 1;
-  bool   secret_sex = 2;
+  uint64 Sex       = 1 [(gogoproto.jsontag) = "sex"];
+  bool   SecretSex = 2 [(gogoproto.jsontag) = "secret_sex"];
 }
 
 /**************** 返回结构 ****************/
 
 // FanInfoResponse 返回粉丝信息
 message FanInfoResponse {
-  string  message = 1;
-  FanInfo data    = 2;
+  string  Message = 1 [(gogoproto.jsontag) = "message"];
+  FanInfo Data    = 2 [(gogoproto.jsontag) = "data"];
 }

@@ -4,93 +4,90 @@ syntax = "proto3";
 
 package fan;
 
-option go_package = "./fan;fan";
-option java_multiple_files = true;
+option go_package           = "./fan;fan";
+option java_multiple_files  = true;
 option java_outer_classname = "global";
+
+import "go/go.proto";
 
 /** ************** 全局请求参数 ************** **/
 
 message EmptyPost {}
 
 message InfoPost {
-  uint64 ID = 1;
+  uint64 ID = 1 [(gogoproto.jsontag) = "id"];
 }
 
 message KeyPost {
-  string Key = 1;
+  string Key = 1 [(gogoproto.jsontag) = "key"];
 }
 
 message KeywordPost {
-  string Keyword = 1;
+  string Keyword = 1 [(gogoproto.jsontag) = "keyword"];
 }
 
 message DatePost {
-  string Start = 1;
-  string End = 2;
+  string Start = 1 [(gogoproto.jsontag) = "start"];
+  string End   = 2 [(gogoproto.jsontag) = "end"];
 }
 
 // PaginationPost 普通分页 传参
 message PaginationPost {
-  uint64 Size = 1;
-  uint64 Page = 2;
+  uint64 Size = 1 [(gogoproto.jsontag) = "size"];
+  uint64 Page = 2 [(gogoproto.jsontag) = "page"];
 }
 
 // SearchPaginationPost 搜索分页 传参
 message SearchPaginationPost {
-  uint64 Size    = 1;
-  uint64 Page    = 2;
-  string Keyword = 3;
-  uint64 Status  = 4;
-  string Start   = 5;
-  string End     = 6;
+  uint64 Size    = 1 [(gogoproto.jsontag) = "size"];
+  uint64 Page    = 2 [(gogoproto.jsontag) = "page"];
+  string Keyword = 3 [(gogoproto.jsontag) = "keyword"];
+  uint64 Status  = 4 [(gogoproto.jsontag) = "status"];
+  string Start   = 5 [(gogoproto.jsontag) = "start"];
+  string End     = 6 [(gogoproto.jsontag) = "end"];
 }
 
 // ChangeStatusPost 通用修改状态 传参
 message ChangeStatusPost {
-  uint64 ID = 1;
-  uint64 Status = 2;
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  uint64 Status = 2 [(gogoproto.jsontag) = "status"];
 }
 
 message ChangeStatusByKeyPost {
-  string Key = 1;
-  uint64 Status = 2;
+  string Key    = 1 [(gogoproto.jsontag) = "key"];
+  uint64 Status = 2 [(gogoproto.jsontag) = "status"];
 }
 
 // UpdateAreaPost 更新所在区域
 message UpdateAreaPost {
-  uint64 country_code  = 1;
-  uint64 province_code = 2;
-  uint64 city_code     = 3;
-  string country       = 4;
-  string province      = 5;
-  string city          = 6;
+  uint64 CountryCode  = 1 [(gogoproto.jsontag) = "country_code"];
+  uint64 ProvinceCode = 2 [(gogoproto.jsontag) = "province_code"];
+  uint64 CityCode     = 3 [(gogoproto.jsontag) = "city_code"];
+  string Country      = 4 [(gogoproto.jsontag) = "country"];
+  string Province     = 5 [(gogoproto.jsontag) = "province"];
+  string City         = 6 [(gogoproto.jsontag) = "city"];
 }
 
 /** ************** 全局返回数据 ************** **/
 
-message Response {
-  string Message = 1;
-  map<string, string> Data = 2;
-}
-
 message StringResponse {
-  string message = 1;
-  string Data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  string Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // BoolResponse 返回 Bool
 message BoolResponse {
-  string message = 1;
-  bool   data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  bool   Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 message CheckResponse {
-  string message = 1;
-  bool   data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  bool   Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 message ResultResponse {
-  string message = 1;
-  bool   data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  bool   Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 

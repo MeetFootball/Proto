@@ -4,22 +4,24 @@ package service;
 
 option go_package = "./service;service";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
 /**************** 请求结构 ****************/
 
 // BaiduTranslatePost 百度翻译传参
 message BaiduTranslatePost {
-  string content = 1;
-  string from    = 2;
-  string to      = 3;
-  bool   encode  = 4;
+  string Content = 1 [(gogoproto.jsontag) = "content"];
+  string From    = 2 [(gogoproto.jsontag) = "from"];
+  string To      = 3 [(gogoproto.jsontag) = "to"];
+  bool   Encode  = 4 [(gogoproto.jsontag) = "encode"];
 }
 
 /**************** 返回结构 ****************/
 
 // BaiduTranslateResponse 返回百度翻译结果
 message BaiduTranslateResponse {
-  string message = 1;
-  string content = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  string Content = 2 [(gogoproto.jsontag) = "content"];
 }

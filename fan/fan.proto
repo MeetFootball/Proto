@@ -4,6 +4,7 @@ package fan;
 
 option go_package = "./fan;fan";
 
+import "go/go.proto";
 import "fan/global.proto";
 import "fan/fan_info.proto";
 import "fan/fan_club.proto";
@@ -12,53 +13,53 @@ import "fan/fan_club.proto";
 
 // Me 我的信息
 message Me {
-  string account        = 1;
-  string nickname       = 2;
-  string avatar         = 3;
-  string club           = 4;
-  bool   authentication = 5;
+  string account        = 1 [(gogoproto.jsontag) = "account"];
+  string nickname       = 2 [(gogoproto.jsontag) = "nickname"];
+  string avatar         = 3 [(gogoproto.jsontag) = "avatar"];
+  string club           = 4 [(gogoproto.jsontag) = "club"];
+  bool   authentication = 5 [(gogoproto.jsontag) = "authentication"];
 }
 
 // Fan 粉丝信息
 message Fan {
-  string account        = 1;
-  string nickname       = 2;
-  string avatar         = 3;
-  string club           = 4;
-  bool   authentication = 5;
+  string account        = 1 [(gogoproto.jsontag) = "account"];
+  string nickname       = 2 [(gogoproto.jsontag) = "nickname"];
+  string avatar         = 3 [(gogoproto.jsontag) = "avatar"];
+  string club           = 4 [(gogoproto.jsontag) = "club"];
+  bool   authentication = 5 [(gogoproto.jsontag) = "authentication"];
 }
 
 /**************** 请求结构 ****************/
 
 // NewFanPost 新用户
 message NewFanPost {
-  uint64 WeChatUserID = 1;
-  string Account      = 2;
-  string Avatar       = 3;
-  string Nickname     = 4;
+  uint64 WeChatUserID = 1 [(gogoproto.jsontag) = "we_chat_user_id"];
+  string Account      = 2 [(gogoproto.jsontag) = "account"];
+  string Avatar       = 3 [(gogoproto.jsontag) = "avatar"];
+  string Nickname     = 4 [(gogoproto.jsontag) = "nickname"];
 }
 
 // ChangeFanNicknamePost 修改昵称
 message ChangeFanNicknamePost {
-  string Nickname = 1;
+  string Nickname = 1 [(gogoproto.jsontag) = "nickname"];
 }
 
 // ChangeFanAccountPost 修改账号
 message ChangeFanAccountPost {
-  string Account = 2;
+  string Account = 2 [(gogoproto.jsontag) = "account"];
 }
 
 /**************** 返回结构 ****************/
 
 message MeResponse {
-  string message = 1;
-  Me     data    = 2;
+  string message = 1 [(gogoproto.jsontag) = "message"];
+  Me     data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // FanResponse 返回 粉丝信息
 message FanResponse {
-  string message = 1;
-  Fan    data    = 2;
+  string message = 1 [(gogoproto.jsontag) = "message"];
+  Fan    data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 /* 服务 */

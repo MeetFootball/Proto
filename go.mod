@@ -3,6 +3,7 @@ module github.com/MeetFootball/Proto
 go 1.18
 
 require (
+	github.com/gogo/protobuf v1.3.2
 	google.golang.org/grpc v1.46.2
 	google.golang.org/protobuf v1.28.0
 )

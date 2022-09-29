@@ -4,47 +4,49 @@ package service;
 
 option go_package = "./service;service";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
 // ExamineText 文字审核结果
 message ExamineText {
-  bool     result       = 1;
-  repeated string words = 2;
+  bool     result       = 1 [(gogoproto.jsontag) = "result"];
+  repeated string words = 2 [(gogoproto.jsontag) = "words"];
 }
 
 // ExamineImage 图片审核结果
 message ExamineImage {
-  bool   result = 1;
-  string error  = 2;
+  bool   result = 1 [(gogoproto.jsontag) = "result"];
+  string error  = 2 [(gogoproto.jsontag) = "error"];
 }
 
 /**************** 请求结构 ****************/
 
 // ExamineTextPost 文字审核
 message ExamineTextPost {
-  uint64 UUID   = 1;
-  uint64 client = 2;
-  string text   = 3;
+  uint64 UUID   = 1 [(gogoproto.jsontag) = "uuid"];
+  uint64 Client = 2 [(gogoproto.jsontag) = "client"];
+  string Text   = 3 [(gogoproto.jsontag) = "text"];
 }
 
 // ExamineImagePost 图片审核
 message ExamineImagePost {
-  uint64 UUID   = 1;
-  uint64 client = 2;
-  uint64 type   = 3;
-  string image  = 4;
+  uint64 UUID   = 1 [(gogoproto.jsontag) = "uuid"];
+  uint64 Client = 2 [(gogoproto.jsontag) = "client"];
+  uint64 Type   = 3 [(gogoproto.jsontag) = "type"];
+  string Image  = 4 [(gogoproto.jsontag) = "image"];
 }
 
 /**************** 返回结构 ****************/
 
 // ExamineTextResponse 返回 文字审核结果
 message ExamineTextResponse {
-  string      message = 1;
-  ExamineText data    = 2;
+  string      Message = 1 [(gogoproto.jsontag) = "message"];
+  ExamineText Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // ExamineImageResponse 返回 审核结果
 message ExamineImageResponse {
-  string       message = 1;
-  ExamineImage data    = 2;
+  string       Message = 1 [(gogoproto.jsontag) = "message"];
+  ExamineImage Data    = 2 [(gogoproto.jsontag) = "data"];
 }

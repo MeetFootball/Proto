@@ -4,14 +4,17 @@ package match;
 
 option go_package = "./match;match";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
 // Club 俱乐部
 message Club {
-  string code    = 1;
-  string logo    = 2;
-  string name    = 3;
-  string en_name = 4;
+  uint64 ID     = 1 [(gogoproto.jsontag) = "id"];
+  string Code   = 2 [(gogoproto.jsontag) = "code"];
+  string Logo   = 3 [(gogoproto.jsontag) = "logo"];
+  string Name   = 4 [(gogoproto.jsontag) = "name"];
+  string EnName = 5 [(gogoproto.jsontag) = "en_name"];
 }
 
 /**************** 请求结构 ****************/
@@ -21,6 +24,6 @@ message Club {
 
 // ClubResponse 返回俱乐部信息
 message ClubResponse {
-  string message = 1;
-  Club   data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  Club   Data    = 2 [(gogoproto.jsontag) = "data"];
 }

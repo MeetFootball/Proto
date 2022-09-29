@@ -4,29 +4,31 @@ package we_chat;
 
 option go_package = "./we_chat;we_chat";
 
+import "go/go.proto";
+
 /**************** 数据结构 ****************/
 
 message WeChatUser {
-  string avatar   = 1;
-  string nickname = 2;
+  string Avatar   = 1 [(gogoproto.jsontag) = "avatar"];
+  string Nickname = 2 [(gogoproto.jsontag) = "nickname"];
 }
 
 /**************** 请求结构 ****************/
 
 message LoginPost {
-  string code = 1;
+  string Code = 1 [(gogoproto.jsontag) = "code"];
 }
 
 /**************** 返回结构 ****************/
 
 // LoginResponse 登录返回
 message LoginResponse {
-  string message = 1;
-  string data    = 2;
+  string Message = 1 [(gogoproto.jsontag) = "message"];
+  string Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // WeChatUserResponse 返回 微信用户昵称 头像
 message WeChatUserResponse {
-  string     message = 1;
-  WeChatUser data    = 2;
+  string     Message = 1 [(gogoproto.jsontag) = "message"];
+  WeChatUser Data    = 2 [(gogoproto.jsontag) = "data"];
 }
