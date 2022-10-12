@@ -39,6 +39,20 @@ message FanClub {
   Club   Club         = 18 [(gogoproto.jsontag) = "club"];
 }
 
+// FanRole 球迷会内角色
+message FanRole {
+  uint64 RoleID   = 1 [(gogoproto.jsontag) = "role_id"];
+  string Title    = 2 [(gogoproto.jsontag) = "title"];
+  string Nickname = 3 [(gogoproto.jsontag) = "nickname"];
+}
+
+// MyFanClub 我的球迷会信息
+message MyFanClub {
+  FanClub FanClub = 1 [(gogoproto.jsontag) = "fan_club"];
+  FanRole FanRole = 2 [(gogoproto.jsontag) = "club_fan"];
+  Club    Club    = 3 [(gogoproto.jsontag) = "club"];
+}
+
 /**************** 请求结构 ****************/
 
 // FanClubPaginationPost 球迷会 分页
@@ -109,6 +123,12 @@ message ClubResponse {
 message FanClubResponse {
   string  Message = 1 [(gogoproto.jsontag) = "message"];
   FanClub Data    = 2 [(gogoproto.jsontag) = "data"];
+}
+
+// MyFanClubResponse 我的球迷会 返回
+message MyFanClubResponse {
+  string    Message = 1 [(gogoproto.jsontag) = "message"];
+  MyFanClub Data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
 // FanClubsResponse 球迷会 列表

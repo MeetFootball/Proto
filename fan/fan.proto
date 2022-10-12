@@ -62,7 +62,7 @@ message FanResponse {
   Fan    data    = 2 [(gogoproto.jsontag) = "data"];
 }
 
-/* 服务 */
+/* 球迷会服务 */
 
 service FanService {
   // Fan
@@ -82,7 +82,8 @@ service FanService {
 
   // FanClub
   rpc FanClub (InfoPost) returns (FanClubResponse) {}
-  rpc MyFanClub (EmptyPost) returns (FanClubResponse) {}
+  rpc SelfFanClub (EmptyPost) returns (FanClubResponse) {} // 获取粉丝自身的球迷会
+  rpc MyFanClub (EmptyPost) returns (MyFanClubResponse) {}
   rpc Pagination (FanClubPaginationPost) returns (FanClubPaginationResponse) {}
   rpc Create (CreateFanClubPost) returns (FanClubResponse) {}
   rpc Transfer (EmptyPost) returns (BoolResponse) {} // 转移球迷会 会长权限
